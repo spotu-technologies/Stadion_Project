@@ -10,10 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  #----------core------------
   get: ^4.6.5
   responsive_framework: ^0.2.0
+
+  #----------utils------------
+
+  #----------ui------------
   cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.5
 
 dev_dependencies:
   flutter_test:
