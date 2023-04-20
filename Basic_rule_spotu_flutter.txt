@@ -1,0 +1,42 @@
+ # Basic Rules
+
+1. MVP 패턴 사용:  절대 사항은 아님.
+ Model/Entity 구분 없이 사용 (무분별한 인터페이스/어댑터 지양을 위해)
+
+2. 상태 관리자는 Get X 사용
+
+3. 기본 폴더 구조
+ 루트(lib) --  
+	 -- View	--- Page
+		--- CustomWidget
+
+               -- Data (or Model)
+               -- Present
+
+
+
+
+4. Use case 그룹화
+   기본 그룹: 
+	- User
+	- Action(사용자 관점)
+	- Gym(메세지(공지/푸시 등), 이벤트) => TBD
+
+
+5. 기본 위젯(components: button, page, layout, container... etc)는 View 폴더에 포함
+
+6. 네이밍: 	UppderCamelCase, lowerCamelCase 사용, lowercase_with_underscores는 가급적 사용X
+	UppderCamelCase : 대문자로 시작하며, 각 단어의 시작 문자를 대문자로 (예: UpperCamelCase)
+	lowerCamelCase : 소문자로 시작하며, 각 단어의 시작 문자를 대문자로 (예: lowerCamelCase)
+	lowercase_with_underscores : 소문자만 사용하며 단어의 구분은 언더스코어(_)를 사용
+
+
+6. 주석: 최대한 많이!
+//한줄 주석: 내가 보고 싶은 잡다한 것들
+  
+/*
+ * 여러줄 주석 -> 사용 안하는 코드 or 테스트 코드 처리
+ */
+  
+///문서 주석: 문서에 포함되어야 할 내용이라 생각되는 것들
+
