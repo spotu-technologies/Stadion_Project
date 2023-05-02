@@ -63,6 +63,8 @@ class StartView extends StatelessWidget {
               //롤오버를 위해 추가된 버튼 위젯
               ButtonWithRollover(
                 onTap: () {
+                  //Get.to의 경우 해당 페이지로 이동하되, 기존 페이지 루트를 스택처럼 쌓아두는 형식
+                  //Get.off or Get.offAll은 기존 루트 제거
                   Get.to(const LoginView());
                 },
                 child: Center(
