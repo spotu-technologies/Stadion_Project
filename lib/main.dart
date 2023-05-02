@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       builder: (context, child) => ResponsiveWrapper.builder(
-        child,
         minWidth: 750,
         minWidthLandscape: 1624.0,
         defaultScale: true,
         breakpoints: [],
         breakpointsLandscape: [],
+        child!,
       ),
       title: 'Stadion',
       theme: ThemeData.from(colorScheme: colorScheme),
