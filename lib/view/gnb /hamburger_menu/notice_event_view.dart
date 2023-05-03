@@ -11,6 +11,7 @@ class NoticeEventView extends StatefulWidget {
 class _NoticeEventViewState extends State<NoticeEventView> {
 
   int _selectedIndex = 0; ///BottomNavigationBar
+  bool isScreen = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _NoticeEventViewState extends State<NoticeEventView> {
           child: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
-            title: Text('공지사항',
+            title: Text(isScreen? '공지사항' : '이벤트',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
@@ -142,14 +143,18 @@ class _NoticeEventViewState extends State<NoticeEventView> {
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        setState(() {
+                          isScreen = true;
+                        });
+                      },
                       child: Container(
                         width: 322,
                         height: 70,
                         alignment: Alignment.centerLeft,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: Colors.grey,
+                          color: isScreen? Colors.yellow : Colors.grey,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20),
@@ -166,14 +171,18 @@ class _NoticeEventViewState extends State<NoticeEventView> {
                     ),
                     SizedBox(width: 18,),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        setState(() {
+                          isScreen = false;
+                        });
+                      },
                       child: Container(
                         width: 322,
                         height: 70,
                         alignment: Alignment.centerLeft,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: Colors.yellow,
+                          color: isScreen? Colors.grey : Colors.yellow,
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20),

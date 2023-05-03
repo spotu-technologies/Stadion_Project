@@ -15,6 +15,7 @@ class _MovementGuideViewState extends State<MovementGuideView> {
   var guideController = TextEditingController();
 
   String isGuide = '';
+
   void GuideFind() {
     Get.dialog(
       MovementGuidePopup(applyGuideAtSub: applyGuide),
