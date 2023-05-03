@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../login/login_view.dart';
+import 'hamburger_menu/badge_view.dart';
+import 'hamburger_menu/faq_view.dart';
 import 'hamburger_menu/movement_guide.dart';
+import 'hamburger_menu/notice_event_view.dart';
+import 'hamburger_menu/pass_vew.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -177,7 +181,7 @@ class _MainViewState extends State<MainView> {
                       ),
                       ///가이드
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => Get.to(() => NoticeEventView()),
                         child: Container(
                           width: 568,
                           height: 98,
@@ -197,7 +201,7 @@ class _MainViewState extends State<MainView> {
                       ),
                       ///공지사항
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => Get.to(() => NoticeEventView()),
                         child: Container(
                           width: 568,
                           height: 98,
@@ -217,7 +221,7 @@ class _MainViewState extends State<MainView> {
                       ),
                       ///이벤트
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => Get.to(() => BadgeView()),
                         child: Container(
                           width: 568,
                           height: 98,
@@ -257,7 +261,7 @@ class _MainViewState extends State<MainView> {
                       ),
                       ///피드백
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () => Get.to(() => PassView()),
                         child: Container(
                           width: 568,
                           height: 98,
@@ -277,7 +281,7 @@ class _MainViewState extends State<MainView> {
                       ),
                       ///패스
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () => Get.to(() => FaqView()),
                         child: Container(
                           width: 568,
                           height: 98,

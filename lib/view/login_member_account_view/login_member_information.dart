@@ -104,7 +104,7 @@ class _LoginMemberInformationViewState extends State<LoginMemberInformationView>
   void BirthdayFind() {
     Get.dialog(
       BirthdayFindPopup(
-          applyBirthdayAtSub:applyBirthday),
+          applyBirthdayAtSub:applyBirthday)
     );
   }
 

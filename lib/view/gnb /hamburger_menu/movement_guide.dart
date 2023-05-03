@@ -70,7 +70,7 @@ class _MovementGuideViewState extends State<MovementGuideView> {
               ),
               SizedBox(width: 18),
               Image(
-                image: AssetImage('image/그룹 9023.png'),
+                image: AssetImage('assets/images/그룹 9023.png'),
               ),
             ],
           ),
