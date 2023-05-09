@@ -43,9 +43,9 @@ class ButtonWithRollover extends StatelessWidget {
       width: width,
       clipBehavior: Clip.hardEdge,
       height: height,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: colorScheme.primary),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: backgroundColor ?? colorScheme.primary),
       child: Material(
-        color: colorScheme.primary,
+        color: backgroundColor ?? colorScheme.primary,
         child: InkWell(
           onTap: onTap,
           //background를 nullable로 선언하였으나 ??를 통해 기본값을 활용한 예시

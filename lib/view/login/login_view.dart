@@ -5,12 +5,43 @@ import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.da
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/login/start_view.dart';
 
+import '../../style_config/text_theme.dart';
+import '../custom_widget/buttons/button_with_rollover.dart';
+import '../custom_widget/text_field/login_text_field.dart';
+
 //로그인 뷰에서 사용될 Get X controller.
 class LoginViewController extends GetxController {
   bool isLogin = true;
+  bool isFind = true;
+  bool idShow = false;
+  bool passwordShow = false;
+  bool _isObscure = true;
+
+  var userController = TextEditingController();
+  var passwordController = TextEditingController();
 
   void switchMenu(bool isLogin) {
     this.isLogin = isLogin;
+    update();
+  }
+
+  void findMenu(bool isFind) {
+    this.isFind = isFind;
+    update();
+  }
+
+  void idInputField(bool idShow) {
+    this.idShow = idShow;
+    update();
+  }
+
+  void passInputField(bool passwordShow) {
+    this.passwordShow = passwordShow;
+    update();
+  }
+
+  void isObscureMenu(bool _isObscure) {
+    this._isObscure = !_isObscure;
     update();
   }
 }
@@ -39,10 +70,10 @@ class LoginView extends GetView<LoginViewController> {
           const SizedBox(height: 50),
           // 아래처럼 메소드에 ///를 통해 주석을 적은 경우 마우스를 대서 설명 확인 가능
           buildTopMenu(),
-          //현재 텍스트필드는 구현 x, 일단 Spacer로 공간 배치
-          const Spacer(),
+          const SizedBox(height: 148),
+          buildLoginInputField(),
+          const SizedBox(height: 600),
           buildBottomMenu(),
-          const SizedBox(height: 188),
         ],
       ),
     );
@@ -109,7 +140,95 @@ class LoginView extends GetView<LoginViewController> {
                 isSelected: !controller.isLogin,
                 text: 'SIGN UP',
                 width: 120,
-                onTap: () => controller.switchMenu(false),
+                onTap: () {
+                  () => controller.switchMenu(false);
+                  Get.to(const StartView());
+                },
+              ),
+            ],
+          );
+        }),
+      ],
+    );
+  }
+
+  ///로그인 입력창/로그인버튼
+  Column buildLoginInputField() {
+    return Column(
+      children: [
+        GetBuilder<LoginViewController>(builder: (context) {
+          return Column(
+            children: [
+              LoginTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.idInputField(true);
+                  } else {
+                    controller.idInputField(false);
+                  }
+                },
+                controller: controller.userController,
+                obscureText: false,
+                hintText: '아이디',
+                suffixIcon: controller.idShow
+                    ? IconButton(
+                        padding: EdgeInsets.only(right: 25),
+                        onPressed: () {
+                          controller.userController.clear();
+                        },
+                        icon: Icon(
+                          Icons.cancel,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      )
+                    : null,
+              ),
+              const SizedBox(height: 20),
+              LoginTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.passInputField(true);
+                  } else {
+                    controller.passInputField(false);
+                  }
+                },
+                controller: controller.passwordController,
+                obscureText: controller._isObscure,
+                hintText: '비밀번호',
+                suffixIcon: controller.passwordShow
+                    ? IconButton(
+                        padding: EdgeInsets.only(right: 25),
+                        onPressed: () {
+                          controller.isObscureMenu(controller._isObscure);
+                        },
+                        icon: Icon(
+                          controller._isObscure
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      )
+                    : null,
+              ),
+              const SizedBox(height: 90),
+              ButtonWithRollover(
+                onTap: () {},
+                backgroundColor: controller.idShow && controller.passwordShow
+                    ? colorScheme.primary
+                    : colorScheme.onBackground,
+                child: Center(
+                  child: Text(
+                    '로그인하기',
+                    style: textThemeKo.headlineSmall!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: controller.idShow && controller.passwordShow
+                          ? colorScheme.shadow
+                          : colorScheme.surfaceVariant,
+                    ),
+                  ),
+                ),
               ),
             ],
           );
