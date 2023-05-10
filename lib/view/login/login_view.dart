@@ -3,30 +3,27 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
+import 'package:stadion_project/view/login/password_find_input_view.dart';
 import 'package:stadion_project/view/login/start_view.dart';
 
 import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
 import '../custom_widget/text_field/login_text_field.dart';
+import '../login_membership/membership_agreement_view.dart';
+import 'id_find_input_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class LoginViewController extends GetxController {
   bool isLogin = true;
-  bool isFind = true;
   bool idShow = false;
   bool passwordShow = false;
   bool _isObscure = true;
 
-  var userController = TextEditingController();
+  var idController = TextEditingController();
   var passwordController = TextEditingController();
 
   void switchMenu(bool isLogin) {
     this.isLogin = isLogin;
-    update();
-  }
-
-  void findMenu(bool isFind) {
-    this.isFind = isFind;
     update();
   }
 
@@ -67,7 +64,7 @@ class LoginView extends GetView<LoginViewController> {
               Get.off(const StartView());
             },
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 56),
           // 아래처럼 메소드에 ///를 통해 주석을 적은 경우 마우스를 대서 설명 확인 가능
           buildTopMenu(),
           const SizedBox(height: 148),
@@ -92,7 +89,9 @@ class LoginView extends GetView<LoginViewController> {
                 isSelected: false,
                 text: '아이디 찾기',
                 width: 272,
-                onTap: () {},
+                onTap: () {
+                  Get.to(const IdFindInputView());
+                },
                 underLineGap: 28,
               ),
               const SizedBox(width: 8.5),
@@ -111,7 +110,9 @@ class LoginView extends GetView<LoginViewController> {
                 isSelected: false,
                 text: '비밀번호 찾기',
                 width: 272,
-                onTap: () {},
+                onTap: () {
+                  Get.to(const PasswordFindInputView());
+                },
                 underLineGap: 28,
               ),
             ],
@@ -142,7 +143,7 @@ class LoginView extends GetView<LoginViewController> {
                 width: 120,
                 onTap: () {
                   () => controller.switchMenu(false);
-                  Get.to(const StartView());
+                  Get.to(const LoginMembershipAgreementView());
                 },
               ),
             ],
@@ -167,16 +168,17 @@ class LoginView extends GetView<LoginViewController> {
                     controller.idInputField(false);
                   }
                 },
-                controller: controller.userController,
+                controller: controller.idController,
                 obscureText: false,
                 hintText: '아이디',
                 suffixIcon: controller.idShow
                     ? IconButton(
                         padding: EdgeInsets.only(right: 25),
                         onPressed: () {
-                          controller.userController.clear();
+                          controller.idController.clear();
+                          controller.idInputField(false);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.cancel,
                           color: Colors.black,
                           size: 30,

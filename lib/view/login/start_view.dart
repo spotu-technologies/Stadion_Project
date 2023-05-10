@@ -6,6 +6,8 @@ import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
 import 'package:stadion_project/view/login/login_view.dart';
 
+import '../login_membership/membership_agreement_view.dart';
+
 //로그인 초기화면에 해당하는 뷰
 class StartView extends StatelessWidget {
   const StartView({Key? key}) : super(key: key);
@@ -88,7 +90,10 @@ class StartView extends StatelessWidget {
               //롤오버를 위해 추가된 버튼 위젯
               ButtonWithTextRollover(
                 title: '계정이 없으신가요? 가입하기',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const LoginMembershipAgreementView());
+                },
+
               ),
             ],
           ),

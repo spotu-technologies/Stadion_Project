@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
 
+import '../../login_membership/membership_agreement_view.dart';
+
 class ButtonWithRollover extends StatelessWidget {
   //생성자를 abcd(this.parameter) 꼴이 아닌 abcd({required this.parameter}) 형태로 선언하면 (중괄호 여부가 중요)
   //추후 클래스를 인스턴스화 할 때 Named Parameter기능을 이용할 수 있다.
@@ -107,6 +109,7 @@ class ButtonWithTextRollover extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             controller.onDismiss();
+            onTap();
           },
           onTapCancel: () => controller.onDismiss(),
           onPanDown: (details) {
