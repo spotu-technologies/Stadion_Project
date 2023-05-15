@@ -17,10 +17,6 @@ class BirthdayPopupViewController extends GetxController {
   final List<int> DaySelectedList = List.generate(31, (index) => index + 1);
   FixedExtentScrollController YearController =
       FixedExtentScrollController(initialItem: 100);
-  /*FixedExtentScrollController MonthController =
-      FixedExtentScrollController(initialItem: 7);
-  FixedExtentScrollController DayController =
-      FixedExtentScrollController(initialItem: 15);*/
   int _selectedYear = 2000;
   int _selectedMonth = 1;
   int _selectedDay = 1;

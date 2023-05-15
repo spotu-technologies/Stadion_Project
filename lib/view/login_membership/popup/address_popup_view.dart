@@ -1,13 +1,14 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
-import 'package:stadion_project/view/custom_widget/text_field/login_text_field.dart';
 
 import '../../../style_config/text_theme.dart';
 import '../../custom_widget/buttons/button_with_rollover.dart';
 import '../../custom_widget/custom_login_text.dart';
+import '../../custom_widget/text_field/login_text_field.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class AddressPopupViewController extends GetxController {
@@ -83,7 +84,102 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
             ),
             child: Column(
               children: [
+                SizedBox(height: 100),
+                PopupText(text: '주소검색'),
+              ],
+            ),
+          ),
+
+          ///TextFormField 스타일
+          Positioned(
+            //top: 240,
+            child: Column(
+              children: [
+                const SizedBox(height: 170),
+                ///우편번호찾기
+                Row(
+                  children: [
+                    const SizedBox(width: 50),
+                    PopupTextFormField(
+                      width: 342,
+                      onChanged: (value) {
+                        print("onChanged Save: selected= $value");
+                        if (value.isNotEmpty) {
+                          controller.postField(true);
+                        } else {
+                          controller.postField(false);
+                        }
+                      },
+                      controller: controller.postController,
+                      hintText: '우편번호',
+                    ),
+                    //우편번호 입력창
+                    const SizedBox(width: 20),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 200,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: colorScheme.background,
+                        ),
+                        alignment: Alignment.center,
+                        child: const Text(
+                          '우편번호 찾기',
+                          style: TextStyle(
+                            fontSize: 28,
+                            letterSpacing: -1.4,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.normal,
+                            color: const Color(0xff949393),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 20),
+                ///주소 첫번째 입력창
+                PopupTextFormField(
+                  width: 562,
+                  onChanged: (value) {
+                    print("onChanged Save: selected= $value");
+                    if (value.isNotEmpty) {
+                      controller.addressField(true);
+                    } else {
+                      controller.addressField(false);
+                    }
+                  },
+                  controller: controller.addressController,
+                  hintText: '도로명주소',
+                ),
+                const SizedBox(height: 20),
+                ///주소 두번째 입력창
+                PopupTextFormField(
+                  width: 562,
+                  onChanged: (value) {
+                    print("onChanged Save: selected= $value");
+                    if (value.isNotEmpty) {
+                      controller.addressDetailField(true);
+                    } else {
+                      controller.addressDetailField(false);
+                    }
+                  },
+                  controller: controller.addressDetailController,
+                  hintText: '상세주소',
+                ),
+              ],
+            ),
+          ),
+
+          ///저장버튼
+          Positioned(
+            top: 20,
+            left: 50,
+            right: 50,
+            child: Column(
+              children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -101,113 +197,28 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                     const SizedBox(width: 20),
                   ],
                 ),
-                const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: Column(
-                    children: [
-                      PopupText(text: '주소검색'),
-                      const SizedBox(height: 34),
-                      Row(
-                        children: [
-                          PopupTextFormField(
-                            width: 342,
-                            onChanged: (value) {
-                              print("onChanged Save: selected= $value");
-                              if (value.isNotEmpty) {
-                                controller.postField(true);
-                              } else {
-                                controller.postField(false);
-                              }
-                            },
-                            controller: controller.postController,
-                            hintText: '우편번호',
-                          ),
-                          //우편번호 입력창
-                          const SizedBox(width: 20),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              width: 200,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: colorScheme.background,
-                              ),
-                              alignment: Alignment.center,
-                              child: const Text(
-                                '우편번호 찾기',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  letterSpacing: -1.4,
-                                  fontWeight: FontWeight.w600,
-                                  fontStyle: FontStyle.normal,
-                                  color: const Color(0xff949393),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          ///우편번호 찾기 버튼
-                        ],
+                const SizedBox(height: 490),
+                ButtonWithRollover(
+                  onTap: () {
+                    Get.back();
+                  },
+                  backgroundColor: controller.postShow &&
+                      controller.addressShow &&
+                      controller.addressDetailShow
+                      ? colorScheme.shadow
+                      : colorScheme.background,
+                  child: Center(
+                    child: Text(
+                      '저장하기',
+                      style: textThemeKo.headlineSmall!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: controller.postShow &&
+                            controller.addressShow &&
+                            controller.addressDetailShow
+                            ? colorScheme.background
+                            : colorScheme.surfaceVariant,
                       ),
-                      const SizedBox(height: 20),
-                      PopupTextFormField(
-                        width: 562,
-                        onChanged: (value) {
-                          print("onChanged Save: selected= $value");
-                          if (value.isNotEmpty) {
-                            controller.addressField(true);
-                          } else {
-                            controller.addressField(false);
-                          }
-                        },
-                        controller: controller.addressController,
-                        hintText: '도로명주소',
-                      ),
-
-                      ///주소 첫번째 입력창
-                      const SizedBox(height: 20),
-                      PopupTextFormField(
-                        width: 562,
-                        onChanged: (value) {
-                          print("onChanged Save: selected= $value");
-                          if (value.isNotEmpty) {
-                            controller.addressDetailField(true);
-                          } else {
-                            controller.addressDetailField(false);
-                          }
-                        },
-                        controller: controller.addressDetailController,
-                        hintText: '상세주소',
-                      ),
-
-                      ///주소 두번째 입력창
-                      const SizedBox(height: 140),
-                      ButtonWithRollover(
-                        onTap: () {
-                          Get.back();
-                        },
-                        backgroundColor: controller.postShow &&
-                                controller.addressShow &&
-                                controller.addressDetailShow
-                            ? colorScheme.shadow
-                            : colorScheme.background,
-                        child: Center(
-                          child: Text(
-                            '저장하기',
-                            style: textThemeKo.headlineSmall!.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: controller.postShow &&
-                                      controller.addressShow &&
-                                      controller.addressDetailShow
-                                  ? colorScheme.background
-                                  : colorScheme.surfaceVariant,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ],
