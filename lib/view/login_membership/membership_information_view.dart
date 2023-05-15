@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/login_membership/popup/address_popup_view.dart';
+import 'package:stadion_project/view/login_membership/popup/birthday_popup_view.dart';
+import 'package:stadion_project/view/login_membership/popup/height_weight_popup_view.dart';
 import 'package:stadion_project/view/login_membership/popup/sex_popup_view.dart';
 
 import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
 import '../custom_widget/custom_login_text.dart';
 import '../custom_widget/text_field/login_text_field.dart';
-import 'membership_agreement_view.dart';
 import 'membership_password_input_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
@@ -84,7 +85,6 @@ class MembershipInformationViewController extends GetxController {
     isMonth = valueMonth;
     isDay = valueDay;
     birthdayController.text = '${isYear}. ${isMonth}. ${isDay}';
-    print("current sex: $isYear");
     update();
   }
 
@@ -102,9 +102,9 @@ void SexFind() {
     );
   }
 
-  /*void HeightFind() {
+  void HeightWeightFind() {
     Get.dialog(
-      HeightFindPopup(
+      HeightWeightPopupView(
           applyHeightAtSub: applyHeight, applyWeightAtSub: applyWeight),
           barrierColor: Colors.transparent,
     );
@@ -112,11 +112,11 @@ void SexFind() {
 
   void BirthdayFind() {
     Get.dialog(
-        BirthdayFindPopup(
-            applyBirthdayAtSub: applyBirthday)
+      BirthdayPopupView(
+            applyBirthdayAtSub: applyBirthday),
             barrierColor: Colors.transparent,
     );
-  }*/
+  }
 }
 
 class MembershipInformationView
@@ -406,6 +406,9 @@ class MembershipInformationView
                 child: Row(
                   children: [
                     MembershipTextFormSmallField(
+                      onTap: () {
+                        controller.HeightWeightFind();
+                      },
                       controller: controller.heightController,
                       prefixIcon: Container(
                         width: 120,
@@ -420,7 +423,9 @@ class MembershipInformationView
                         ),
                       ),
                       suffixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.HeightWeightFind();
+                        },
                         icon: Icon(
                           Icons.check,
                           color: Colors.black,
@@ -430,6 +435,9 @@ class MembershipInformationView
                     ),
                     const SizedBox(width: 18),
                     MembershipTextFormSmallField(
+                      onTap: () {
+                        controller.HeightWeightFind();
+                      },
                       controller: controller.weightController,
                       prefixIcon: Container(
                         width: 120,
@@ -444,7 +452,9 @@ class MembershipInformationView
                         ),
                       ),
                       suffixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.HeightWeightFind();
+                        },
                         icon: Icon(
                           Icons.check,
                           color: Colors.black,
@@ -459,6 +469,9 @@ class MembershipInformationView
 
               ///생년월일 입력창
               MembershipTextFormField(
+                onTap: () {
+                  controller.BirthdayFind();
+                },
                 controller: controller.birthdayController,
                 prefixIcon: Container(
                   width: 120,
@@ -473,7 +486,9 @@ class MembershipInformationView
                   ),
                 ),
                 suffixIcon: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.BirthdayFind();
+                  },
                   icon: Icon(
                     Icons.check,
                     color: Colors.black,

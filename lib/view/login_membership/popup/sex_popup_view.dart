@@ -20,8 +20,6 @@ class SexPopupView extends GetView<SexPopupViewController> {
 
   final Function(bool) applySexAtSub;
 
-  get widget => widget!;
-
   @override
   Widget build(BuildContext context) {
     Get.put(SexPopupViewController());
@@ -65,49 +63,45 @@ class SexPopupView extends GetView<SexPopupViewController> {
               borderRadius: BorderRadius.circular(12),
               color: Colors.transparent,
             ),
-            child: Positioned(
-              left: 50,
-              right: 50,
-              child: Column(
-                children: [
-                  SizedBox(height: 100),
-                  PopupText(text: '성별'),
-                  const SizedBox(height: 126),
-                  Container(
-                    width: 420,
-                    height: 2,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        //begin: Alignment(0,0.5),
-                        //end: Alignment(1,0.5),
-                        colors: [
-                          Color(0x00ffffff),
-                          Color(0xff848484),
-                          Color(0x00ffffff)
-                        ],
-                      ),
+            child: Column(
+              children: [
+                SizedBox(height: 100),
+                PopupText(text: '성별'),
+                const SizedBox(height: 126),
+                Container(
+                  width: 420,
+                  height: 2,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      //begin: Alignment(0,0.5),
+                      //end: Alignment(1,0.5),
+                      colors: [
+                        Color(0x00ffffff),
+                        Color(0xff848484),
+                        Color(0x00ffffff)
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 142),
-                  Container(
-                    width: 420,
-                    height: 2,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        //begin: Alignment(0,0.5),
-                        //end: Alignment(1,0.5),
-                        colors: [
-                          Color(0x00ffffff),
-                          Color(0xff848484),
-                          Color(0x00ffffff)
-                        ],
-                      ),
+                ),
+                const SizedBox(height: 142),
+                Container(
+                  width: 420,
+                  height: 2,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      //begin: Alignment(0,0.5),
+                      //end: Alignment(1,0.5),
+                      colors: [
+                        Color(0x00ffffff),
+                        Color(0xff848484),
+                        Color(0x00ffffff)
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
 
