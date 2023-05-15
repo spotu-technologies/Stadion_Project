@@ -27,6 +27,7 @@ class LoginTitle extends StatelessWidget {
   }
 }
 
+
 class LoginMembershipText extends StatelessWidget {
   const LoginMembershipText({
     required this.text,
@@ -44,3 +45,25 @@ class LoginMembershipText extends StatelessWidget {
     );
   }
 }
+
+
+class PopupText extends StatelessWidget {
+  const PopupText({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: textThemeKo.headlineSmall!
+          .copyWith(fontWeight: FontWeight.w600),
+    );
+  }
+}
+
+
+
