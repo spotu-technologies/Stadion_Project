@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
+import 'package:stadion_project/view/custom_widget/buttons/custom_checkbox_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 
 import '../../style_config/text_theme.dart';
@@ -36,7 +38,7 @@ class LoginMembershipAgreementViewController extends GetxController {
     isCheckAll = flag;
   }
 
-  checkBoxSelect2() {
+  checkBoxSelectIndividual() {
     update();
     bool flag = true;
     for (int i = 0; i < isCheckedList.length - 1; i++) {
@@ -89,26 +91,29 @@ class LoginMembershipAgreementView
               children: [
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.check_box_outlined,
-                        color: Colors.black,
-                        size: 30,
-                      ),
+                    CustomCheckboxAll(
+                      onChanged: (value) {
+                        controller.isCheckAll = value!;
+                        controller.checkChangeAll(controller.isCheckAll);
+                      },
+                      value: controller.isCheckAll,
                     ),
                     SizedBox(width: 5),
                     LoginMembershipText(
                       text: '모두 동의 (선택 정보 포함)',
                     ),
                   ],
-                ), ///모두 동의
+                ),
+
+                ///모두 동의
                 const SizedBox(height: 10),
                 Container(
                   width: 562,
                   height: 2,
                   color: colorScheme.shadow,
-                ), ///밑줄
+                ),
+
+                ///밑줄
                 const SizedBox(height: 9),
                 Container(
                   alignment: Alignment.centerLeft,
@@ -119,34 +124,39 @@ class LoginMembershipAgreementView
                       color: colorScheme.onSurface,
                     ),
                   ),
-                ), ///약관 확인 문구
+                ),
+
+                ///약관 확인 문구
                 const SizedBox(height: 53),
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.check,
-                        color: Colors.black,
-                        size: 30,
-                      ),
+                    ///첫번째 동의
+                    CustomCheckboxSelect(
+                      onChanged: (value) {
+                        controller.isCheckedList[0] = value!;
+                        controller.checkBoxSelect();
+                        controller.checkBoxSelectIndividual();
+                      },
+                      value: controller.isCheckedList[0],
                     ),
                     SizedBox(width: 5),
                     LoginMembershipText(
                       text: '[필수] 만 14세 이상',
                     ),
                   ],
-                ), ///첫번째 동의
+                ),
                 const SizedBox(height: 15),
+
+                ///두번째 동의
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.check,
-                        color: Colors.black,
-                        size: 30,
-                      ),
+                    CustomCheckboxSelect(
+                      onChanged: (value) {
+                        controller.isCheckedList[1] = value!;
+                        controller.checkBoxSelect();
+                        controller.checkBoxSelectIndividual();
+                      },
+                      value: controller.isCheckedList[1],
                     ),
                     SizedBox(width: 5),
                     LoginMembershipText(
@@ -157,17 +167,19 @@ class LoginMembershipAgreementView
                       onTap: () {},
                     ),
                   ],
-                ), ///두번째 동의
+                ),
                 const SizedBox(height: 15),
+
+                ///세번째 동의
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.check,
-                        color: Colors.black,
-                        size: 30,
-                      ),
+                    CustomCheckboxSelect(
+                      onChanged: (value) {
+                        controller.isCheckedList[2] = value!;
+                        controller.checkBoxSelect();
+                        controller.checkBoxSelectIndividual();
+                      },
+                      value: controller.isCheckedList[2],
                     ),
                     SizedBox(width: 5),
                     LoginMembershipText(
@@ -178,40 +190,40 @@ class LoginMembershipAgreementView
                       onTap: () {},
                     ),
                   ],
-                ), ///세번째 동의
+                ),
                 const SizedBox(height: 15),
+
+                ///네번째 동의
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.check,
-                        color: Colors.black,
-                        size: 30,
-                      ),
+                    CustomCheckboxSelect(
+                      onChanged: (value) {
+                        controller.isCheckedList[3] = value!;
+                        controller.checkBoxSelect();
+                      },
+                      value: controller.isCheckedList[3],
                     ),
                     SizedBox(width: 5),
                     LoginMembershipText(
-                      text: '[필수] 광고성 정보 수신 및 마케팅 활용 동의',
+                      text: '[선택] 광고성 정보 수신 및 마케팅 활용 동의',
                     ),
                     SizedBox(width: 15),
                     buildUnderLineButton(
                       onTap: () {},
                     ),
                   ],
-                ), ///네번째 동의
+                ),
                 const SizedBox(height: 568),
+
+                ///가입버튼
                 ButtonWithRollover(
-                  onTap: () {
-                    Get.to(const MembershipIdInputView());
-                  },
-                  /*controller.isCheckAll || controller.isCheckSelect
-                      ? () => Get.to(() => LoginMembershipIdInputView())
+                  onTap: controller.isCheckAll || controller.isCheckSelect
+                      ? () => Get.to(() => MembershipIdInputView())
                       : () => Get.to(() => false),
                   backgroundColor:
                       controller.isCheckAll || controller.isCheckSelect
                           ? colorScheme.primary
-                          : colorScheme.onBackground,*/
+                          : colorScheme.onBackground,
                   child: Center(
                     child: Text(
                       '동의하고 가입하기',
@@ -223,7 +235,7 @@ class LoginMembershipAgreementView
                       ),
                     ),
                   ),
-                ), ///가입버튼
+                ),
               ],
             ),
           );
