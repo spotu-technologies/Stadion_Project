@@ -4,6 +4,7 @@ import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/login_membership/popup/address_popup_view.dart';
 import 'package:stadion_project/view/login_membership/popup/birthday_popup_view.dart';
+import 'package:stadion_project/view/login_membership/popup/complete_popup_view.dart';
 import 'package:stadion_project/view/login_membership/popup/height_weight_popup_view.dart';
 import 'package:stadion_project/view/login_membership/popup/sex_popup_view.dart';
 
@@ -45,6 +46,21 @@ class MembershipInformationViewController extends GetxController {
   String isMonth = '';
   String isDay = '';
 
+  void nameField(bool nameShow) {
+    this.nameShow = nameShow;
+    update();
+  }
+
+  void emailField(bool emailShow) {
+    this.emailShow = emailShow;
+    update();
+  }
+
+  void callField(bool callShow) {
+    this.callShow = callShow;
+    update();
+  }
+
   void addressSearchField(bool addressShow, bool addressSearchShow) {
     this.addressShow = addressShow;
     this.addressSearchShow = addressSearchShow;
@@ -53,6 +69,26 @@ class MembershipInformationViewController extends GetxController {
 
   void addressDetailField(bool addressDetailShow) {
     this.addressDetailShow = addressDetailShow;
+    update();
+  }
+
+  void sexField(bool sexShow) {
+    this.sexShow = sexShow;
+    update();
+  }
+
+  void heightField(bool heightShow) {
+    this.heightShow = heightShow;
+    update();
+  }
+
+  void weightField(bool weightShow) {
+    this.weightShow = weightShow;
+    update();
+  }
+
+  void birthdayField(bool birthdayShow) {
+    this.birthdayShow = birthdayShow;
     update();
   }
 
@@ -95,7 +131,7 @@ class MembershipInformationViewController extends GetxController {
     );
   }
 
-void SexFind() {
+  void SexFind() {
     Get.dialog(
       SexPopupView(applySexAtSub: applySex),
       barrierColor: Colors.transparent,
@@ -106,15 +142,21 @@ void SexFind() {
     Get.dialog(
       HeightWeightPopupView(
           applyHeightAtSub: applyHeight, applyWeightAtSub: applyWeight),
-          barrierColor: Colors.transparent,
+      barrierColor: Colors.transparent,
     );
   }
 
   void BirthdayFind() {
     Get.dialog(
-      BirthdayPopupView(
-            applyBirthdayAtSub: applyBirthday),
-            barrierColor: Colors.transparent,
+      BirthdayPopupView(applyBirthdayAtSub: applyBirthday),
+      barrierColor: Colors.transparent,
+    );
+  }
+
+  void CompleteFind() {
+    Get.dialog(
+      CompletePopupView(),
+      barrierColor: Colors.transparent,
     );
   }
 }
@@ -145,12 +187,15 @@ class MembershipInformationView
               text: '스타디온 앱에서 사용할\n추가 정보를 입력해 주세요.',
             ),
             const SizedBox(height: 86),
+
             ///연락처
             buildContactField(),
             const SizedBox(height: 101),
+
             ///신체정보
             buildBodyField(),
             const SizedBox(height: 101),
+
             ///운동선호도
             buildSportsField(),
             const SizedBox(height: 30),
@@ -169,22 +214,44 @@ class MembershipInformationView
               ),
             ),
             const SizedBox(height: 90),
-            ButtonWithRollover(
-              onTap: () {},
-              backgroundColor: controller.emailShow
-                  ? colorScheme.primary
-                  : colorScheme.onBackground,
-              child: Center(
-                child: Text(
-                  '완료',
-                  style: textThemeKo.headlineSmall!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: controller.emailShow
-                        ? colorScheme.shadow
-                        : colorScheme.surfaceVariant,
+            GetBuilder<MembershipInformationViewController>(
+              builder: (controller) {
+                return ButtonWithRollover(
+                  onTap: () {
+                    controller.CompleteFind();
+                  },
+                  backgroundColor: controller.nameShow &&
+                          controller.emailShow &&
+                          controller.callShow &&
+                          controller.addressShow &&
+                          controller.addressDetailShow &&
+                          controller.sexShow
+                          /*controller.heightShow &&
+                          controller.weightShow &&
+                          controller.birthdayShow*/
+                      ? colorScheme.primary
+                      : colorScheme.onBackground,
+                  child: Center(
+                    child: Text(
+                      '완료',
+                      style: textThemeKo.headlineSmall!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: controller.nameShow &&
+                            controller.emailShow &&
+                            controller.callShow &&
+                            controller.addressShow &&
+                            controller.addressDetailShow &&
+                            controller.sexShow &&
+                            controller.heightShow &&
+                            controller.weightShow &&
+                            controller.birthdayShow
+                            ? colorScheme.shadow
+                            : colorScheme.surfaceVariant,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              }
             ),
             const SizedBox(height: 232),
           ],
@@ -224,6 +291,13 @@ class MembershipInformationView
 
               ///이름 입력창
               MembershipTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.nameField(true);
+                  } else {
+                    controller.nameField(false);
+                  }
+                },
                 controller: controller.nameController,
                 prefixIcon: Container(
                   width: 150,
@@ -242,6 +316,13 @@ class MembershipInformationView
 
               ///이메일 입력창
               MembershipTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.emailField(true);
+                  } else {
+                    controller.emailField(false);
+                  }
+                },
                 controller: controller.emailController,
                 prefixIcon: Container(
                   width: 150,
@@ -260,6 +341,13 @@ class MembershipInformationView
 
               ///휴대폰 입력창
               MembershipTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.callField(true);
+                  } else {
+                    controller.callField(false);
+                  }
+                },
                 controller: controller.callController,
                 prefixIcon: Container(
                   width: 150,
@@ -326,6 +414,13 @@ class MembershipInformationView
 
               ///상세주소 입력창
               MembershipTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.addressDetailField(true);
+                  } else {
+                    controller.addressDetailField(false);
+                  }
+                },
                 controller: controller.addressDetailController,
                 prefixIcon: Container(
                   width: 150,
@@ -372,6 +467,13 @@ class MembershipInformationView
 
               ///성별 입력창
               MembershipTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.sexField(true);
+                  } else {
+                    controller.sexField(false);
+                  }
+                },
                 onTap: () {
                   controller.SexFind();
                 },
@@ -406,6 +508,13 @@ class MembershipInformationView
                 child: Row(
                   children: [
                     MembershipTextFormSmallField(
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          controller.heightField(true);
+                        } else {
+                          controller.heightField(false);
+                        }
+                      },
                       onTap: () {
                         controller.HeightWeightFind();
                       },
@@ -435,6 +544,13 @@ class MembershipInformationView
                     ),
                     const SizedBox(width: 18),
                     MembershipTextFormSmallField(
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          controller.weightField(true);
+                        } else {
+                          controller.weightField(false);
+                        }
+                      },
                       onTap: () {
                         controller.HeightWeightFind();
                       },
@@ -469,6 +585,13 @@ class MembershipInformationView
 
               ///생년월일 입력창
               MembershipTextFormField(
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    controller.birthdayField(true);
+                  } else {
+                    controller.birthdayField(false);
+                  }
+                },
                 onTap: () {
                   controller.BirthdayFind();
                 },

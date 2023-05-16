@@ -17,8 +17,8 @@ class HeightWeightPopupViewController extends GetxController {
       FixedExtentScrollController(initialItem: 180);
   FixedExtentScrollController WeightController =
       FixedExtentScrollController(initialItem: 70);
-  int _selectedHeight = 0;
-  int _selectedWeight = 0;
+  int _selectedHeight = 181;
+  int _selectedWeight = 71;
 }
 
 class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
@@ -37,7 +37,7 @@ class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      alignment: const Alignment(0.0, -0.8),
+      alignment: const Alignment(0.0, -0.6),
       shadowColor: colorScheme.shadow.withOpacity(0.1),
       content: Stack(
         children: [

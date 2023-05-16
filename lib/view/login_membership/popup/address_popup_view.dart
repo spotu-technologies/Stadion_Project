@@ -45,7 +45,7 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      alignment: const Alignment(0.0, -0.8),
+      alignment: const Alignment(0.0, -0.75),
       shadowColor: colorScheme.shadow.withOpacity(0.1),
       content: Stack(
         children: [
@@ -84,18 +84,27 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
             ),
             child: Column(
               children: [
-                SizedBox(height: 100),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Get.back(),
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        child: Icon(
+                          Icons.close,
+                          size: 50,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                ),
+                SizedBox(height: 30),
                 PopupText(text: '주소검색'),
-              ],
-            ),
-          ),
-
-          ///TextFormField 스타일
-          Positioned(
-            //top: 240,
-            child: Column(
-              children: [
-                const SizedBox(height: 170),
+                const SizedBox(height: 34),
                 ///우편번호찾기
                 Row(
                   children: [
@@ -103,7 +112,6 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                     PopupTextFormField(
                       width: 342,
                       onChanged: (value) {
-                        print("onChanged Save: selected= $value");
                         if (value.isNotEmpty) {
                           controller.postField(true);
                         } else {
@@ -144,7 +152,6 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                 PopupTextFormField(
                   width: 562,
                   onChanged: (value) {
-                    print("onChanged Save: selected= $value");
                     if (value.isNotEmpty) {
                       controller.addressField(true);
                     } else {
@@ -159,7 +166,6 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                 PopupTextFormField(
                   width: 562,
                   onChanged: (value) {
-                    print("onChanged Save: selected= $value");
                     if (value.isNotEmpty) {
                       controller.addressDetailField(true);
                     } else {
@@ -169,57 +175,33 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                   controller: controller.addressDetailController,
                   hintText: '상세주소',
                 ),
-              ],
-            ),
-          ),
-
-          ///저장버튼
-          Positioned(
-            top: 20,
-            left: 50,
-            right: 50,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () => Get.back(),
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        child: Icon(
-                          Icons.close,
-                          size: 50,
+                const SizedBox(height: 140),
+                GetBuilder<AddressPopupViewController>(
+                  builder: (controller) {
+                    return ButtonWithRollover(
+                      onTap: () {
+                        Get.back();
+                      },
+                      backgroundColor: controller.postShow &&
+                          controller.addressShow &&
+                          controller.addressDetailShow
+                          ? colorScheme.shadow
+                          : colorScheme.background,
+                      child: Center(
+                        child: Text(
+                          '저장하기',
+                          style: textThemeKo.headlineSmall!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: controller.postShow &&
+                                controller.addressShow &&
+                                controller.addressDetailShow
+                                ? colorScheme.background
+                                : colorScheme.surfaceVariant,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 20),
-                  ],
-                ),
-                const SizedBox(height: 490),
-                ButtonWithRollover(
-                  onTap: () {
-                    Get.back();
-                  },
-                  backgroundColor: controller.postShow &&
-                      controller.addressShow &&
-                      controller.addressDetailShow
-                      ? colorScheme.shadow
-                      : colorScheme.background,
-                  child: Center(
-                    child: Text(
-                      '저장하기',
-                      style: textThemeKo.headlineSmall!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: controller.postShow &&
-                            controller.addressShow &&
-                            controller.addressDetailShow
-                            ? colorScheme.background
-                            : colorScheme.surfaceVariant,
-                      ),
-                    ),
-                  ),
+                    );
+                  }
                 ),
               ],
             ),

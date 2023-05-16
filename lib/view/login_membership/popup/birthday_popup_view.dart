@@ -34,7 +34,7 @@ class BirthdayPopupView extends GetView<BirthdayPopupViewController> {
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      alignment: const Alignment(0.0, -0.8),
+      alignment: const Alignment(0.0, -0.6),
       shadowColor: colorScheme.shadow.withOpacity(0.1),
       content: Stack(
         children: [

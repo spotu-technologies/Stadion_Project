@@ -66,4 +66,24 @@ class PopupText extends StatelessWidget {
 }
 
 
+class PopupSmallText extends StatelessWidget {
+  const PopupSmallText({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: textThemeKo.labelLarge!
+          .copyWith(fontWeight: FontWeight.w300),
+    );
+  }
+}
+
+
 

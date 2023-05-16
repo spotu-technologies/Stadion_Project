@@ -26,7 +26,7 @@ class SexPopupView extends GetView<SexPopupViewController> {
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      alignment: const Alignment(0.0, -0.8),
+      alignment: const Alignment(0.0, -0.75),
       shadowColor: colorScheme.shadow.withOpacity(0.1),
       content: Stack(
         children: [
