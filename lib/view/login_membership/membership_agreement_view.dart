@@ -64,7 +64,9 @@ class LoginMembershipAgreementView
         children: [
           CustomAppBar(
             title: '회원가입',
-            isEnglishTitle: true,
+            isEnglishTitle: false,
+            onLeadingSearch: (){},
+            onLeadingImage: (){},
             onLeading: () {
               Get.to(const LoginView());
             },

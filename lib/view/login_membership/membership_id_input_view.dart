@@ -37,7 +37,9 @@ class MembershipIdInputView extends GetView<MembershipIdInputViewController> {
           //추가한 커스텀 앱 바 위젯 (추후 좀 더 파라미터나 세부 위젯 추가필요)
           CustomAppBar(
             title: '회원가입',
-            isEnglishTitle: true,
+            isEnglishTitle: false,
+            onLeadingSearch: (){},
+            onLeadingImage: (){},
             onLeading: () {
               //off를 통해 view를 빠져나갈 시 기존 페이지를 dispose
               Get.off(const LoginMembershipAgreementView());
@@ -71,7 +73,7 @@ class MembershipIdInputView extends GetView<MembershipIdInputViewController> {
                 },
                 controller: controller.idController,
                 obscureText: false,
-                hintText: '아이디 입력',
+                hintText: '아이디(이메일) 입력',
                 suffixIcon: controller.idShow
                     ? IconButton(
                         padding: EdgeInsets.only(right: 25),

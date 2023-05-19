@@ -10,6 +10,7 @@ import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
 import '../custom_widget/text_field/login_text_field.dart';
 import '../login_membership/membership_agreement_view.dart';
+import '../main/main_screen_view.dart';
 import 'id_find_input_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
@@ -59,6 +60,8 @@ class LoginView extends GetView<LoginViewController> {
           CustomAppBar(
             title: 'LOGIN',
             isEnglishTitle: true,
+            onLeadingSearch: (){},
+            onLeadingImage: (){},
             onLeading: () {
               //off를 통해 view를 빠져나갈 시 기존 페이지를 dispose
               Get.off(const StartView());
@@ -216,7 +219,9 @@ class LoginView extends GetView<LoginViewController> {
               ),
               const SizedBox(height: 90),
               ButtonWithRollover(
-                onTap: () {},
+                onTap: () {
+                  Get.to(const MainScreenView());
+                },
                 backgroundColor: controller.idShow && controller.passwordShow
                     ? colorScheme.primary
                     : colorScheme.onBackground,

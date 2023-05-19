@@ -6,7 +6,9 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     required this.title,
     required this.onLeading,
-    this.withAction = true,
+    required this.onLeadingSearch,
+    required this.onLeadingImage,
+    this.withAction = false,
     this.withMenu = false,
     this.onDarkTheme = false,
     this.isEnglishTitle = true,
@@ -18,10 +20,13 @@ class CustomAppBar extends StatelessWidget {
   final bool withAction;
   final bool onDarkTheme;
   final VoidCallback onLeading;
+  final VoidCallback onLeadingSearch;
+  final VoidCallback onLeadingImage;
   final bool isEnglishTitle;
 
   @override
   Widget build(BuildContext context) {
+    print('build custom appbar');
     return Container(
       height: 150,
       color: Colors.transparent,
@@ -40,12 +45,34 @@ class CustomAppBar extends StatelessWidget {
                     onTap: onLeading,
                     child: Icon(
                       withMenu ? Icons.menu_outlined : Icons.arrow_back,
-                      color: onDarkTheme ? colorScheme.background : colorScheme.shadow,
+                      color: onDarkTheme
+                          ? colorScheme.background
+                          : colorScheme.shadow,
                       size: 50,
                     ),
                   ),
                 ),
-                const SizedBox(width: 44),
+                const SizedBox(width: 494),
+                if (withAction)
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: onLeadingSearch,
+                        child: Icon(
+                          Icons.search,
+                          size: 50,
+                        ),
+                      ),
+                      const SizedBox(width: 18),
+                      GestureDetector(
+                        onTap: onLeadingImage,
+                        child: Icon(
+                          Icons.circle,
+                          size: 50,
+                        ),
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),
@@ -56,11 +83,15 @@ class CustomAppBar extends StatelessWidget {
               style: isEnglishTitle
                   ? textThemeEn.titleMedium!.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: onDarkTheme ? colorScheme.background : colorScheme.shadow,
+                      color: onDarkTheme
+                          ? colorScheme.background
+                          : colorScheme.shadow,
                     )
                   : textThemeKo.titleMedium!.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: onDarkTheme ? colorScheme.background : colorScheme.shadow,
+                      color: onDarkTheme
+                          ? colorScheme.background
+                          : colorScheme.shadow,
                     ),
             ),
           ),
