@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 
-import '../../main/main_screen_view.dart';
+import 'main_screen_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class CustomBottomNavigationBarController extends GetxController {
@@ -33,8 +33,8 @@ class CustomBottomNavigationBar
         type: BottomNavigationBarType.fixed,
         elevation: 0,
         backgroundColor: colorScheme.background,
-        selectedItemColor: colorScheme.primary,
-        unselectedItemColor: colorScheme.shadow,
+        //selectedItemColor: colorScheme.primary,
+        //unselectedItemColor: colorScheme.shadow,
         selectedFontSize: 0,
         unselectedFontSize: 0,
         currentIndex: controller.selectedIndex.value,
@@ -46,6 +46,7 @@ class CustomBottomNavigationBar
                   ? AssetImage('assets/icons/home_change.png')
                   : AssetImage('assets/icons/home.png'),
             ),
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Image(
@@ -53,6 +54,7 @@ class CustomBottomNavigationBar
                   ? AssetImage('assets/icons/mom_change.png')
                   : AssetImage('assets/icons/mom.png'),
             ),
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Image(
@@ -60,6 +62,7 @@ class CustomBottomNavigationBar
                   ? AssetImage('assets/icons/mtc_change.png')
                   : AssetImage('assets/icons/mtc.png'),
             ),
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Image(
@@ -67,6 +70,7 @@ class CustomBottomNavigationBar
                   ? AssetImage('assets/icons/numbers_change.png')
                   : AssetImage('assets/icons/numbers.png'),
             ),
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Image(
@@ -74,6 +78,7 @@ class CustomBottomNavigationBar
                   ? AssetImage('assets/icons/wod_change.png')
                   : AssetImage('assets/icons/wod.png'),
             ),
+            label: '',
           ),
         ],
       ),

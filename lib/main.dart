@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         child!,
       ),
       title: 'Stadion',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.from(colorScheme: colorScheme),
       home: StartView(),
     );

@@ -86,4 +86,30 @@ class PopupSmallText extends StatelessWidget {
 }
 
 
+class MainTitle extends StatelessWidget {
+  const MainTitle({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 44),
+      child: Container(
+        height: 108,
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: textThemeKo.headlineLarge!
+              .copyWith(fontWeight: FontWeight.w300, color: colorScheme.shadow),
+        ),
+      ),
+    );
+  }
+}
+
+
 
