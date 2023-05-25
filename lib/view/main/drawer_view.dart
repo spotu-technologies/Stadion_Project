@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
+import 'package:stadion_project/view/main/hamburger_menu/badge_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/boxpass_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/check_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/faq_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/feed_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/free_trial_request_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/movement_guide_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/notice_event_view.dart';
 
 import '../../style_config/text_theme.dart';
 import '../login/login_view.dart';
@@ -178,27 +183,39 @@ class DrawerView extends GetView<DrawerViewController> {
                     text: 'MOVEMENT GUIDE',
                   ),
                   buildGestureDetectorThick(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const NoticeEventView(isNotice: true));
+                    },
                     text: 'NOTICE',
                   ),
                   buildGestureDetectorthin(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const NoticeEventView(isNotice: false));
+                    },
                     text: 'EVENT',
                   ),
                   buildGestureDetectorthin(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const BadgeView());
+                    },
                     text: 'BADGE',
                   ),
                   buildGestureDetectorThick(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const FeedView());
+                    },
                     text: 'FEED',
                   ),
                   buildGestureDetectorthin(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const BoxPassView());
+                    },
                     text: 'PASS',
                   ),
                   buildGestureDetectorthin(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const FaqView());
+                    },
                     text: 'FAQ',
                   ),
                   Container(

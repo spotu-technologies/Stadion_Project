@@ -7,7 +7,7 @@ import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 
 import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
-import '../custom_widget/custom_login_text.dart';
+import '../custom_widget/custom_text.dart';
 import '../login/login_view.dart';
 import 'membership_id_input_view.dart';
 

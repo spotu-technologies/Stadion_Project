@@ -4,23 +4,17 @@ import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
-import 'package:stadion_project/view/custom_widget/custom_login_text.dart';
+import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
 import 'package:stadion_project/view/main/drawer_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/popup/movement_guide_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/popup/movement_guide_popup_view.dart';
 import 'package:stadion_project/view/main/main_screen_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class MovementGuideViewController extends GetxController {
   var guideController = TextEditingController();
 
-  bool guideShow = false;
   String isGuide = '';
-
-  void nameField(bool guideShow) {
-    this.guideShow = guideShow;
-    update();
-  }
 
   void applyGuide(String value) {
     isGuide = value;

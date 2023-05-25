@@ -4,7 +4,7 @@ import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
-import 'package:stadion_project/view/custom_widget/custom_login_text.dart';
+import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
 import 'package:stadion_project/view/main/drawer_view.dart';
 import 'package:stadion_project/view/main/main_screen_view.dart';

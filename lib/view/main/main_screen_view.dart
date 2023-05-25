@@ -497,9 +497,7 @@ class MainScreenView extends GetView<MainScreenViewController> {
         ),
       ),
       drawer: DrawerView(),
-      body: Obx(() => SafeArea(
-          child: controller.views[CustomBottomNavigationBarController.to.selectedIndex.value]
-      )),
+      body: Obx(() => controller.views[CustomBottomNavigationBarController.to.selectedIndex.value]),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 44),
         child: SizedBox(

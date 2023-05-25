@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
-import 'package:stadion_project/view/custom_widget/custom_login_text.dart';
+import 'package:stadion_project/view/custom_widget/custom_text.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class GuidePopupViewController extends GetxController {

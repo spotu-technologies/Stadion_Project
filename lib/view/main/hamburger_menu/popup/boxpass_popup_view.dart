@@ -4,40 +4,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
-
-import '../../../style_config/text_theme.dart';
-import '../../custom_widget/buttons/button_with_rollover.dart';
-import '../../custom_widget/custom_text.dart';
+import 'package:stadion_project/style_config/text_theme.dart';
+import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
+import 'package:stadion_project/view/custom_widget/custom_text.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class HeightWeightPopupViewController extends GetxController {
-  final List<int> HeightSelectedList = List.generate(300, (index) => index + 1);
-  final List<int> WeightSelectedList = List.generate(300, (index) => index + 1);
-  FixedExtentScrollController heightController =
-      FixedExtentScrollController(initialItem: 180);
-  FixedExtentScrollController WeightController =
-      FixedExtentScrollController(initialItem: 70);
-  int _selectedHeight = 181;
-  int _selectedWeight = 71;
+class BoxPassPopupViewController extends GetxController {
+  List<String> passSelectedList = ['사용가능', '만료'];
+  List<String> boxSelectedList = ['PG', 'GM', 'BG', 'SJ', 'SS'];
+  int _selectedPass = 0;
+  int _selectedBox = 0;
 }
 
-class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
-  const HeightWeightPopupView(
-      {Key? key,
-      required this.applyHeightAtSub,
-      required this.applyWeightAtSub})
+class BoxPassPopupView extends GetView<BoxPassPopupViewController> {
+  const BoxPassPopupView(
+      {Key? key, required this.applyPassAtSub, required this.applyBoxAtSub})
       : super(key: key);
 
-  final Function(String) applyHeightAtSub;
-  final Function(String) applyWeightAtSub;
+  final Function(String) applyPassAtSub;
+  final Function(String) applyBoxAtSub;
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HeightWeightPopupViewController());
+    Get.put(BoxPassPopupViewController());
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      alignment: const Alignment(0.0, -0.6),
+      alignment: const Alignment(0.0, -0.75),
       shadowColor: colorScheme.shadow.withOpacity(0.1),
       content: Stack(
         children: [
@@ -80,8 +73,10 @@ class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
                 Column(
                   children: [
                     SizedBox(height: 100),
-                    PopupText(text: '신장(cm)',),
-                    const SizedBox(height: 254),
+                    PopupText(
+                      text: 'PASS',
+                    ),
+                    const SizedBox(height: 255),
                     Container(
                       width: 210,
                       height: 2,
@@ -121,8 +116,8 @@ class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
                 Column(
                   children: [
                     SizedBox(height: 100),
-                    PopupText(text: '체중(kg)'),
-                    const SizedBox(height: 254),
+                    PopupText(text: 'BOX'),
+                    const SizedBox(height: 255),
                     Container(
                       width: 210,
                       height: 2,
@@ -172,19 +167,18 @@ class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
                   height: 930,
                   width: 210,
                   child: CupertinoPicker(
-                    scrollController: controller.heightController,
                     magnification: 2,
                     squeeze: 0.5,
                     itemExtent: 50,
                     selectionOverlay: null,
                     onSelectedItemChanged: (int selectedItem) {
-                      controller._selectedHeight = selectedItem + 1;
+                      controller._selectedPass = selectedItem + 1;
                     },
                     children: List<Widget>.generate(
-                        controller.HeightSelectedList.length, (int index) {
+                        controller.passSelectedList.length, (int index) {
                       return Center(
                         child: Text(
-                          controller.HeightSelectedList[index].toString(),
+                          controller.passSelectedList[index].toString(),
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
@@ -199,19 +193,18 @@ class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
                   height: 930,
                   width: 210,
                   child: CupertinoPicker(
-                    scrollController: controller.WeightController,
                     magnification: 2,
                     squeeze: 0.5,
                     itemExtent: 50,
                     selectionOverlay: null,
                     onSelectedItemChanged: (int selectedItem) {
-                      controller._selectedWeight = selectedItem + 1;
+                      controller._selectedBox = selectedItem + 1;
                     },
                     children: List<Widget>.generate(
-                        controller.WeightSelectedList.length, (int index) {
+                        controller.boxSelectedList.length, (int index) {
                       return Center(
                         child: Text(
-                          controller.WeightSelectedList[index].toString(),
+                          controller.boxSelectedList[index].toString(),
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
@@ -253,12 +246,16 @@ class HeightWeightPopupView extends GetView<HeightWeightPopupViewController> {
                 const SizedBox(height: 726),
                 ButtonWithRollover(
                   onTap: () {
-                    if (controller._selectedHeight == 0) {
-                      applyHeightAtSub(controller._selectedHeight.toString());
-                      applyWeightAtSub(controller._selectedWeight.toString());
+                    if (controller._selectedPass == 0) {
+                      applyPassAtSub(controller
+                          .passSelectedList[controller._selectedPass]);
+                      applyBoxAtSub(
+                          controller.boxSelectedList[controller._selectedBox]);
                     } else {
-                      applyHeightAtSub(controller._selectedHeight.toString());
-                      applyWeightAtSub(controller._selectedWeight.toString());
+                      applyPassAtSub(controller
+                          .passSelectedList[controller._selectedPass]);
+                      applyBoxAtSub(
+                          controller.boxSelectedList[controller._selectedBox]);
                     }
                     Get.back();
                   },

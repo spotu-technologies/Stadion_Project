@@ -112,4 +112,29 @@ class MainTitle extends StatelessWidget {
 }
 
 
+class BadgeText extends StatelessWidget {
+  const BadgeText({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 44),
+      child: Container(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: textThemeEn.headlineSmall!
+              .copyWith(fontWeight: FontWeight.w600),
+        ),
+      ),
+    );
+  }
+}
+
+
 

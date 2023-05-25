@@ -137,7 +137,7 @@ class LoginView extends GetView<LoginViewController> {
                 isSelected: controller.isLogin,
                 text: 'LOGIN',
                 width: 94,
-                onTap: () => controller.switchMenu(true),
+                onTap: () { controller.switchMenu(true);},
               ),
               const SizedBox(width: 39),
               TextToggleButton(
@@ -145,7 +145,7 @@ class LoginView extends GetView<LoginViewController> {
                 text: 'SIGN UP',
                 width: 120,
                 onTap: () {
-                  () => controller.switchMenu(false);
+                  controller.switchMenu(false);
                   Get.to(const LoginMembershipAgreementView());
                 },
               ),

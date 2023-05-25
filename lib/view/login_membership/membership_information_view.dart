@@ -10,7 +10,7 @@ import 'package:stadion_project/view/login_membership/popup/sex_popup_view.dart'
 
 import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
-import '../custom_widget/custom_login_text.dart';
+import '../custom_widget/custom_text.dart';
 import '../custom_widget/text_field/login_text_field.dart';
 import 'membership_password_input_view.dart';
 
