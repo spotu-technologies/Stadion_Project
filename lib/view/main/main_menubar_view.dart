@@ -14,23 +14,23 @@ import '../../style_config/text_theme.dart';
 import '../login/login_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class DrawerViewController extends GetxController {}
+class MainMenuBarViewController extends GetxController {}
 
-class DrawerView extends GetView<DrawerViewController> {
-  const DrawerView({Key? key}) : super(key: key);
+class MainMenuBarView extends GetView<MainMenuBarViewController> {
+  const MainMenuBarView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(DrawerViewController());
+    Get.put(MainMenuBarViewController());
     return Container(
       width: 656,
       height: 1462,
       child: Drawer(
         child: Column(
           children: [
-            ///DrawerHeader
+            ///MainMenuBarHeader
             Container(
               height: 310,
               color: colorScheme.primary,

@@ -6,7 +6,7 @@ import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
-import 'package:stadion_project/view/main/drawer_view.dart';
+import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/main_screen_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.

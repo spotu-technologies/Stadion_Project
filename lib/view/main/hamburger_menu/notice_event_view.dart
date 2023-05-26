@@ -6,22 +6,17 @@ import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
-import 'package:stadion_project/view/main/drawer_view.dart';
+import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/main_screen_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class NoticeEventViewController extends GetxController {
-  
+
   bool isNotice = true;
-  bool isNoticeChanged = false;
 
-  void noticeMenu(bool isNotice) {
+  void selectNoticeEvent(bool isNotice)
+  {
     this.isNotice = isNotice;
-    update();
-  }
-
-  void eventMenu(bool isNoticeChanged) {
-    this.isNoticeChanged = isNoticeChanged;
     update();
   }
 }
@@ -34,9 +29,7 @@ class NoticeEventView extends GetView<NoticeEventViewController> {
   @override
   Widget build(BuildContext context) {
     Get.put(NoticeEventViewController());
-    if(!controller.isNoticeChanged) {
-      controller.isNotice = controller.isNotice;
-    }
+    controller.isNotice = isNotice;
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: Column(
@@ -69,8 +62,7 @@ class NoticeEventView extends GetView<NoticeEventViewController> {
                 children: [
                   buildGestureDetector(
                     onTap: () {
-                      controller.noticeMenu(true);
-                      controller.eventMenu(true);
+                      controller.selectNoticeEvent(true);
                     },
                     color: controller.isNotice? colorScheme.primary : colorScheme.onBackground,
                       text: '공지사항',
@@ -78,8 +70,7 @@ class NoticeEventView extends GetView<NoticeEventViewController> {
                   const SizedBox(width: 18),
                   buildGestureDetector(
                     onTap: () {
-                      controller.noticeMenu(false);
-                      controller.eventMenu(true);
+                      controller.selectNoticeEvent(false);
                     },
                     color: controller.isNotice? colorScheme.onBackground : colorScheme.primary,
                     text: '이벤트',
