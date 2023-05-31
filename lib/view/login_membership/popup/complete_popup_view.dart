@@ -66,7 +66,9 @@ class CompletePopupView extends GetView<CompletePopupViewController> {
                 const SizedBox(height: 100),
                 PopupText(text: '회원가입이 완료되었습니다.'),
                 const SizedBox(height: 64),
-                PopupSmallText(text: '로그인을 하시면\n서비스를 이용하실 수 있습니다.'),
+                PopupSmallText(
+                    textAlign: TextAlign.center,
+                    text: '로그인을 하시면\n서비스를 이용하실 수 있습니다.'),
                 const SizedBox(height: 90),
                 ButtonWithRollover(
                   onTap: () {

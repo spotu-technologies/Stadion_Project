@@ -36,6 +36,7 @@ class FeedView extends GetView<FeedViewController> {
           ),
           const SizedBox(height: 55),
           MainTitle(
+            width: 662,
             text: '친구들 소식이\n궁금해?',
           ),
         ],

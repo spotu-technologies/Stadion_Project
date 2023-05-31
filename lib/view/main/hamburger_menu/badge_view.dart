@@ -36,6 +36,7 @@ class BadgeView extends GetView<BadgeViewController> {
           ),
           const SizedBox(height: 55),
           MainTitle(
+            width: 662,
             text: '운동 목표를 완수하여\n배지를 획득하세요!',
           ),
           const SizedBox(height: 60),

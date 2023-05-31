@@ -5,6 +5,7 @@ import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
+import 'package:stadion_project/view/custom_widget/text_field/login_text_field.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
 import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/popup/boxpass_popup_view.dart';
@@ -67,72 +68,22 @@ class BoxPassView extends GetView<BoxPassViewController> {
               padding: EdgeInsets.symmetric(horizontal: 44),
               child: Row(
                 children: [
-                  Container(
+                  MainScreenTextFormField(
                     width: 322,
-                    height: 87,
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: colorScheme.shadow),
-                          bottom: BorderSide(color: colorScheme.shadow)),
-                    ),
-                    child: TextFormField(
-                      onTap: () {
-                        controller.PassBoxFind();
-                      },
-                      controller: controller.passController,
-                      style: textThemeKo.labelLarge!.copyWith(
-                        fontWeight: FontWeight.w300,
-                        color: colorScheme.shadow,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'PASS',
-                        hintStyle: textThemeKo.labelLarge!.copyWith(
-                          fontWeight: FontWeight.w300,
-                          color: colorScheme.shadow,),
-                        suffixIcon: IconButton(
-                          onPressed: (){
-                            controller.PassBoxFind();
-                          },
-                          icon: Icon(Icons.check, color: Colors.black,size: 28,),
-                        ),
-                      ),
-                    ),
+                    onTap: () {
+                      controller.PassBoxFind();
+                    },
+                    controller: controller.passController,
+                    hintText: 'PASS',
                   ),
                   const SizedBox(width: 18),
-                  Container(
+                  MainScreenTextFormField(
                     width: 322,
-                    height: 87,
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      border: Border(
-                          top: BorderSide(color: colorScheme.shadow),
-                          bottom: BorderSide(color: colorScheme.shadow)),
-                    ),
-                    child: TextFormField(
-                      onTap: () {
-                        controller.PassBoxFind();
-                      },
-                      controller: controller.boxController,
-                      style: textThemeKo.labelLarge!.copyWith(
-                        fontWeight: FontWeight.w300,
-                        color: colorScheme.shadow,
-                      ),
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'BOX',
-                        hintStyle: textThemeKo.labelLarge!.copyWith(
-                          fontWeight: FontWeight.w300,
-                          color: colorScheme.shadow,),
-                        suffixIcon: IconButton(
-                          onPressed: (){
-                            controller.PassBoxFind();
-                          },
-                          icon: Icon(Icons.check, color: Colors.black,size: 28,),
-                        ),
-                      ),
-                    ),
+                    onTap: () {
+                      controller.PassBoxFind();
+                    },
+                    controller: controller.boxController,
+                    hintText: 'BOX',
                   ),
                 ],
               ),

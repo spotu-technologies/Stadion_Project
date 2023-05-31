@@ -109,7 +109,7 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                 Row(
                   children: [
                     const SizedBox(width: 50),
-                    PopupTextFormField(
+                    MembershipPopupTextFormField(
                       width: 342,
                       onChanged: (value) {
                         if (value.isNotEmpty) {
@@ -149,7 +149,7 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                 ),
                 const SizedBox(height: 20),
                 ///주소 첫번째 입력창
-                PopupTextFormField(
+                MembershipPopupTextFormField(
                   width: 562,
                   onChanged: (value) {
                     if (value.isNotEmpty) {
@@ -163,7 +163,7 @@ class AddressPopupView extends GetView<AddressPopupViewController> {
                 ),
                 const SizedBox(height: 20),
                 ///주소 두번째 입력창
-                PopupTextFormField(
+                MembershipPopupTextFormField(
                   width: 562,
                   onChanged: (value) {
                     if (value.isNotEmpty) {

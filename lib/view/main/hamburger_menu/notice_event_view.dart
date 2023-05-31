@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
+import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
@@ -52,6 +53,7 @@ class NoticeEventView extends GetView<NoticeEventViewController> {
           ),
           const SizedBox(height: 56),
           const MainTitle(
+            width: 662,
             text: '새로운 스타디온 소식을\n확인하세요.',
           ),
           const SizedBox(height: 60),
@@ -60,20 +62,26 @@ class NoticeEventView extends GetView<NoticeEventViewController> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildGestureDetector(
+                  TextTapButton(
                     onTap: () {
                       controller.selectNoticeEvent(true);
                     },
+                    width: 322,
+                    isEnglish: false,
                     color: controller.isNotice? colorScheme.primary : colorScheme.onBackground,
                       text: '공지사항',
+                    isSelected: controller.isNotice? true : false,
                   ),
                   const SizedBox(width: 18),
-                  buildGestureDetector(
+                  TextTapButton(
                     onTap: () {
                       controller.selectNoticeEvent(false);
                     },
+                    width: 322,
+                    isEnglish: false,
                     color: controller.isNotice? colorScheme.onBackground : colorScheme.primary,
                     text: '이벤트',
+                    isSelected: controller.isNotice? false : true,
                   ),
                 ],
               );

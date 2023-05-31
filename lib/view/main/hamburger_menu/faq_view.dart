@@ -36,6 +36,7 @@ class FaqView extends GetView<FaqViewController> {
           ),
           const SizedBox(height: 55),
           MainTitle(
+            width: 662,
             text: '스타디온에 대해\n궁금하세요?',
           ),
         ],

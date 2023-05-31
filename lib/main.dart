@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
         minWidth: 750,
         minWidthLandscape: 1624.0,
         defaultScale: true,
-        breakpoints: [],
+        breakpoints: [
+          ResponsiveBreakpoint.autoScale(750, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+        ],
         breakpointsLandscape: [],
         child!,
       ),
@@ -30,3 +33,33 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/*void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // test text for test commit
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      builder: (context, child) => ResponsiveWrapper.builder(
+        minWidth: 750,
+        minWidthLandscape: 1624.0,
+        defaultScale: true,
+        breakpoints: [
+          ResponsiveBreakpoint.autoScale(750, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+        ],
+        breakpointsLandscape: [],
+        child!,
+      ),
+      title: 'Stadion',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.from(colorScheme: colorScheme),
+      home: StartView(),
+    );
+  }
+}*/

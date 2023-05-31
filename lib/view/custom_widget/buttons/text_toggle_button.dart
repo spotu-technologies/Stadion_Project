@@ -10,6 +10,7 @@ class TextToggleButton extends StatelessWidget {
     this.isEnglish = true,
     this.underLineGap = 8,
     this.onTap,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -19,6 +20,7 @@ class TextToggleButton extends StatelessWidget {
   final double width;
   final double underLineGap;
   final VoidCallback? onTap;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class TextToggleButton extends StatelessWidget {
         children: [
           Text(
             text,
+            textAlign: textAlign,
             style: isEnglish
                 ? textThemeEn.labelLarge!.copyWith(
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
@@ -46,6 +49,54 @@ class TextToggleButton extends StatelessWidget {
             color: isSelected ? colorScheme.primary : Colors.transparent,
           )
         ],
+      ),
+    );
+  }
+}
+
+
+class TextTapButton extends StatelessWidget {
+  const TextTapButton({
+    required this.isSelected,
+    required this.text,
+    required this.width,
+    this.isEnglish = true,
+    this.onTap,
+    this.color,
+    Key? key,
+  }) : super(key: key);
+
+  final bool isSelected;
+  final String text;
+  final bool isEnglish;
+  final double width;
+  final VoidCallback? onTap;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        height: 70,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: color,
+        ),
+        child: Text(
+          text,
+          style: isEnglish
+              ? textThemeEn.labelLarge!.copyWith(
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
+            color: colorScheme.shadow,
+          )
+              : textThemeKo.labelLarge!.copyWith(
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
+            color: colorScheme.shadow,
+          ),
+        ),
       ),
     );
   }

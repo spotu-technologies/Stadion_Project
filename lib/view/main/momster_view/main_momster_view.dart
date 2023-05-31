@@ -1,9 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
+import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
+import 'package:stadion_project/view/custom_widget/text_field/login_text_field.dart';
+import 'package:stadion_project/view/main/momster_view/popup/momster_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class MianMomsterViewController extends GetxController {}
+class MianMomsterViewController extends GetxController {
+  var monthController = TextEditingController();
+
+  String isMonth = '';
+
+  bool ismom = true;
+
+  void selectMom(bool ismom) {
+    this.ismom = ismom;
+    update();
+  }
+
+  void applyMonth(String value) {
+    isMonth = value;
+    monthController.text = '${isMonth}';
+    update();
+  }
+
+  void MomsterFind() {
+    Get.dialog(
+      MomsterPopupView(applyMonthAtSub: applyMonth),
+      barrierColor: Colors.transparent,
+    );
+  }
+}
 
 class MianMomsterView extends GetView<MianMomsterViewController> {
   const MianMomsterView({Key? key}) : super(key: key);
@@ -15,9 +42,51 @@ class MianMomsterView extends GetView<MianMomsterViewController> {
     Get.put(MianMomsterViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      body: Center(
-        child: Text('momster',
-          style: TextStyle(fontSize: 50),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 55),
+            MainScreenTextFormField(
+              width: 662,
+              onTap: () {
+                controller.MomsterFind();
+              },
+              controller: controller.monthController,
+              hintText: 'MONTH',
+            ),
+            const SizedBox(height: 59),
+            GetBuilder<MianMomsterViewController>(builder: (controller) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextTapButton(
+                    onTap: () {
+                      controller.selectMom(true);
+                    },
+                    width: 332,
+                    isEnglish: true,
+                    color: controller.ismom
+                        ? colorScheme.primary
+                        : colorScheme.onBackground,
+                    text: 'TODAY',
+                    isSelected: controller.ismom ? true : false,
+                  ),
+                  const SizedBox(width: 19),
+                  TextTapButton(
+                      onTap: () {
+                        controller.selectMom(false);
+                      },
+                      width: 332,
+                      isEnglish: true,
+                      color: controller.ismom
+                          ? colorScheme.onBackground
+                          : colorScheme.primary,
+                      text: 'TOMORROW',
+                      isSelected: controller.ismom ? false : true),
+                ],
+              );
+            }),
+          ],
         ),
       ),
     );

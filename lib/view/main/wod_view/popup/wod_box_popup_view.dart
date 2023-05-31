@@ -9,24 +9,24 @@ import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class BoxPassPopupViewController extends GetxController {
-  List<String> passSelectedList = ['사용가능', '만료'];
+class WodBoxPopupViewController extends GetxController {
+  List<String> viewSelectedList = ['수업', '시간'];
   List<String> boxSelectedList = ['PG', 'GM', 'BG', 'SJ', 'SS'];
   int _selectedPass = 0;
   int _selectedBox = 0;
 }
 
-class BoxPassPopupView extends GetView<BoxPassPopupViewController> {
-  const BoxPassPopupView(
-      {Key? key, required this.applyPassAtSub, required this.applyBoxAtSub})
+class WodBoxPopupView extends GetView<WodBoxPopupViewController> {
+  const WodBoxPopupView(
+      {Key? key, required this.applyViewAtSub, required this.applyBoxAtSub})
       : super(key: key);
 
-  final Function(String) applyPassAtSub;
+  final Function(String) applyViewAtSub;
   final Function(String) applyBoxAtSub;
 
   @override
   Widget build(BuildContext context) {
-    Get.put(BoxPassPopupViewController());
+    Get.put(WodBoxPopupViewController());
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
@@ -74,7 +74,7 @@ class BoxPassPopupView extends GetView<BoxPassPopupViewController> {
                   children: [
                     SizedBox(height: 100),
                     PopupText(
-                      text: 'PASS',
+                      text: 'VIEW',
                     ),
                     const SizedBox(height: 255),
                     Container(
@@ -175,10 +175,10 @@ class BoxPassPopupView extends GetView<BoxPassPopupViewController> {
                       controller._selectedPass = selectedItem;
                     },
                     children: List<Widget>.generate(
-                        controller.passSelectedList.length, (int index) {
+                        controller.viewSelectedList.length, (int index) {
                       return Center(
                         child: Text(
-                          controller.passSelectedList[index].toString(),
+                          controller.viewSelectedList[index].toString(),
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w600,
@@ -247,13 +247,13 @@ class BoxPassPopupView extends GetView<BoxPassPopupViewController> {
                 ButtonWithRollover(
                   onTap: () {
                     if (controller._selectedPass == 0) {
-                      applyPassAtSub(controller
-                          .passSelectedList[controller._selectedPass]);
+                      applyViewAtSub(controller
+                          .viewSelectedList[controller._selectedPass]);
                       applyBoxAtSub(
                           controller.boxSelectedList[controller._selectedBox]);
                     } else {
-                      applyPassAtSub(controller
-                          .passSelectedList[controller._selectedPass]);
+                      applyViewAtSub(controller
+                          .viewSelectedList[controller._selectedPass]);
                       applyBoxAtSub(
                           controller.boxSelectedList[controller._selectedBox]);
                     }

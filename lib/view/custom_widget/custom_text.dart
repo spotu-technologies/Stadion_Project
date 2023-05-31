@@ -50,17 +50,26 @@ class LoginMembershipText extends StatelessWidget {
 class PopupText extends StatelessWidget {
   const PopupText({
     required this.text,
+    this.isEnglish = true,
     Key? key,
   }) : super(key: key);
 
   final String text;
+  final bool isEnglish;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: textThemeKo.headlineSmall!
-          .copyWith(fontWeight: FontWeight.w600),
+      style: isEnglish
+          ? textThemeEn.headlineSmall!.copyWith(
+        fontWeight: FontWeight.w600,
+        color: colorScheme.shadow,
+      )
+          : textThemeKo.headlineSmall!.copyWith(
+        fontWeight: FontWeight.w600,
+        color: colorScheme.shadow,
+      ),
     );
   }
 }
@@ -69,18 +78,29 @@ class PopupText extends StatelessWidget {
 class PopupSmallText extends StatelessWidget {
   const PopupSmallText({
     required this.text,
+    this.isEnglish = true,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
   final String text;
+  final bool isEnglish;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: TextAlign.center,
-      style: textThemeKo.labelLarge!
-          .copyWith(fontWeight: FontWeight.w300),
+      textAlign: textAlign,
+      style: isEnglish
+          ? textThemeEn.labelLarge!.copyWith(
+        fontWeight: FontWeight.w300,
+        color: colorScheme.shadow,
+      )
+          : textThemeKo.labelLarge!.copyWith(
+        fontWeight: FontWeight.w300,
+        color: colorScheme.shadow,
+      ),
     );
   }
 }
@@ -89,10 +109,12 @@ class PopupSmallText extends StatelessWidget {
 class MainTitle extends StatelessWidget {
   const MainTitle({
     required this.text,
+    required this.width,
     Key? key,
   }) : super(key: key);
 
   final String text;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +152,31 @@ class BadgeText extends StatelessWidget {
           text,
           style: textThemeEn.headlineSmall!
               .copyWith(fontWeight: FontWeight.w600),
+        ),
+      ),
+    );
+  }
+}
+
+
+class MonthText extends StatelessWidget {
+  const MonthText({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 44),
+      child: Container(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: textThemeEn.labelSmall!
+              .copyWith(fontWeight: FontWeight.w300),
         ),
       ),
     );

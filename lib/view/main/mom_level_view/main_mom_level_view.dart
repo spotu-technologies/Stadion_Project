@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
+import 'package:stadion_project/view/custom_widget/custom_text.dart';
+import 'package:stadion_project/view/main/mom_level_view/popup/body_level_description_popup_view.dart';
 
 import '../../custom_widget/custom_app_bar.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class MianMomLevelViewController extends GetxController {}
+class MianMomLevelViewController extends GetxController {
+  void BodyLevelDescriptionFind() {
+    Get.dialog(
+      BodyLevelDescriptionPopupView(),
+      barrierColor: Colors.transparent,
+    );
+  }
+}
 
 class MianMomLevelView extends GetView<MianMomLevelViewController> {
   const MianMomLevelView({Key? key}) : super(key: key);
@@ -17,9 +26,48 @@ class MianMomLevelView extends GetView<MianMomLevelViewController> {
     Get.put(MianMomLevelViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      body: Center(
-        child: Text('mom',
-          style: TextStyle(fontSize: 50),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                const SizedBox(height: 55),
+                MainTitle(
+                  width: 330,
+                  text: '당신의 몸 레벨\n칭찬해!',
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                const SizedBox(height: 127),
+                Row(
+                  children: [
+                    const SizedBox(width: 486),
+                    GestureDetector(
+                      onTap: () {
+                        controller.BodyLevelDescriptionFind();
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            '몸 레벨 알아보기',
+                            style: TextStyle(
+                                color: colorScheme.shadow,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 24,
+                                letterSpacing: -1.2),
+                          ),
+                          const SizedBox(width: 21),
+                          const Icon(Icons.arrow_forward_ios),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

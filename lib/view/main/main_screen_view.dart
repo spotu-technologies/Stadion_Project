@@ -26,8 +26,8 @@ class MainScreenViewController extends GetxController {
 
   final titleViews = [
     '안녕하세~회원님',
-    'MoM Level',
-    'MoMster',
+    'MoM LEVEL',
+    'MoMSTER',
     'NUMBERS',
     'WoD',
   ];
@@ -46,7 +46,7 @@ class MainScreenView extends GetView<MainScreenViewController> {
     return Scaffold(
       backgroundColor: colorScheme.background,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(150),
+        preferredSize: Size.fromHeight(60),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 44),
           child: AppBar(

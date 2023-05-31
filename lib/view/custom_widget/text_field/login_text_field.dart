@@ -145,8 +145,8 @@ class MembershipTextFormSmallField extends StatelessWidget {
 }
 
 
-class PopupTextFormField extends StatelessWidget {
-  const PopupTextFormField({
+class MembershipPopupTextFormField extends StatelessWidget {
+  const MembershipPopupTextFormField({
     required this.hintText,
     required this.width,
     this.controller,
@@ -193,3 +193,56 @@ class PopupTextFormField extends StatelessWidget {
     );
   }
 }
+
+
+class MainScreenTextFormField extends StatelessWidget {
+  const MainScreenTextFormField({
+    required this.hintText,
+    required this.width,
+    this.controller,
+    this.onTap,
+    Key? key,
+  }) : super(key: key);
+
+  final String hintText;
+  final double width;
+  final TextEditingController? controller;
+  final GestureTapCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: 87,
+      alignment: Alignment.centerLeft,
+      decoration: BoxDecoration(
+        border: Border(
+            top: BorderSide(color: colorScheme.shadow),
+            bottom: BorderSide(color: colorScheme.shadow)),
+      ),
+      child: TextFormField(
+        onTap: onTap,
+        controller: controller,
+        style: textThemeEn.labelLarge!.copyWith(
+          fontWeight: FontWeight.w300,
+          color: colorScheme.shadow,
+        ),
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: textThemeEn.labelLarge!.copyWith(
+            fontWeight: FontWeight.w300,
+            color: colorScheme.shadow,),
+          suffixIcon: IconButton(
+            onPressed: (){
+              //controller.WodBoxFind();
+            },
+            icon: Icon(Icons.check, color: Colors.black,size: 28,),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+

@@ -37,6 +37,7 @@ class CheckView extends GetView<CheckViewController> {
             ),
             const SizedBox(height: 56),
             MainTitle(
+              width: 662,
               text: '궁금하신 점을\n확인하세요.',
             ),
             const SizedBox(height: 60),

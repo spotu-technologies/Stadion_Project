@@ -73,6 +73,7 @@ class FreeTrialRequestView extends GetView<FreeTrialRequestViewController> {
           ),
           const SizedBox(height: 56),
           MainTitle(
+            width: 662,
             text: '스타디온 무료 체험을 원하시면\n아래 신청서를 작성해 주세요.',
           ),
           const SizedBox(height: 60),

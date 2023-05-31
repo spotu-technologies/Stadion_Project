@@ -1,9 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
+import 'package:stadion_project/style_config/text_theme.dart';
+import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
+import 'package:stadion_project/view/custom_widget/text_field/login_text_field.dart';
+import 'package:stadion_project/view/main/wod_view/popup/wod_box_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class MianWodViewController extends GetxController {}
+class MianWodViewController extends GetxController {
+  var viewController = TextEditingController();
+  var boxController = TextEditingController();
+
+  String isView = '';
+  String isBox = '';
+
+  bool isToday = true;
+  bool isTomorrow = true;
+
+  void selectToday(bool isToday) {
+    this.isToday = isToday;
+    update();
+  }
+
+  void selectTomorrow(bool isTomorrow) {
+    this.isTomorrow = isTomorrow;
+    update();
+  }
+
+  void applyPass(String value) {
+    isView = value;
+    viewController.text = '${isView}';
+    update();
+  }
+
+  void applyBox(String value) {
+    isBox = value;
+    boxController.text = '${isBox}';
+    update();
+  }
+
+  void WodBoxFind() {
+    Get.dialog(
+      WodBoxPopupView(applyViewAtSub: applyPass, applyBoxAtSub: applyBox),
+      barrierColor: Colors.transparent,
+    );
+  }
+}
 
 class MianWodView extends GetView<MianWodViewController> {
   const MianWodView({Key? key}) : super(key: key);
@@ -15,9 +57,102 @@ class MianWodView extends GetView<MianWodViewController> {
     Get.put(MianWodViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      body: Center(
-        child: Text('wod',
-          style: TextStyle(fontSize: 50),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 55),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MainScreenTextFormField(
+                  width: 322,
+                  onTap: () {
+                    controller.WodBoxFind();
+                  },
+                  controller: controller.viewController,
+                  hintText: 'VIEW',
+                ),
+                const SizedBox(width: 18),
+                MainScreenTextFormField(
+                  width: 322,
+                  onTap: () {
+                    controller.WodBoxFind();
+                  },
+                  controller: controller.boxController,
+                  hintText: 'BOX',
+                ),
+              ],
+            ),
+            const SizedBox(height: 59),
+            GetBuilder<MianWodViewController>(
+                builder: (controller) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextTapButton(
+                      onTap: () {
+                        controller.selectToday(true);
+                        controller.selectTomorrow(false);
+                      },
+                      width: 208,
+                      isEnglish: true,
+                      color: controller.isToday
+                          ? colorScheme.primary
+                          : controller.isTomorrow
+                              ? colorScheme.onBackground
+                              : colorScheme.onBackground,
+                      text: 'TODAY',
+                      isSelected: controller.isToday
+                          ? true
+                          : controller.isTomorrow
+                              ? false
+                              : false,
+                    ),
+                    const SizedBox(width: 19),
+                    TextTapButton(
+                      onTap: () {
+                        controller.selectToday(false);
+                        controller.selectTomorrow(true);
+                      },
+                      width: 208,
+                      isEnglish: true,
+                      color: controller.isToday
+                          ? colorScheme.onBackground
+                          : controller.isTomorrow
+                              ? colorScheme.primary
+                              : colorScheme.onBackground,
+                      text: 'TOMORROW',
+                      isSelected: controller.isToday
+                          ? false
+                          : controller.isTomorrow
+                              ? true
+                              : false,
+                    ),
+                    const SizedBox(width: 19),
+                    TextTapButton(
+                      onTap: () {
+                        controller.selectToday(false);
+                        controller.selectTomorrow(false);
+                      },
+                      width: 208,
+                      isEnglish: true,
+                      color: controller.isToday
+                          ? colorScheme.onBackground
+                          : controller.isTomorrow
+                              ? colorScheme.onBackground
+                              : colorScheme.primary,
+                      text: 'PAST',
+                      isSelected: controller.isToday
+                          ? false
+                          : controller.isTomorrow
+                              ? false
+                              : true,
+                    ),
+                  ],
+                );
+              }
+            ),
+          ],
         ),
       ),
     );
