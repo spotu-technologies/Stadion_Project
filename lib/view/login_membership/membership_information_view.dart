@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
+import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
 import 'package:stadion_project/view/login_membership/popup/address_popup_view.dart';
 import 'package:stadion_project/view/login_membership/popup/birthday_popup_view.dart';
 import 'package:stadion_project/view/login_membership/popup/complete_popup_view.dart';
@@ -11,7 +12,6 @@ import 'package:stadion_project/view/login_membership/popup/sex_popup_view.dart'
 import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
 import '../custom_widget/custom_text.dart';
-import '../custom_widget/text_field/login_text_field.dart';
 import 'membership_password_input_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.

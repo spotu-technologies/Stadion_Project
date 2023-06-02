@@ -18,7 +18,7 @@ class MainScreenViewController extends GetxController {
 
   final views = [
     MianHomeView(),
-    MianMomLevelView(),
+    MainMomLevelView(),
     MianMomsterView(),
     MianNumbersView(),
     MianWodView(),

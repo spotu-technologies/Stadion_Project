@@ -14,7 +14,9 @@ import '../../style_config/text_theme.dart';
 import '../login/login_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class MainMenuBarViewController extends GetxController {}
+class MainMenuBarViewController extends GetxController {
+  static const String MainMenuBarView_use_id = 'stadion';
+}
 
 class MainMenuBarView extends GetView<MainMenuBarViewController> {
   const MainMenuBarView({Key? key}) : super(key: key);
@@ -106,7 +108,7 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
                         width: 468,
                         height: 39,
                         child: Text(
-                          'general user',
+                          MainMenuBarViewController.MainMenuBarView_use_id,
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.w600,

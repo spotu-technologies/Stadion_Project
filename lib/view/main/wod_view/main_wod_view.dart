@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
-import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
-import 'package:stadion_project/view/custom_widget/text_field/login_text_field.dart';
+import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
 import 'package:stadion_project/view/main/wod_view/popup/wod_box_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.

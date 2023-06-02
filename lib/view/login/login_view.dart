@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
+import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
 import 'package:stadion_project/view/login/password_find_input_view.dart';
 import 'package:stadion_project/view/login/start_view.dart';
 
 import '../../style_config/text_theme.dart';
 import '../custom_widget/buttons/button_with_rollover.dart';
-import '../custom_widget/text_field/login_text_field.dart';
 import '../login_membership/membership_agreement_view.dart';
 import '../main/main_screen_view.dart';
 import 'id_find_input_view.dart';
