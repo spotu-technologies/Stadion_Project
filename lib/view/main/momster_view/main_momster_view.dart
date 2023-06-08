@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
+import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/momster_view/popup/momster_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class MianMomsterViewController extends GetxController {
+class MainMomsterViewController extends GetxController {
   var monthController = TextEditingController();
 
   String isMonth = '';
@@ -32,16 +33,56 @@ class MianMomsterViewController extends GetxController {
   }
 }
 
-class MianMomsterView extends GetView<MianMomsterViewController> {
-  const MianMomsterView({Key? key}) : super(key: key);
+class MainMomsterView extends GetView<MainMomsterViewController> {
+  const MainMomsterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(MianMomsterViewController());
+    Get.put(MainMomsterViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 44),
+          child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Text('MoMSTER',
+                style: TextStyle(
+                  color: colorScheme.shadow,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 32,
+                ),
+              ),
+              centerTitle: true,
+              iconTheme: IconThemeData(
+                color: colorScheme.shadow,
+                size: 50,
+              ),
+              actions: [
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.search,
+                    size: 50,
+                  ),
+                  color: colorScheme.shadow,
+                ),
+                //SizedBox(width: 18),
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.image_outlined,
+                    size: 50,
+                  ),
+                  color: colorScheme.shadow,
+                ),
+              ]
+          ),
+        ),
+      ),
+      drawer: MainMenuBarView(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -55,7 +96,7 @@ class MianMomsterView extends GetView<MianMomsterViewController> {
               hintText: 'MONTH',
             ),
             const SizedBox(height: 59),
-            GetBuilder<MianMomsterViewController>(builder: (controller) {
+            GetBuilder<MainMomsterViewController>(builder: (controller) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -64,6 +105,7 @@ class MianMomsterView extends GetView<MianMomsterViewController> {
                       controller.selectMom(true);
                     },
                     width: 332,
+                    height: 70,
                     isEnglish: true,
                     color: controller.ismom
                         ? colorScheme.primary
@@ -77,6 +119,7 @@ class MianMomsterView extends GetView<MianMomsterViewController> {
                         controller.selectMom(false);
                       },
                       width: 332,
+                      height: 70,
                       isEnglish: true,
                       color: controller.ismom
                           ? colorScheme.onBackground

@@ -60,6 +60,7 @@ class TextTapButton extends StatelessWidget {
     required this.isSelected,
     required this.text,
     required this.width,
+    required this.height,
     this.isEnglish = true,
     this.onTap,
     this.color,
@@ -70,6 +71,7 @@ class TextTapButton extends StatelessWidget {
   final String text;
   final bool isEnglish;
   final double width;
+  final double height;
   final VoidCallback? onTap;
   final Color? color;
 
@@ -79,7 +81,7 @@ class TextTapButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width,
-        height: 70,
+        height: height,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -95,6 +97,51 @@ class TextTapButton extends StatelessWidget {
               : textThemeKo.labelLarge!.copyWith(
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
             color: colorScheme.shadow,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TextTogglePopupButton extends StatelessWidget {
+  const TextTogglePopupButton({
+    required this.isSelected,
+    required this.text,
+    this.isEnglish = true,
+    this.onTap,
+    this.color,
+    Key? key,
+  }) : super(key: key);
+
+  final bool isSelected;
+  final String text;
+  final bool isEnglish;
+  final VoidCallback? onTap;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 90,
+        height: 90,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: color,
+        ),
+        child: Text(
+          text,
+          style: isEnglish
+              ? textThemeEn.labelLarge!.copyWith(
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
+            color: isSelected ? colorScheme.background : Color(0xffa3a2a2),
+          )
+              : textThemeKo.labelLarge!.copyWith(
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
+            color: isSelected ? colorScheme.background : Color(0xffa3a2a2),
           ),
         ),
       ),

@@ -141,6 +141,7 @@ class DisplayLargeText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -149,11 +150,13 @@ class DisplayLargeText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.displayLarge!.copyWith(
         fontWeight: fontWeight,
@@ -176,6 +179,7 @@ class DisplayMediumText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -184,11 +188,13 @@ class DisplayMediumText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.displayMedium!.copyWith(
         fontWeight: fontWeight,
@@ -211,6 +217,7 @@ class DisplaySmallText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -219,11 +226,13 @@ class DisplaySmallText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.displaySmall!.copyWith(
         fontWeight: fontWeight,
@@ -246,6 +255,7 @@ class HeadlineLargeText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -254,11 +264,13 @@ class HeadlineLargeText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.headlineLarge!.copyWith(
         fontWeight: fontWeight,
@@ -281,6 +293,7 @@ class HeadlineMediumText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -289,11 +302,13 @@ class HeadlineMediumText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.headlineMedium!.copyWith(
         fontWeight: fontWeight,
@@ -316,6 +331,7 @@ class HeadlineSmallText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -324,11 +340,13 @@ class HeadlineSmallText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.headlineSmall!.copyWith(
         fontWeight: fontWeight,
@@ -351,6 +369,7 @@ class TitleLargeText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -359,11 +378,13 @@ class TitleLargeText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.titleLarge!.copyWith(
         fontWeight: fontWeight,
@@ -386,6 +407,7 @@ class TitleMediumText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -394,11 +416,13 @@ class TitleMediumText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.titleMedium!.copyWith(
         fontWeight: fontWeight,
@@ -421,6 +445,7 @@ class TitleSmallText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -429,11 +454,13 @@ class TitleSmallText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.titleSmall!.copyWith(
         fontWeight: fontWeight,
@@ -456,6 +483,7 @@ class LabelLargeText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -464,11 +492,13 @@ class LabelLargeText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelLarge!.copyWith(
         fontWeight: fontWeight,
@@ -491,6 +521,7 @@ class LabelMediumText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -499,11 +530,13 @@ class LabelMediumText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelMedium!.copyWith(
         fontWeight: fontWeight,
@@ -526,6 +559,7 @@ class LabelSmallText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -534,11 +568,13 @@ class LabelSmallText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelSmall!.copyWith(
         fontWeight: fontWeight,
@@ -561,6 +597,7 @@ class BodyLargeText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -569,11 +606,13 @@ class BodyLargeText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.bodyLarge!.copyWith(
         fontWeight: fontWeight,
@@ -596,6 +635,7 @@ class BodyMediumText extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -604,11 +644,13 @@ class BodyMediumText extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.bodyMedium!.copyWith(
         fontWeight: fontWeight,
@@ -631,6 +673,7 @@ class BodySmallxt extends StatelessWidget {
     this.color,
     this.letterSpacing,
     this.fontWeight,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -639,11 +682,13 @@ class BodySmallxt extends StatelessWidget {
   final Color? color;
   final double? letterSpacing;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.bodySmall!.copyWith(
         fontWeight: fontWeight,

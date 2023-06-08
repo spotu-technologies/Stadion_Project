@@ -3,10 +3,11 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
+import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/wod_view/popup/wod_box_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class MianWodViewController extends GetxController {
+class MainWodViewController extends GetxController {
   var viewController = TextEditingController();
   var boxController = TextEditingController();
 
@@ -46,16 +47,56 @@ class MianWodViewController extends GetxController {
   }
 }
 
-class MianWodView extends GetView<MianWodViewController> {
-  const MianWodView({Key? key}) : super(key: key);
+class MainWodView extends GetView<MainWodViewController> {
+  const MainWodView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(MianWodViewController());
+    Get.put(MainWodViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 44),
+          child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Text('WoD',
+                style: TextStyle(
+                  color: colorScheme.shadow,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 32,
+                ),
+              ),
+              centerTitle: true,
+              iconTheme: IconThemeData(
+                color: colorScheme.shadow,
+                size: 50,
+              ),
+              actions: [
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.search,
+                    size: 50,
+                  ),
+                  color: colorScheme.shadow,
+                ),
+                //SizedBox(width: 18),
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.image_outlined,
+                    size: 50,
+                  ),
+                  color: colorScheme.shadow,
+                ),
+              ]
+          ),
+        ),
+      ),
+      drawer: MainMenuBarView(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -83,7 +124,7 @@ class MianWodView extends GetView<MianWodViewController> {
               ],
             ),
             const SizedBox(height: 59),
-            GetBuilder<MianWodViewController>(
+            GetBuilder<MainWodViewController>(
                 builder: (controller) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -94,6 +135,7 @@ class MianWodView extends GetView<MianWodViewController> {
                         controller.selectTomorrow(false);
                       },
                       width: 208,
+                      height: 70,
                       isEnglish: true,
                       color: controller.isToday
                           ? colorScheme.primary
@@ -114,6 +156,7 @@ class MianWodView extends GetView<MianWodViewController> {
                         controller.selectTomorrow(true);
                       },
                       width: 208,
+                      height: 70,
                       isEnglish: true,
                       color: controller.isToday
                           ? colorScheme.onBackground
@@ -134,6 +177,7 @@ class MianWodView extends GetView<MianWodViewController> {
                         controller.selectTomorrow(false);
                       },
                       width: 208,
+                      height: 70,
                       isEnglish: true,
                       color: controller.isToday
                           ? colorScheme.onBackground

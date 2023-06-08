@@ -7,11 +7,24 @@ import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.da
 import 'package:stadion_project/view/custom_widget/custom_app_bar.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
+import 'package:stadion_project/view/main/home_view/main_home_view.dart';
 import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/main_screen_view.dart';
+import 'package:stadion_project/view/main/mom_level_view/main_mom_level_view.dart';
+import 'package:stadion_project/view/main/momster_view/main_momster_view.dart';
+import 'package:stadion_project/view/main/numbers_view/main_numbers_view.dart';
+import 'package:stadion_project/view/main/wod_view/main_wod_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class NoticeEventViewController extends GetxController {
+
+  final views = [
+    MainHomeView(),
+    MainMomLevelView(),
+    MainMomsterView(),
+    MainNumbersView(),
+    MainWodView(),
+  ];
 
   bool isNotice = true;
 
@@ -33,61 +46,59 @@ class NoticeEventView extends GetView<NoticeEventViewController> {
     controller.isNotice = isNotice;
     return Scaffold(
       backgroundColor: colorScheme.background,
-      body: Column(
-        children: [
-          //추가한 커스텀 앱 바 위젯 (추후 좀 더 파라미터나 세부 위젯 추가필요)
-          GetBuilder<NoticeEventViewController>(
-              builder: (controller) {
-              return CustomAppBar(
-                title: controller.isNotice? '공지사항' : '이벤트',
-                isEnglishTitle: false,
-                withAction: true,
-                onLeadingSearch: () {},
-                onLeadingImage: () {},
-                onLeading: () {
-                  //off를 통해 view를 빠져나갈 시 기존 페이지를 dispose
-                  Get.off(const MainScreenView());
-                },
-              );
-            }
-          ),
-          const SizedBox(height: 56),
-          const MainTitle(
-            width: 662,
-            text: '새로운 스타디온 소식을\n확인하세요.',
-          ),
-          const SizedBox(height: 60),
-          GetBuilder<NoticeEventViewController>(
-            builder: (controller) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextTapButton(
-                    onTap: () {
-                      controller.selectNoticeEvent(true);
+      body: GetBuilder<NoticeEventViewController>(
+        builder: (controller) {
+          return Column(
+            children: [
+              //추가한 커스텀 앱 바 위젯 (추후 좀 더 파라미터나 세부 위젯 추가필요)
+               CustomAppBar(
+                    title: controller.isNotice? '공지사항' : '이벤트',
+                    isEnglishTitle: false,
+                    withAction: true,
+                    onLeadingSearch: () {},
+                    onLeadingImage: () {},
+                    onLeading: () {
+                      //off를 통해 view를 빠져나갈 시 기존 페이지를 dispose
+                      Get.off(const MainScreenView());
                     },
-                    width: 322,
-                    isEnglish: false,
-                    color: controller.isNotice? colorScheme.primary : colorScheme.onBackground,
-                      text: '공지사항',
-                    isSelected: controller.isNotice? true : false,
                   ),
-                  const SizedBox(width: 18),
-                  TextTapButton(
-                    onTap: () {
-                      controller.selectNoticeEvent(false);
-                    },
-                    width: 322,
-                    isEnglish: false,
-                    color: controller.isNotice? colorScheme.onBackground : colorScheme.primary,
-                    text: '이벤트',
-                    isSelected: controller.isNotice? false : true,
+              const SizedBox(height: 56),
+              const MainTitle(
+                width: 662,
+                text: '새로운 스타디온 소식을\n확인하세요.',
+              ),
+              const SizedBox(height: 60),
+              Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextTapButton(
+                        onTap: () {
+                          controller.selectNoticeEvent(true);
+                        },
+                        width: 322,
+                        height: 70,
+                        isEnglish: false,
+                        color: controller.isNotice? colorScheme.primary : colorScheme.onBackground,
+                          text: '공지사항',
+                        isSelected: controller.isNotice? true : false,
+                      ),
+                      const SizedBox(width: 18),
+                      TextTapButton(
+                        onTap: () {
+                          controller.selectNoticeEvent(false);
+                        },
+                        width: 322,
+                        height: 70,
+                        isEnglish: false,
+                        color: controller.isNotice? colorScheme.onBackground : colorScheme.primary,
+                        text: '이벤트',
+                        isSelected: controller.isNotice? false : true,
+                      ),
+                    ],
                   ),
-                ],
-              );
-            }
-          ),
-        ],
+            ],
+          );
+        }
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 44),

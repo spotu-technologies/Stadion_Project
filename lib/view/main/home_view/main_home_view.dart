@@ -6,14 +6,19 @@ import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:intl/intl.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/hamburger_menu/notice_event_view.dart';
+import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/mom_level_view/main_mom_level_view.dart';
 
+import 'popup/home_gym_reservation_popup_view.dart';
+
 //로그인 뷰에서 사용될 Get X controller.
-class MianHomeViewController extends GetxController {
+class MainHomeViewController extends GetxController {
   var date = DateTime.now();
 
+  static const String MianHomeView_appbar_user = '안녕하세~회원님';
+
   static const String MianHomeView_attendance_name = '오운완!';
-  static const int MianHomeView_attend_number = 29;
+  static const int MianHomeView_attend_number = 9;
   static const int MianHomeView_absent_number = 04;
 
   static const String MianHomeView_first_reservation = 'MoM(몸) 16:00';
@@ -27,19 +32,78 @@ class MianHomeViewController extends GetxController {
   static const String MianHomeView_force_level = 'A2';
 
   static const String MianHomeView_fly_level = 'N3';
+
+  var gymTimeController = TextEditingController();
+
+  String isTime = '';
+  String isGym = '';
+
+  void applyGymTime(String valueTime, String valueGym) {
+    isTime = valueTime;
+    isGym = valueGym;
+    gymTimeController.text = '${isGym} ${isTime}';
+    update();
+  }
+
+  void GymTimeFind() {
+    Get.dialog(
+      HomeGymReservationPopupView(applyGymTimeAtSub: applyGymTime),
+      barrierColor: Colors.transparent,
+    );
+  }
 }
 
-class MianHomeView extends GetView<MianHomeViewController> {
-  const MianHomeView({Key? key}) : super(key: key);
+class MainHomeView extends GetView<MainHomeViewController> {
+  const MainHomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(MianHomeViewController());
+    Get.put(MainHomeViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      body: GetBuilder<MianHomeViewController>(builder: (controller) {
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 44),
+          child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Text(MainHomeViewController.MianHomeView_appbar_user,
+                style: TextStyle(
+                  color: colorScheme.shadow,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 32,
+                ),
+              ),
+              centerTitle: true,
+              iconTheme: IconThemeData(
+                color: colorScheme.shadow,
+                size: 50,
+              ),
+              actions: [
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.search,
+                    size: 50,
+                  ),
+                  color: colorScheme.shadow,
+                ),
+                //SizedBox(width: 18),
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.image_outlined,
+                    size: 50,
+                  ),
+                  color: colorScheme.shadow,
+                ),
+              ]
+          ),
+        ),
+      ),
+      drawer: MainMenuBarView(),
+      body: GetBuilder<MainHomeViewController>(builder: (controller) {
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 44),
@@ -59,70 +123,66 @@ class MianHomeView extends GetView<MianHomeViewController> {
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   HeadlineMediumText(
                                     isEnglish: false,
-                                    text: MianHomeViewController
+                                    text: MainHomeViewController
                                         .MianHomeView_attendance_name,
                                     letterSpacing: -2.0,
                                     fontWeight: FontWeight.w300,
                                   ),
-                                  const SizedBox(width: 116),
                                   Text(
-                                    DateFormat('MM').format(controller.date),
+                                    DateFormat('MM월').format(controller.date),
                                     style: textThemeKo.labelLarge!
                                         .copyWith(fontWeight: FontWeight.w600),
-                                  ),
-                                  LabelLargeText(
-                                    isEnglish: false,
-                                    text: '월',
-                                    letterSpacing: -1.4,
-                                    fontWeight: FontWeight.w300,
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 76),
-                              RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text: '참석',
-                                    style: textThemeKo.labelLarge!.copyWith(
-                                        fontWeight: FontWeight.w300,
-                                        letterSpacing: -1.4),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 55),
+                                    child: LabelLargeText(
+                                      isEnglish: false,
+                                      text: '참석',
+                                      letterSpacing: -1.4,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                   ),
-                                  WidgetSpan(
-                                    child: SizedBox(width: 106),
+                                  DisplayMediumText(
+                                    isEnglish: false,
+                                    text: MainHomeViewController.MianHomeView_attend_number.toString(),
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  TextSpan(
-                                    text: MianHomeViewController.MianHomeView_attend_number.toString(),
-                                    style: textThemeEn.displayMedium!
-                                        .copyWith(fontWeight: FontWeight.w600),
-                                  ),
-                                ]),
+                                ],
                               ),
                               Container(
                                 width: 282,
                                 height: 2,
                                 color: colorScheme.shadow,
                               ),
-                              const SizedBox(height: 6),
-                              RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text: '불참',
-                                    style: textThemeKo.labelLarge!.copyWith(
-                                        fontWeight: FontWeight.w300,
-                                        letterSpacing: -1.4),
+                              const SizedBox(height: 13),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 7),
+                                    child: LabelLargeText(
+                                      isEnglish: false,
+                                      text: '불참',
+                                      letterSpacing: -1.4,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                   ),
-                                  WidgetSpan(
-                                    child: SizedBox(width: 172),
+                                  HeadlineLargeText(
+                                    isEnglish: false,
+                                    text: MainHomeViewController.MianHomeView_absent_number.toString(),
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  TextSpan(
-                                    text: MianHomeViewController.MianHomeView_absent_number.toString(),
-                                    style: textThemeEn.headlineLarge!
-                                        .copyWith(fontWeight: FontWeight.w600),
-                                  ),
-                                ]),
+                                ],
                               ),
                             ],
                           ),
@@ -138,13 +198,13 @@ class MianHomeView extends GetView<MianHomeViewController> {
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   HeadlineMediumText(
                                     isEnglish: true,
                                     text: 'MtC',
                                     fontWeight: FontWeight.w400,
                                   ),
-                                  const SizedBox(width: 169),
                                   Image(
                                     image:
                                         AssetImage('assets/icons/momster.png'),
@@ -178,7 +238,9 @@ class MianHomeView extends GetView<MianHomeViewController> {
                                 width: 60,
                                 height: 60,
                                 child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    controller.GymTimeFind();
+                                  },
                                   child: const Image(
                                     image:
                                         AssetImage('assets/icons/button.png'),
@@ -206,12 +268,12 @@ class MianHomeView extends GetView<MianHomeViewController> {
                               ),
                               const SizedBox(height: 8),
                               LabelLargeText(
-                                text: MianHomeViewController.MianHomeView_first_reservation,
+                                text: MainHomeViewController.MianHomeView_first_reservation,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
                               LabelLargeText(
-                                text: MianHomeViewController.MianHomeView_second_reservation,
+                                text: MainHomeViewController.MianHomeView_second_reservation,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -249,13 +311,13 @@ class MianHomeView extends GetView<MianHomeViewController> {
                               const SizedBox(height: 6),
                               LabelLargeText(
                                 isEnglish: false,
-                                text: MianHomeViewController.MianHomeView_notice,
+                                text: MainHomeViewController.MianHomeView_notice,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
                               LabelLargeText(
                                 isEnglish: false,
-                                text: MianHomeViewController.MianHomeView_event,
+                                text: MainHomeViewController.MianHomeView_event,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -325,7 +387,7 @@ class MianHomeView extends GetView<MianHomeViewController> {
                             ),
                             const SizedBox(height: 37),
                             HeadlineLargeText(
-                              text: MianHomeViewController.MianHomeView_air_level,
+                              text: MainHomeViewController.MianHomeView_air_level,
                               color: colorScheme.onSecondaryContainer,
                               fontWeight: FontWeight.w600,
                             ),
@@ -362,7 +424,7 @@ class MianHomeView extends GetView<MianHomeViewController> {
                           ),
                           const SizedBox(height: 37),
                           HeadlineLargeText(
-                            text: MianHomeViewController.MianHomeView_force_level,
+                            text: MainHomeViewController.MianHomeView_force_level,
                             color: colorScheme.onSecondaryContainer,
                             fontWeight: FontWeight.w600,
                           ),
@@ -398,7 +460,7 @@ class MianHomeView extends GetView<MianHomeViewController> {
                           ),
                           const SizedBox(height: 37),
                           HeadlineLargeText(
-                            text: MianHomeViewController.MianHomeView_fly_level,
+                            text: MainHomeViewController.MianHomeView_fly_level,
                             color: colorScheme.onSecondaryContainer,
                             fontWeight: FontWeight.w600,
                           ),

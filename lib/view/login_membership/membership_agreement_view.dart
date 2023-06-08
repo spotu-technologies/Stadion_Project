@@ -68,7 +68,7 @@ class LoginMembershipAgreementView
             onLeadingSearch: (){},
             onLeadingImage: (){},
             onLeading: () {
-              Get.to(const LoginView());
+              Get.off(const LoginView());
             },
           ),
           const SizedBox(height: 56),

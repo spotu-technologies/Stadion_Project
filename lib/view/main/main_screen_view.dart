@@ -17,20 +17,20 @@ class MainScreenViewController extends GetxController {
   //int _selectedIndex = 0;
 
   final views = [
-    MianHomeView(),
+    MainHomeView(),
     MainMomLevelView(),
-    MianMomsterView(),
-    MianNumbersView(),
-    MianWodView(),
+    MainMomsterView(),
+    MainNumbersView(),
+    MainWodView(),
   ];
 
-  final titleViews = [
+  /*final titleViews = [
     '안녕하세~회원님',
     'MoM LEVEL',
     'MoMSTER',
     'NUMBERS',
     'WoD',
-  ];
+  ];*/
 }
 
 class MainScreenView extends GetView<MainScreenViewController> {
@@ -45,20 +45,19 @@ class MainScreenView extends GetView<MainScreenViewController> {
     Get.put(CustomBottomNavigationBarController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      appBar: PreferredSize(
+      /*appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 44),
           child: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Obx(() => Text(controller.titleViews[CustomBottomNavigationBarController.to.selectedIndex.value],
+              title: Text('안녕하세~회원님',
                 style: TextStyle(
                   color: colorScheme.shadow,
                   fontWeight: FontWeight.w600,
                   fontSize: 32,
                 ),
-              ),
               ),
               centerTitle: true,
               iconTheme: IconThemeData(
@@ -85,7 +84,8 @@ class MainScreenView extends GetView<MainScreenViewController> {
           ),
         ),
       ),
-      drawer: MainMenuBarView(),
+      drawer: MainMenuBarView(),*/
+      //body: Obx(() => controller.views[CustomBottomNavigationBarController.to.selectedIndex.value]),
       body: Obx(() => controller.views[CustomBottomNavigationBarController.to.selectedIndex.value]),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 44),

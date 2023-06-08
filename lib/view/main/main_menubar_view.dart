@@ -123,8 +123,8 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
 
             ///리스트 항목
             Container(
-              height: 1152,
-              padding: EdgeInsets.only(left: 44, top: 77, right: 44),
+              height: 1100,
+              padding: EdgeInsets.only(left: 44, top: 70, right: 44),
               child: Column(
                 children: [
                   Row(
@@ -225,7 +225,7 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
                     height: 2,
                     color: colorScheme.shadow,
                   ),
-                  const SizedBox(height: 71),
+                  const SizedBox(height: 60),
                   Row(
                     children: [
                       GestureDetector(
