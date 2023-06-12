@@ -246,3 +246,57 @@ class MainScreenTextFormField extends StatelessWidget {
 }
 
 
+class MainScreenPopupTextFormField extends StatelessWidget {
+  const MainScreenPopupTextFormField({
+    required this.hintText,
+    required this.width,
+    required this.height,
+    this.color,
+    this.controller,
+    this.onTap,
+    this.style,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.hintStyle,
+    Key? key,
+  }) : super(key: key);
+
+  final String hintText;
+  final double width;
+  final double height;
+  final Color? color;
+  final TextEditingController? controller;
+  final GestureTapCallback? onTap;
+  final TextStyle? style;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final TextStyle? hintStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: color,
+      ),
+      child: TextFormField(
+        onTap: onTap,
+        controller: controller,
+        textAlign: TextAlign.center,
+        style: style,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: hintStyle,
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+        ),
+      ),
+    );
+  }
+}
+
+

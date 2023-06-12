@@ -8,6 +8,7 @@ import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
+import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class BodyLevelDescriptionPopupViewController extends GetxController {
@@ -125,61 +126,39 @@ class BodyLevelDescriptionPopupView
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  GestureDetector(
+                                  TextTapButton(
                                     onTap: () {
                                       controller.selectBodyLevel(true);
                                     },
-                                    child: Container(
-                                      width: 272,
-                                      height: 70,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: controller.isPopupScreen
-                                            ? colorScheme.shadow
-                                            : colorScheme.background,
-                                      ),
-                                      child: Text('MoM LEVEL',
-                                          style: controller.isPopupScreen
-                                              ? TextStyle(
-                                                  color: colorScheme.background,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 28)
-                                              : TextStyle(
-                                                  color: colorScheme.onSurface,
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 28)),
-                                    ),
+                                    width: 272,
+                                    height: 70,
+                                    color: controller.isPopupScreen
+                                        ? colorScheme.shadow
+                                        : colorScheme.background,
+                                    text: 'MoM LEVEL',
+                                    textColor: controller.isPopupScreen
+                                        ? colorScheme.background
+                                        : colorScheme.onSurface,
+                                    isSelected: controller.isPopupScreen ? true : false,
                                   ),
                                   const SizedBox(width: 18),
-                                  GestureDetector(
+                                  TextTapButton(
                                     onTap: () {
                                       controller.selectBodyLevel(false);
                                       controller.selectRun(true);
                                       controller.selectBike(false);
                                       controller.selectJump(false);
                                     },
-                                    child: Container(
-                                      width: 272,
-                                      height: 70,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: !controller.isPopupScreen
-                                            ? colorScheme.shadow
-                                            : colorScheme.background,
-                                      ),
-                                      child: Text('MOVEMENT\nLEVEL CHART',
-                                          style: !controller.isPopupScreen
-                                              ? TextStyle(
-                                                  color: colorScheme.background,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 28)
-                                              : TextStyle(
-                                                  color: colorScheme.onSurface,
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 28)),
-                                    ),
+                                    width: 272,
+                                    height: 70,
+                                    color: !controller.isPopupScreen
+                                        ? colorScheme.shadow
+                                        : colorScheme.background,
+                                    text: 'MOVEMENT\nLEVEL CHART',
+                                    textColor: !controller.isPopupScreen
+                                        ? colorScheme.background
+                                        : colorScheme.onSurface,
+                                    isSelected: !controller.isPopupScreen ? true : false,
                                   ),
                                 ],
                               ),
@@ -334,6 +313,7 @@ class BodyLevelDescriptionPopupView
                                       const EdgeInsets.symmetric(horizontal: 50),
                                   child: Column(
                                     children: [
+                                      ///타이틀
                                       Container(
                                         alignment: Alignment.centerLeft,
                                         child: const PopupText(
@@ -342,6 +322,7 @@ class BodyLevelDescriptionPopupView
                                         ),
                                       ),
                                       const SizedBox(height: 10),
+                                      ///타이틀 설명
                                       const PopupSmallText(
                                         textAlign: TextAlign.start,
                                         isEnglish: false,
@@ -349,6 +330,7 @@ class BodyLevelDescriptionPopupView
                                             '\n무브먼트의 레벨차트입니다.',
                                       ),
                                       const SizedBox(height: 36),
+                                      ///종목 선택버튼
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
@@ -426,8 +408,10 @@ class BodyLevelDescriptionPopupView
                                       if(controller.isRun)
                                         Column(
                                           children: [
+                                            ///남자
                                             Column(
                                               children: [
+                                                ///작은 타이틀 설명
                                                 RichText(
                                                     text: TextSpan(
                                                       text: 'G',
@@ -473,37 +457,27 @@ class BodyLevelDescriptionPopupView
                                                     ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Container(
+                                                ///남자 기록 설명
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 141,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.background,
-                                                  ),
+                                                  color: colorScheme.background,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 138.5,
-                                                        child: Text(
-                                                          'AIR\n남자',
-                                                          style: TextStyle(
-                                                            color: colorScheme.shadow,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 28,
-                                                          ),
+                                                        child: BodyText2(
+                                                          text: 'AIR\n남자',
+                                                          isEnglish: true,
                                                         ),
                                                       ),
                                                       Column(
                                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
-                                                          Text(
-                                                            'Run',
-                                                            style: TextStyle(
-                                                              color: colorScheme.shadow,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: 28,
-                                                            ),
+                                                          BodyText2(
+                                                            text: 'Run',
+                                                            isEnglish: true,
                                                           ),
                                                           Container(
                                                             width: 412,
@@ -513,31 +487,19 @@ class BodyLevelDescriptionPopupView
                                                           Row(
                                                             children: [
                                                               const SizedBox(width: 102.5),
-                                                              Text(
-                                                                '1Km',
-                                                                style: TextStyle(
-                                                                  color: colorScheme.shadow,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 28,
-                                                                ),
+                                                              BodyText2(
+                                                                text: '1Km',
+                                                                isEnglish: true,
                                                               ),
                                                               const SizedBox(width: 85),
-                                                              Text(
-                                                                '5Km',
-                                                                style: TextStyle(
-                                                                  color: colorScheme.shadow,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 28,
-                                                                ),
+                                                              BodyText2(
+                                                                text: '5Km',
+                                                                isEnglish: true,
                                                               ),
                                                               const SizedBox(width: 44.5),
-                                                              Text(
-                                                                '종합',
-                                                                style: TextStyle(
-                                                                  color: colorScheme.shadow,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 28,
-                                                                ),
+                                                              BodyText2(
+                                                                text: '종합',
+                                                                isEnglish: false,
                                                               ),
                                                             ],
                                                           ),
@@ -547,83 +509,60 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 20),
+                                                ///남자 작은 타이틀
                                                 Row(
-                                                  children: [
-                                                    const SizedBox(width: 59),
-                                                    Text('G',
-                                                    style: TextStyle(
-                                                      color: colorScheme.shadow,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 28,
+                                                  children: const [
+                                                    SizedBox(width: 59),
+                                                    BodyText2(
+                                                      text: 'G',
+                                                      isEnglish: true,
                                                     ),
+                                                     SizedBox(width: 140),
+                                                    BodyText2(
+                                                      text: 'L',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 140),
-                                                    Text('L',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 49),
+                                                    BodyText2(
+                                                      text: 'R',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 49),
-                                                    Text('R',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 46),
+                                                    BodyText2(
+                                                      text: 'P',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 46),
-                                                    Text('P',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 44),
+                                                    BodyText2(
+                                                      text: 'R',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 44),
-                                                    Text('R',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 46),
+                                                    BodyText2(
+                                                      text: 'P',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 46),
-                                                    Text('P',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(width: 22),
-                                                    Text('P',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 22),
+                                                    BodyText2(
+                                                      text: 'P',
+                                                      isEnglish: true,
                                                     ),
                                                   ],
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Container(
+                                                ///남자 novice 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 210,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.primary,
-                                                  ),
+                                                  color: colorScheme.primary,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'NOVICE',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'NOVICE',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Column(
@@ -631,41 +570,41 @@ class BodyLevelDescriptionPopupView
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'N1',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'N1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -676,41 +615,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'N2',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'N1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -721,41 +660,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'N3',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'N1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -765,22 +704,19 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 9),
-                                                Container(
+                                                ///남자 intermediate 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 210,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.onSecondaryContainer,
-                                                  ),
+                                                  color: colorScheme.onSecondaryContainer,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'INTERMEDIATE',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'INTERMEDIATE',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Column(
@@ -788,41 +724,41 @@ class BodyLevelDescriptionPopupView
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'I1',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'I1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -833,41 +769,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'I2',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'I1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -878,41 +814,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'I3',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'I1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -922,22 +858,19 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 11),
-                                                Container(
+                                                ///남자 advanced 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 210,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.tertiary,
-                                                  ),
+                                                  color: colorScheme.tertiary,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'ADVANCED',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'ADVANCED',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Column(
@@ -945,41 +878,41 @@ class BodyLevelDescriptionPopupView
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'A1',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'A1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -990,41 +923,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'A2',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'A1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1035,41 +968,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'A3',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'A1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1079,61 +1012,58 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Container(
+                                                ///남자 elite 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 70,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.onTertiaryContainer,
-                                                  ),
+                                                  color: colorScheme.onTertiaryContainer,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'ELITE',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'ELITE',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Row(
                                                         mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            'E1',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                        children: const [
+                                                          LabelSmallText(
+                                                            text: 'E1',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 13),
-                                                          Text(
-                                                            '0:04:41',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                          LabelSmallText(
+                                                            text: '0:04:41',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 14),
-                                                          Text(
-                                                            '10',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                          LabelSmallText(
+                                                            text: '10',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 13),
-                                                          Text(
-                                                            '0:29:01',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                          LabelSmallText(
+                                                            text: '0:34:41',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 14),
-                                                          Text(
-                                                            '10',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                          LabelSmallText(
+                                                            text: '10',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 14),
-                                                          Text(
-                                                            '20',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                          LabelSmallText(
+                                                            text: '20',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                         ],
                                                       ),
@@ -1143,39 +1073,30 @@ class BodyLevelDescriptionPopupView
                                               ],
                                             ),
                                             const SizedBox(height: 40),
+                                            ///여자
                                             Column(
                                               children: [
-                                                Container(
+                                                ///여자 기록 설명
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 141,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.background,
-                                                  ),
+                                                  color: colorScheme.background,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 138.5,
-                                                        child: Text(
-                                                          'AIR\n여자',
-                                                          style: TextStyle(
-                                                            color: colorScheme.shadow,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: 28,
-                                                          ),
+                                                        child: BodyText2(
+                                                          text: 'AIR\n여자',
+                                                          isEnglish: true,
                                                         ),
                                                       ),
                                                       Column(
                                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
-                                                          Text(
-                                                            'Run',
-                                                            style: TextStyle(
-                                                              color: colorScheme.shadow,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: 28,
-                                                            ),
+                                                          BodyText2(
+                                                            text: 'Run',
+                                                            isEnglish: true,
                                                           ),
                                                           Container(
                                                             width: 412,
@@ -1185,31 +1106,19 @@ class BodyLevelDescriptionPopupView
                                                           Row(
                                                             children: [
                                                               const SizedBox(width: 102.5),
-                                                              Text(
-                                                                '1Km',
-                                                                style: TextStyle(
-                                                                  color: colorScheme.shadow,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 28,
-                                                                ),
+                                                              BodyText2(
+                                                                text: '1Km',
+                                                                isEnglish: true,
                                                               ),
                                                               const SizedBox(width: 85),
-                                                              Text(
-                                                                '5Km',
-                                                                style: TextStyle(
-                                                                  color: colorScheme.shadow,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 28,
-                                                                ),
+                                                              BodyText2(
+                                                                text: '5Km',
+                                                                isEnglish: true,
                                                               ),
                                                               const SizedBox(width: 44.5),
-                                                              Text(
-                                                                '종합',
-                                                                style: TextStyle(
-                                                                  color: colorScheme.shadow,
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: 28,
-                                                                ),
+                                                              BodyText2(
+                                                                text: '종합',
+                                                                isEnglish: false,
                                                               ),
                                                             ],
                                                           ),
@@ -1219,83 +1128,60 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 20),
+                                                ///여자 작은 타이틀
                                                 Row(
-                                                  children: [
-                                                    const SizedBox(width: 59),
-                                                    Text('G',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                  children: const [
+                                                    SizedBox(width: 59),
+                                                    BodyText2(
+                                                      text: 'G',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 140),
-                                                    Text('L',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 140),
+                                                    BodyText2(
+                                                      text: 'L',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 49),
-                                                    Text('R',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 49),
+                                                    BodyText2(
+                                                      text: 'R',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 46),
-                                                    Text('P',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 46),
+                                                    BodyText2(
+                                                      text: 'P',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 44),
-                                                    Text('R',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 44),
+                                                    BodyText2(
+                                                      text: 'R',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 46),
-                                                    Text('P',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 46),
+                                                    BodyText2(
+                                                      text: 'P',
+                                                      isEnglish: true,
                                                     ),
-                                                    const SizedBox(width: 22),
-                                                    Text('P',
-                                                      style: TextStyle(
-                                                        color: colorScheme.shadow,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 28,
-                                                      ),
+                                                    SizedBox(width: 22),
+                                                    BodyText2(
+                                                      text: 'P',
+                                                      isEnglish: true,
                                                     ),
                                                   ],
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Container(
+                                                ///여자 novice 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 210,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.primary,
-                                                  ),
+                                                  color: colorScheme.primary,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'NOVICE',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'NOVICE',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Column(
@@ -1303,41 +1189,41 @@ class BodyLevelDescriptionPopupView
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'N1',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'N1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1348,41 +1234,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'N2',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'N1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1393,41 +1279,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'N3',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'N1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1437,22 +1323,19 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 9),
-                                                Container(
+                                                ///여자 intermediate 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 210,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.onSecondaryContainer,
-                                                  ),
+                                                  color: colorScheme.onSecondaryContainer,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'INTERMEDIATE',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'INTERMEDIATE',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Column(
@@ -1460,41 +1343,41 @@ class BodyLevelDescriptionPopupView
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'I1',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'I1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1505,41 +1388,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'I2',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'I1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1550,41 +1433,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'I3',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'I1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1594,22 +1477,19 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 11),
-                                                Container(
+                                                ///여자 advanced 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 210,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.tertiary,
-                                                  ),
+                                                  color: colorScheme.tertiary,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'ADVANCED',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'ADVANCED',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Column(
@@ -1617,41 +1497,41 @@ class BodyLevelDescriptionPopupView
                                                         children: [
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'A1',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'A1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1662,41 +1542,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'A2',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'A1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1707,41 +1587,41 @@ class BodyLevelDescriptionPopupView
                                                           ),
                                                           Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
-                                                            children: [
-                                                              Text(
-                                                                'A3',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                            children: const [
+                                                              LabelSmallText(
+                                                                text: 'A1',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:04:41',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:04:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 13),
-                                                              Text(
-                                                                '0:29:01',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                              LabelSmallText(
+                                                                text: '0:34:41',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '10',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '10',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                               const SizedBox(width: 14),
-                                                              Text(
-                                                                '20',
-                                                                style: textThemeEn.labelSmall!
-                                                                    .copyWith(fontWeight: FontWeight.w300),
+                                                              LabelSmallText(
+                                                                text: '20',
+                                                                fontWeight: FontWeight.w300,
+                                                                letterSpacing: -1.2,
                                                               ),
                                                             ],
                                                           ),
@@ -1751,61 +1631,58 @@ class BodyLevelDescriptionPopupView
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Container(
+                                                ///여자 elite 기록
+                                                ViewContainer(
                                                   width: 562,
                                                   height: 70,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    color: colorScheme.onTertiaryContainer,
-                                                  ),
+                                                  color: colorScheme.onTertiaryContainer,
                                                   child: Row(
                                                     children: [
                                                       Container(
                                                         alignment: Alignment.center,
                                                         width: 210,
-                                                        child: Text(
-                                                          'ELITE',
-                                                          style: textThemeEn.labelSmall!
-                                                              .copyWith(fontWeight: FontWeight.w600),
+                                                        child: LabelSmallText(
+                                                          text: 'ELITE',
+                                                          fontWeight: FontWeight.w600,
                                                         ),
                                                       ),
                                                       Row(
                                                         mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            'E1',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                        children: const [
+                                                          LabelSmallText(
+                                                            text: 'E1',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 13),
-                                                          Text(
-                                                            '0:04:41',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                          LabelSmallText(
+                                                            text: '0:04:41',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 14),
-                                                          Text(
-                                                            '10',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                          LabelSmallText(
+                                                            text: '10',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 13),
-                                                          Text(
-                                                            '0:29:01',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300,letterSpacing: -1.5),
+                                                          LabelSmallText(
+                                                            text: '0:34:41',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 14),
-                                                          Text(
-                                                            '10',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                          LabelSmallText(
+                                                            text: '10',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                           const SizedBox(width: 14),
-                                                          Text(
-                                                            '20',
-                                                            style: textThemeEn.labelSmall!
-                                                                .copyWith(fontWeight: FontWeight.w300),
+                                                          LabelSmallText(
+                                                            text: '20',
+                                                            fontWeight: FontWeight.w300,
+                                                            letterSpacing: -1.2,
                                                           ),
                                                         ],
                                                       ),

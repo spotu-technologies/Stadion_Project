@@ -41,8 +41,8 @@ class LoginMembershipText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: textThemeKo.bodyMedium!
-          .copyWith(fontSize: 28, color: colorScheme.shadow, letterSpacing: -1.4),
+      style: textThemeKo.bodyMedium!.copyWith(
+          fontSize: 28, color: colorScheme.shadow, letterSpacing: -1.4),
     );
   }
 }
@@ -64,13 +64,13 @@ class PopupText extends StatelessWidget {
       text,
       style: isEnglish
           ? textThemeEn.headlineSmall!.copyWith(
-        fontWeight: FontWeight.w600,
-        color: colorScheme.shadow,
-      )
+              fontWeight: FontWeight.w600,
+              color: colorScheme.shadow,
+            )
           : textThemeKo.headlineSmall!.copyWith(
-        fontWeight: FontWeight.w600,
-        color: colorScheme.shadow,
-      ),
+              fontWeight: FontWeight.w600,
+              color: colorScheme.shadow,
+            ),
     );
   }
 }
@@ -94,13 +94,13 @@ class PopupSmallText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelLarge!.copyWith(
-        fontWeight: FontWeight.w300,
-        color: colorScheme.shadow,
-      )
+              fontWeight: FontWeight.w300,
+              color: colorScheme.shadow,
+            )
           : textThemeKo.labelLarge!.copyWith(
-        fontWeight: FontWeight.w300,
-        color: colorScheme.shadow,
-      ),
+              fontWeight: FontWeight.w300,
+              color: colorScheme.shadow,
+            ),
     );
   }
 }
@@ -159,15 +159,15 @@ class DisplayLargeText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.displayLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.displayLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -197,15 +197,15 @@ class DisplayMediumText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.displayMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.displayMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -235,15 +235,15 @@ class DisplaySmallText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.displaySmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.displaySmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -273,15 +273,15 @@ class HeadlineLargeText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.headlineLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.headlineLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -311,15 +311,15 @@ class HeadlineMediumText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.headlineMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.headlineMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -349,15 +349,15 @@ class HeadlineSmallText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.headlineSmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.headlineSmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -387,15 +387,15 @@ class TitleLargeText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.titleLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.titleLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -425,15 +425,15 @@ class TitleMediumText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.titleMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.titleMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -463,15 +463,15 @@ class TitleSmallText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.titleSmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.titleSmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -501,15 +501,15 @@ class LabelLargeText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.labelLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -539,15 +539,15 @@ class LabelMediumText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.labelMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -577,15 +577,15 @@ class LabelSmallText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.labelSmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.labelSmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -615,15 +615,15 @@ class BodyLargeText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.bodyLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.bodyLarge!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
@@ -653,21 +653,21 @@ class BodyMediumText extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.bodyMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.bodyMedium!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
 
-class BodySmallxt extends StatelessWidget {
-  const BodySmallxt({
+class BodySmallText extends StatelessWidget {
+  const BodySmallText({
     required this.text,
     this.isEnglish = true,
     this.color,
@@ -691,21 +691,49 @@ class BodySmallxt extends StatelessWidget {
       textAlign: textAlign,
       style: isEnglish
           ? textThemeEn.bodySmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      )
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            )
           : textThemeKo.bodySmall!.copyWith(
-        fontWeight: fontWeight,
-        color: color,
-        letterSpacing: letterSpacing,
-      ),
+              fontWeight: fontWeight,
+              color: color,
+              letterSpacing: letterSpacing,
+            ),
     );
   }
 }
 
+class BodyText2 extends StatelessWidget {
+  const BodyText2({
+    required this.text,
+    this.isEnglish = true,
+    this.textAlign,
+    Key? key,
+  }) : super(key: key);
 
+  final String text;
+  final bool isEnglish;
+  final TextAlign? textAlign;
 
-
-
-
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      textAlign: textAlign,
+      style: isEnglish
+          ? TextStyle(
+              fontWeight: FontWeight.w400,
+              fontFamily: "Montserrat",
+              fontStyle: FontStyle.normal,
+              fontSize: 28,
+            )
+          : TextStyle(
+              fontWeight: FontWeight.w400,
+              fontFamily: "Pretendard",
+              fontStyle: FontStyle.normal,
+              fontSize: 26,
+              letterSpacing: -1.3),
+    );
+  }
+}

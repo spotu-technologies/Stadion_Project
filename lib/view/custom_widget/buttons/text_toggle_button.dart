@@ -64,6 +64,7 @@ class TextTapButton extends StatelessWidget {
     this.isEnglish = true,
     this.onTap,
     this.color,
+    this.textColor,
     Key? key,
   }) : super(key: key);
 
@@ -74,6 +75,7 @@ class TextTapButton extends StatelessWidget {
   final double height;
   final VoidCallback? onTap;
   final Color? color;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -89,14 +91,15 @@ class TextTapButton extends StatelessWidget {
         ),
         child: Text(
           text,
+          textAlign: TextAlign.center,
           style: isEnglish
               ? textThemeEn.labelLarge!.copyWith(
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
-            color: colorScheme.shadow,
+            color: textColor,
           )
               : textThemeKo.labelLarge!.copyWith(
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w300,
-            color: colorScheme.shadow,
+            color: textColor,
           ),
         ),
       ),
