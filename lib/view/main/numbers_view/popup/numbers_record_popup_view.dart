@@ -24,6 +24,17 @@ class NumbersRecordPopupViewController extends GetxController {
     this.is3rm = is3rm;
     update();
   }
+
+  int? defaultChoiceIndex;
+  final List<String> _choicesList = [
+    '1RM', '3RM', '5RM'
+  ];
+
+  void selectIndex(index, value) {
+
+    defaultChoiceIndex = value ? index : null;
+    update();
+  }
 }
 
 class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
@@ -142,72 +153,27 @@ class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
                     const SizedBox(height: 60),
 
                     ///RM 선택
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextTapButton(
-                          onTap: () {
-                            controller.select1rm(true);
-                            controller.select3rm(false);
+                    Wrap(
+                      spacing: 21,
+                      //direction: Axis.horizontal,
+                      children: List.generate(controller._choicesList.length, (index) {
+                        return ChoiceChip(
+                          labelPadding: EdgeInsets.fromLTRB(53, 8, 53, 8),
+                          label: LabelLargeText(
+                            text: controller._choicesList[index],
+                            fontWeight: FontWeight.w300,
+                          ),
+                          selected: controller.defaultChoiceIndex == index,
+                          selectedColor: colorScheme.primary,
+                          backgroundColor: colorScheme.background,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          onSelected: (value) {
+                            controller.selectIndex(index, value);
                           },
-                          width: 174,
-                          height: 50,
-                          isEnglish: true,
-                          color: controller.is1rm
-                              ? colorScheme.primary
-                              : controller.is3rm
-                                  ? colorScheme.onBackground
-                                  : colorScheme.onBackground,
-                          text: '1RM',
-                          isSelected: controller.is1rm
-                              ? true
-                              : controller.is3rm
-                                  ? false
-                                  : false,
-                        ),
-                        const SizedBox(width: 20),
-                        TextTapButton(
-                          onTap: () {
-                            controller.select1rm(false);
-                            controller.select3rm(true);
-                          },
-                          width: 174,
-                          height: 50,
-                          isEnglish: true,
-                          color: controller.is1rm
-                              ? colorScheme.onBackground
-                              : controller.is3rm
-                                  ? colorScheme.primary
-                                  : colorScheme.onBackground,
-                          text: '3RM',
-                          isSelected: controller.is1rm
-                              ? false
-                              : controller.is3rm
-                                  ? true
-                                  : false,
-                        ),
-                        const SizedBox(width: 20),
-                        TextTapButton(
-                          onTap: () {
-                            controller.select1rm(false);
-                            controller.select3rm(false);
-                          },
-                          width: 174,
-                          height: 50,
-                          isEnglish: true,
-                          color: controller.is1rm
-                              ? colorScheme.onBackground
-                              : controller.is3rm
-                                  ? colorScheme.onBackground
-                                  : colorScheme.primary,
-                          text: '5RM',
-                          isSelected: controller.is1rm
-                              ? false
-                              : controller.is3rm
-                                  ? false
-                                  : true,
-                        ),
-                      ],
+                        );
+                      }),
                     ),
                     const SizedBox(height: 76),
 
