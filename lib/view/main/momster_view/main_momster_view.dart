@@ -110,7 +110,7 @@ class MainMomsterView extends GetView<MainMomsterViewController> {
                     color: controller.ismom
                         ? colorScheme.primary
                         : colorScheme.onBackground,
-                    text: 'TODAY',
+                    text: 'THIS MONTH',
                     isSelected: controller.ismom ? true : false,
                   ),
                   const SizedBox(width: 19),
@@ -124,7 +124,7 @@ class MainMomsterView extends GetView<MainMomsterViewController> {
                       color: controller.ismom
                           ? colorScheme.onBackground
                           : colorScheme.primary,
-                      text: 'TOMORROW',
+                      text: 'PAST MONTH',
                       isSelected: controller.ismom ? false : true),
                 ],
               );

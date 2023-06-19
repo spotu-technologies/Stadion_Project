@@ -9,11 +9,98 @@ import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.
 import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
+import 'package:stadion_project/view/main/numbers_view/popup/numbers_date_popup_view.dart';
+import 'package:stadion_project/view/main/numbers_view/popup/numbers_deadlift_popup_view.dart';
+import 'package:stadion_project/view/main/numbers_view/popup/numbers_ibTime_record_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class NumbersRecordPopupViewController extends GetxController {
+
+  var dateController = TextEditingController();
+  var deadliftController = TextEditingController();
+  var lbController = TextEditingController();
+  var timeController = TextEditingController();
+
+  bool dateShow = false;
+  bool deadliftShow = false;
+  bool lbShow = false;
+  bool timeShow = false;
   bool is1rm = true;
   bool is3rm = true;
+
+  String isYear = '';
+  String isMonth = '';
+  String isDay = '';
+  String isDeadlift = '';
+  String isLb = '';
+  String isTime = '';
+
+  void dateField(bool dateShow) {
+    this.dateShow = dateShow;
+    update();
+  }
+
+  void deadliftField(bool deadliftShow) {
+    this.deadliftShow = deadliftShow;
+    update();
+  }
+
+  void lbField(bool lbShow) {
+    this.lbShow = lbShow;
+    update();
+  }
+
+  void timeField(bool timeShow) {
+    this.timeShow = timeShow;
+    update();
+  }
+
+  void applyDate(String valueYear, String valueMonth, String valueDay) {
+    isYear = valueYear;
+    isMonth = valueMonth;
+    isDay = valueDay;
+    dateController.text = '${isMonth}/${isDay}/${isYear}';
+    update();
+  }
+
+  void applyDeadlidt(String value) {
+    isDeadlift = value;
+    deadliftController.text = '${isDeadlift} SQUAT';
+    update();
+  }
+
+  void applyLb(String value) {
+    isLb = value;
+    lbController.text = '${isLb}';
+    update();
+  }
+
+  void applyTime(String value) {
+    isTime = value;
+    timeController.text = '${isTime}';
+    update();
+  }
+
+  void DateFind() {
+    Get.dialog(
+      DatePopupView(applyDateAtSub: applyDate),
+      barrierColor: Colors.transparent,
+    );
+  }
+
+  void DeadliftFind() {
+    Get.dialog(
+      NumbersDeadliftPopupView(applyDeadliftAtSub: applyDeadlidt),
+      barrierColor: Colors.transparent,
+    );
+  }
+
+  void LbTimeFind() {
+    Get.dialog(
+      NumbersLbTimeRecordPopupView(applyLbAtSub: applyLb, applyTimeAtSub: applyTime),
+      barrierColor: Colors.transparent,
+    );
+  }
 
   void select1rm(bool is1rm) {
     this.is1rm = is1rm;
@@ -95,18 +182,23 @@ class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
                       width: 562,
                       height: 50,
                       color: Colors.transparent,
-                      onTap: () {},
+                      onTap: () {
+                        controller.DeadliftFind();
+                      },
                       style: textThemeEn.headlineSmall!.copyWith(
                         fontWeight: FontWeight.w600,
                         color: colorScheme.shadow,
                       ),
+                      controller: controller.deadliftController,
                       hintText: 'DEADLIFT',
                       hintStyle: textThemeEn.headlineSmall!.copyWith(
                         fontWeight: FontWeight.w600,
                         color: colorScheme.shadow,
                       ),
                       prefixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.DeadliftFind();
+                        },
                         alignment: Alignment.topLeft,
                         icon: Icon(
                           Icons.check,
@@ -115,7 +207,9 @@ class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
                         ),
                       ),
                       suffixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.DeadliftFind();
+                        },
                         icon: Icon(
                           Icons.check,
                           color: colorScheme.shadow,
@@ -141,7 +235,10 @@ class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
                             color: colorScheme.shadow,
                           ),
                           color: colorScheme.background,
-                          onTap: () {},
+                          controller: controller.dateController,
+                          onTap: () {
+                            controller.DateFind();
+                          },
                           hintText: '09/22/2022',
                           hintStyle: textThemeEn.labelLarge!.copyWith(
                             fontWeight: FontWeight.w300,
@@ -204,7 +301,9 @@ class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
                               width: 240,
                               height: 142,
                               color: Colors.transparent,
-                              onTap: () {},
+                              onTap: () {
+                                controller.LbTimeFind();
+                              },
                               style: textThemeEn.displayMedium!.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: colorScheme.shadow,
@@ -269,7 +368,9 @@ class NumbersRecordPopupView extends GetView<NumbersRecordPopupViewController> {
                               width: 240,
                               height: 142,
                               color: Colors.transparent,
-                              onTap: () {},
+                              onTap: () {
+                                controller.LbTimeFind();
+                              },
                               style: textThemeEn.displayMedium!.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: colorScheme.shadow,
