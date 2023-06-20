@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/main/hamburger_menu/badge_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/boxpass_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/check_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/chatting_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/faq_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/feed_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/free_trial_request_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/movement_guide_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/notice_event_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view.dart';
 
 import '../../style_config/text_theme.dart';
 import '../login/login_view.dart';
@@ -69,7 +70,7 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
                         height: 50,
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(const CheckView());
+                            Get.to(const ChattingView());
                           },
                           child: const Image(
                             image: AssetImage('assets/icons/bubble.png'),
@@ -175,7 +176,9 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
                     color: colorScheme.shadow,
                   ),
                   buildGestureDetectorThick(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const TimerCamView());
+                    },
                     text: 'TIMER CAM',
                   ),
                   buildGestureDetectorthin(

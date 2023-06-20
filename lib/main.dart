@@ -4,6 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/login/start_view.dart';
+import 'package:stadion_project/view/splash/splash_first_view.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Stadion',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.from(colorScheme: colorScheme),
-      home: StartView(),
+      home: SplashFirstView(),
     );
   }
 }

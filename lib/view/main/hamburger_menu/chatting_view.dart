@@ -10,14 +10,14 @@ import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/main_screen_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class CheckViewController extends GetxController {}
+class ChattingViewController extends GetxController {}
 
-class CheckView extends GetView<CheckViewController> {
-  const CheckView({Key? key}) : super(key: key);
+class ChattingView extends GetView<ChattingViewController> {
+  const ChattingView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CheckViewController());
+    Get.put(ChattingViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: SingleChildScrollView(
