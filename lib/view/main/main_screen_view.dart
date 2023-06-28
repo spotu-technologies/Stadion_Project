@@ -45,47 +45,6 @@ class MainScreenView extends GetView<MainScreenViewController> {
     Get.put(CustomBottomNavigationBarController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      /*appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 44),
-          child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: Text('안녕하세~회원님',
-                style: TextStyle(
-                  color: colorScheme.shadow,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 32,
-                ),
-              ),
-              centerTitle: true,
-              iconTheme: IconThemeData(
-                color: colorScheme.shadow,
-                size: 50,
-              ),
-              actions: [
-                IconButton(
-                  onPressed: (){},
-                  icon: Icon(Icons.search,
-                    size: 50,
-                  ),
-                  color: colorScheme.shadow,
-                ),
-                //SizedBox(width: 18),
-                IconButton(
-                  onPressed: (){},
-                  icon: Icon(Icons.image_outlined,
-                    size: 50,
-                  ),
-                  color: colorScheme.shadow,
-                ),
-              ]
-          ),
-        ),
-      ),
-      drawer: MainMenuBarView(),*/
-      //body: Obx(() => controller.views[CustomBottomNavigationBarController.to.selectedIndex.value]),
       body: Obx(() => controller.views[CustomBottomNavigationBarController.to.selectedIndex.value]),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 44),

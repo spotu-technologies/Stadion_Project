@@ -18,14 +18,6 @@ import 'package:stadion_project/view/main/wod_view/main_wod_view.dart';
 //로그인 뷰에서 사용될 Get X controller.
 class NoticeEventViewController extends GetxController {
 
-  final views = [
-    MainHomeView(),
-    MainMomLevelView(),
-    MainMomsterView(),
-    MainNumbersView(),
-    MainWodView(),
-  ];
-
   bool isNotice = true;
 
   void selectNoticeEvent(bool isNotice)

@@ -8,6 +8,8 @@ import 'package:stadion_project/view/custom_widget/view_container/view_container
 import 'package:stadion_project/view/main/hamburger_menu/notice_event_view.dart';
 import 'package:stadion_project/view/main/main_menubar_view.dart';
 import 'package:stadion_project/view/main/mom_level_view/main_mom_level_view.dart';
+import 'package:card_swiper/card_swiper.dart';
+import 'package:stadion_project/view/main/momster_view/main_momster_view.dart';
 
 import 'popup/home_gym_reservation_popup_view.dart';
 
@@ -70,7 +72,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
           child: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Text(MainHomeViewController.MianHomeView_appbar_user,
+              title: Text(
+                MainHomeViewController.MianHomeView_appbar_user,
                 style: TextStyle(
                   color: colorScheme.shadow,
                   fontWeight: FontWeight.w600,
@@ -84,22 +87,23 @@ class MainHomeView extends GetView<MainHomeViewController> {
               ),
               actions: [
                 IconButton(
-                  onPressed: (){},
-                  icon: Icon(Icons.search,
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.search,
                     size: 50,
                   ),
                   color: colorScheme.shadow,
                 ),
                 //SizedBox(width: 18),
                 IconButton(
-                  onPressed: (){},
-                  icon: Icon(Icons.image_outlined,
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.image_outlined,
                     size: 50,
                   ),
                   color: colorScheme.shadow,
                 ),
-              ]
-          ),
+              ]),
         ),
       ),
       drawer: MainMenuBarView(),
@@ -123,7 +127,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   HeadlineMediumText(
                                     isEnglish: false,
@@ -141,7 +146,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                               ),
                               const SizedBox(height: 76),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(top: 55),
@@ -154,7 +160,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                                   ),
                                   DisplayMediumText(
                                     isEnglish: false,
-                                    text: MainHomeViewController.MianHomeView_attend_number.toString(),
+                                    text: MainHomeViewController
+                                        .MianHomeView_attend_number.toString(),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ],
@@ -166,7 +173,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                               ),
                               const SizedBox(height: 13),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(top: 7),
@@ -179,7 +187,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                                   ),
                                   HeadlineLargeText(
                                     isEnglish: false,
-                                    text: MainHomeViewController.MianHomeView_absent_number.toString(),
+                                    text: MainHomeViewController
+                                        .MianHomeView_absent_number.toString(),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ],
@@ -192,27 +201,52 @@ class MainHomeView extends GetView<MainHomeViewController> {
                         ///MoMster로 넘어가기
                         ViewContainer(
                           width: 322,
-                          height: 368,
-                          padding: EdgeInsets.all(20),
+                          height: 72,
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                           color: colorScheme.onPrimary,
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  HeadlineMediumText(
-                                    isEnglish: true,
-                                    text: 'MtC',
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  Image(
-                                    image:
-                                        AssetImage('assets/icons/momster.png'),
-                                  ),
-                                ],
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              HeadlineMediumText(
+                                isEnglish: true,
+                                text: 'MtC',
+                                fontWeight: FontWeight.w400,
+                              ),
+                              Image(
+                                image: AssetImage('assets/icons/momster.png'),
                               ),
                             ],
                           ),
+                        ),
+                        Stack(
+                          children: [
+                            Container(
+                              width: 322,
+                              height: 296,
+                              child: Swiper(
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Image.asset(
+                                      'assets/images/login_image.png');
+                                },
+                                itemCount: 3,
+                                control: SwiperControl(
+                                  color: colorScheme.shadow,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 216,
+                              left: 128,
+                              right: 134,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(const MainMomsterView());
+                                },
+                                child:
+                                    Image.asset('assets/icons/mtc_button.png'),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -268,12 +302,14 @@ class MainHomeView extends GetView<MainHomeViewController> {
                               ),
                               const SizedBox(height: 8),
                               LabelLargeText(
-                                text: MainHomeViewController.MianHomeView_first_reservation,
+                                text: MainHomeViewController
+                                    .MianHomeView_first_reservation,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
                               LabelLargeText(
-                                text: MainHomeViewController.MianHomeView_second_reservation,
+                                text: MainHomeViewController
+                                    .MianHomeView_second_reservation,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -311,7 +347,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                               const SizedBox(height: 6),
                               LabelLargeText(
                                 isEnglish: false,
-                                text: MainHomeViewController.MianHomeView_notice,
+                                text:
+                                    MainHomeViewController.MianHomeView_notice,
                                 letterSpacing: -1.4,
                                 fontWeight: FontWeight.w300,
                               ),
@@ -387,7 +424,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                             ),
                             const SizedBox(height: 37),
                             HeadlineLargeText(
-                              text: MainHomeViewController.MianHomeView_air_level,
+                              text:
+                                  MainHomeViewController.MianHomeView_air_level,
                               color: colorScheme.onSecondaryContainer,
                               fontWeight: FontWeight.w600,
                             ),
@@ -424,7 +462,8 @@ class MainHomeView extends GetView<MainHomeViewController> {
                           ),
                           const SizedBox(height: 37),
                           HeadlineLargeText(
-                            text: MainHomeViewController.MianHomeView_force_level,
+                            text:
+                                MainHomeViewController.MianHomeView_force_level,
                             color: colorScheme.onSecondaryContainer,
                             fontWeight: FontWeight.w600,
                           ),

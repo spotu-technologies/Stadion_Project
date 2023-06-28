@@ -82,7 +82,7 @@ class LoginMembershipAgreementView
     );
   }
 
-  ///이메일 입력창/로그인버튼
+  ///이용약관 동의
   Column buildMembershipAgreen() {
     return Column(
       children: [
@@ -247,6 +247,7 @@ class LoginMembershipAgreementView
   }
 }
 
+/// 약관 보기 버튼
 class buildUnderLineButton extends StatelessWidget {
   const buildUnderLineButton({
     this.onTap,

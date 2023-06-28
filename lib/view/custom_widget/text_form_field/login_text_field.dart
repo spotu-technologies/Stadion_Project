@@ -253,6 +253,7 @@ class MainScreenPopupTextFormField extends StatelessWidget {
     required this.height,
     this.color,
     this.controller,
+    this.onChanged,
     this.onTap,
     this.style,
     this.prefixIcon,
@@ -267,6 +268,7 @@ class MainScreenPopupTextFormField extends StatelessWidget {
   final Color? color;
   final TextEditingController? controller;
   final GestureTapCallback? onTap;
+  final ValueChanged<String>? onChanged;
   final TextStyle? style;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -283,6 +285,7 @@ class MainScreenPopupTextFormField extends StatelessWidget {
         color: color,
       ),
       child: TextFormField(
+        onChanged: onChanged,
         onTap: onTap,
         controller: controller,
         textAlign: TextAlign.center,

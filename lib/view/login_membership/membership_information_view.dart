@@ -655,7 +655,7 @@ class MembershipInformationView
                 ],
               ),
 
-              ///신장 체중 입력창
+              ///종목 경력 입력창
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 94),
                 child: Container(

@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
-import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
-import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_amrap_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_emom_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_for_time_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_stopwatch_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_album_vew.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_setting_first_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_tabata_view.dart';
 import 'package:stadion_project/view/main/main_menubar_view.dart';
-import 'package:stadion_project/view/main/wod_view/popup/wod_box_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class TimerCamViewController extends GetxController {}
+class MainTimerCamViewController extends GetxController {
+  void SettingFirstFind() {
+    Get.dialog(
+      TimerCamSettingFirstView(),
+      barrierColor: Colors.transparent,
+    );
+  }
+}
 
-class TimerCamView extends GetView<TimerCamViewController> {
-  const TimerCamView({Key? key}) : super(key: key);
+class MainTimerCamView extends GetView<MainTimerCamViewController> {
+  const MainTimerCamView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(TimerCamViewController());
+    Get.put(MainTimerCamViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
       drawer: MainMenuBarView(),
@@ -95,8 +106,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                   const SizedBox(height: 60),
                   Row(
                     children: [
+                      ///amrap 버튼
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(const TimerCamAmrapView());
+                        },
                         child: ViewContainer(
                           width: 272,
                           height: 272,
@@ -118,8 +132,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                         ),
                       ),
                       const SizedBox(width: 18),
+                      ///tabata 버튼
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(const TimerCamTabataView());
+                        },
                         child: ViewContainer(
                           width: 272,
                           height: 272,
@@ -145,8 +162,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                   const SizedBox(height: 18),
                   Row(
                     children: [
+                      ///for time 버튼
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(const TimerCamForTimeView());
+                        },
                         child: ViewContainer(
                           width: 272,
                           height: 272,
@@ -168,8 +188,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                         ),
                       ),
                       const SizedBox(width: 18),
+                      ///emom 버튼
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(const TimerCamEmomView());
+                        },
                         child: ViewContainer(
                           width: 272,
                           height: 272,
@@ -193,8 +216,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                     ],
                   ),
                   const SizedBox(height: 18),
+                  ///스톱워치 버튼
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(const TimerCamStopWatchView());
+                    },
                     child: ViewContainer(
                       width: 562,
                       height: 135,
@@ -218,8 +244,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                   const SizedBox(height: 290),
                   Row(
                     children: [
+                      ///앨범 버튼
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(const TimerCamAlbumView());
+                        },
                         child: Container(
                           width: 90,
                           height: 90,
@@ -233,8 +262,11 @@ class TimerCamView extends GetView<TimerCamViewController> {
                         ),
                       ),
                       const SizedBox(width: 30),
+                      ///배경설정 버튼
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          controller.SettingFirstFind();
+                        },
                         child: Container(
                           width: 90,
                           height: 90,

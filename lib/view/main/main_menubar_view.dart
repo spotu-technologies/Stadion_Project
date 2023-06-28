@@ -9,7 +9,7 @@ import 'package:stadion_project/view/main/hamburger_menu/feed_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/free_trial_request_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/movement_guide_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/notice_event_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/main_timer_cam_view.dart';
 
 import '../../style_config/text_theme.dart';
 import '../login/login_view.dart';
@@ -177,7 +177,7 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
                   ),
                   buildGestureDetectorThick(
                     onTap: () {
-                      Get.to(const TimerCamView());
+                      Get.to(const MainTimerCamView());
                     },
                     text: 'TIMER CAM',
                   ),
