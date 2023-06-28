@@ -75,311 +75,314 @@ class TimerCamEmomView extends GetView<TimerCamEmomViewController> {
     Get.put(TimerCamEmomViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
-      body: Stack(
-        children: [
-          ///배경화면
-          Image.asset(
-            'assets/images/timer_cam_emom.png',
-            width: 750,
-            height: 1462,
-            fit: BoxFit.cover,
-          ),
-          Image.asset(
-            'assets/images/timer_cam_black.png',
-            width: 750,
-            height: 1462,
-            fit: BoxFit.cover,
-            opacity: AlwaysStoppedAnimation(0.8),
-          ),
-          ///엡바
-          PreferredSize(
-            preferredSize: Size.fromHeight(60),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 44),
-              child: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  title: Text('TIMER CAM',
-                    style: TextStyle(
-                      color: colorScheme.background,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 32,
-                    ),
-                  ),
-                  centerTitle: true,
-                  iconTheme: IconThemeData(
-                    color: colorScheme.background,
-                    size: 50,
-                  ),
-                  actions: [
-                    IconButton(
-                      onPressed: (){},
-                      icon: Icon(Icons.search,
-                        size: 50,
-                      ),
-                      color: colorScheme.background,
-                    ),
-                    //SizedBox(width: 18),
-                    IconButton(
-                      onPressed: (){},
-                      icon: Icon(Icons.image_outlined,
-                        size: 50,
-                      ),
-                      color: colorScheme.background,
-                    ),
-                  ]
+      body: GetBuilder<TimerCamEmomViewController>(builder: (controller) {
+          return Stack(
+            children: [
+              ///배경화면
+              Image.asset(
+                'assets/images/timer_cam_emom.png',
+                width: 750,
+                height: 1462,
+                fit: BoxFit.cover,
               ),
-            ),
-          ),
-          ///페이지 내용
-          Positioned(
-            child: Column(
-              children: [
-                const SizedBox(height: 200),
-                Row(
-                  children: [
-                    const SizedBox(width: 94),
-                    ViewContainer(
-                      width: 80,
-                      height: 80,
-                      alignment: Alignment.center,
-                      color: colorScheme.tertiary,
-                      child: TitleSmallText(
-                        text: 'EMOM',
-                        fontWeight: FontWeight.w600,
-                        color: colorScheme.background,
-                        letterSpacing: -2.4,
+              Image.asset(
+                'assets/images/timer_cam_black.png',
+                width: 750,
+                height: 1462,
+                fit: BoxFit.cover,
+                opacity: AlwaysStoppedAnimation(0.8),
+              ),
+              ///엡바
+              PreferredSize(
+                preferredSize: Size.fromHeight(60),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 44),
+                  child: AppBar(
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      title: Text('TIMER CAM',
+                        style: TextStyle(
+                          color: colorScheme.background,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 32,
+                        ),
                       ),
+                      centerTitle: true,
+                      iconTheme: IconThemeData(
+                        color: colorScheme.background,
+                        size: 50,
+                      ),
+                      actions: [
+                        IconButton(
+                          onPressed: (){},
+                          icon: Icon(Icons.search,
+                            size: 50,
+                          ),
+                          color: colorScheme.background,
+                        ),
+                        //SizedBox(width: 18),
+                        IconButton(
+                          onPressed: (){},
+                          icon: Icon(Icons.image_outlined,
+                            size: 50,
+                          ),
+                          color: colorScheme.background,
+                        ),
+                      ]
+                  ),
+                ),
+              ),
+              ///페이지 내용
+              Positioned(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 200),
+                    Row(
+                      children: [
+                        const SizedBox(width: 94),
+                        ViewContainer(
+                          width: 80,
+                          height: 80,
+                          alignment: Alignment.center,
+                          color: colorScheme.tertiary,
+                          child: TitleSmallText(
+                            text: 'EMOM',
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.background,
+                            letterSpacing: -2.4,
+                          ),
+                        ),
+                        ViewContainer(
+                          width: 402,
+                          height: 80,
+                          alignment: Alignment.center,
+                          color: Colors.transparent,
+                          child: HeadlineSmallText(
+                            text: TimerCamEmomViewController.MainTimerCamView_Emom_TotalTime,
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.background,
+                          ),
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 60),
                     ViewContainer(
-                      width: 402,
-                      height: 80,
-                      alignment: Alignment.center,
+                      width: 662,
+                      height: 37,
                       color: Colors.transparent,
+                      alignment: Alignment.center,
                       child: HeadlineSmallText(
-                        text: TimerCamEmomViewController.MainTimerCamView_Emom_TotalTime,
-                        textAlign: TextAlign.center,
+                        text: 'EVERY MINUTE ON A MINUTE',
+                        //textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.background,
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 60),
-                ViewContainer(
-                  width: 662,
-                  height: 37,
-                  color: Colors.transparent,
-                  alignment: Alignment.center,
-                  child: HeadlineSmallText(
-                    text: 'EVERY MINUTE ON A MINUTE',
-                    //textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w600,
-                    color: colorScheme.background,
-                  ),
-                ),
-                const SizedBox(height: 60),
-                ViewContainer(
-                  width: 662,
-                  height: 37,
-                  color: Colors.transparent,
-                  alignment: Alignment.center,
-                  child: HeadlineSmallText(
-                    text: 'TIME CAP',
-                    //textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w600,
-                    color: colorScheme.tertiary,
-                  ),
-                ),
-                const SizedBox(height: 27),
-                Row(
-                  children: [
-                    const SizedBox(width: 260),
-                    Column(
+                    const SizedBox(height: 60),
+                    ViewContainer(
+                      width: 662,
+                      height: 37,
+                      color: Colors.transparent,
+                      alignment: Alignment.center,
+                      child: HeadlineSmallText(
+                        text: 'TIME CAP',
+                        //textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.tertiary,
+                      ),
+                    ),
+                    const SizedBox(height: 27),
+                    Row(
                       children: [
-                        Container(
-                          width: 180,
-                          height: 2,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                        const SizedBox(width: 260),
+                        Column(
+                          children: [
+                            Container(
+                              width: 180,
+                              height: 2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                                ),
+                              ),
                             ),
+                            const SizedBox(height: 10),
+                            MainScreenPopupTextFormField(
+                              width: 240,
+                              height: 142,
+                              color: Colors.transparent,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.timeCapField(true);
+                                } else {
+                                  controller.timeCapField(false);
+                                }
+                              },
+                              onTap: () {
+                                controller.TimerCapFind();
+                              },
+                              controller: controller.timeCapController,
+                              style: textThemeEn.displayMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onSurface,
+                              ),
+                              hintText: '00',
+                              hintStyle: textThemeEn.displayMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onSurface,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Container(
+                              width: 180,
+                              height: 2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        LabelLargeText(
+                          text: 'M',
+                          fontWeight: FontWeight.w300,
+                          color: colorScheme.background,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 60),
+                    ViewContainer(
+                      width: 662,
+                      height: 37,
+                      color: Colors.transparent,
+                      alignment: Alignment.center,
+                      child: HeadlineSmallText(
+                        text: 'FOR',
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.tertiary,
+                      ),
+                    ),
+                    const SizedBox(height: 27),
+                    Row(
+                      children: [
+                        const SizedBox(width: 260),
+                        Column(
+                          children: [
+                            Container(
+                              width: 180,
+                              height: 2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            MainScreenPopupTextFormField(
+                              width: 240,
+                              height: 142,
+                              color: Colors.transparent,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.forField(true);
+                                } else {
+                                  controller.forField(false);
+                                }
+                              },
+                              onTap: () {
+                                controller.ForFind();
+                              },
+                              controller: controller.forController,
+                              style: textThemeEn.displayMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onSurface,
+                              ),
+                              hintText: '00',
+                              hintStyle: textThemeEn.displayMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.onSurface,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Container(
+                              width: 180,
+                              height: 2,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        LabelLargeText(
+                          text: 'M',
+                          fontWeight: FontWeight.w300,
+                          color: colorScheme.background,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: LabelLargeText(
+                            text: 'SET 추가',
+                            color: colorScheme.background,
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        MainScreenPopupTextFormField(
-                          width: 240,
-                          height: 142,
-                          color: Colors.transparent,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              controller.timeCapField(true);
-                            } else {
-                              controller.timeCapField(false);
-                            }
-                          },
-                          onTap: () {
-                            controller.TimerCapFind();
-                          },
-                          controller: controller.timeCapController,
-                          style: textThemeEn.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
-                          hintText: '00',
-                          hintStyle: textThemeEn.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
-                          width: 180,
-                          height: 2,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
-                            ),
+                        const SizedBox(width: 11),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.add_circle_outline,
+                            size: 45,
+                            color: colorScheme.background,
                           ),
                         ),
                       ],
                     ),
-                    LabelLargeText(
-                      text: 'M',
-                      fontWeight: FontWeight.w300,
-                      color: colorScheme.background,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 60),
-                ViewContainer(
-                  width: 662,
-                  height: 37,
-                  color: Colors.transparent,
-                  alignment: Alignment.center,
-                  child: HeadlineSmallText(
-                    text: 'FOR',
-                    fontWeight: FontWeight.w600,
-                    color: colorScheme.tertiary,
-                  ),
-                ),
-                const SizedBox(height: 27),
-                Row(
-                  children: [
-                    const SizedBox(width: 260),
-                    Column(
+                    const SizedBox(height: 231),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 180,
-                          height: 2,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
-                            ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Image.asset('assets/icons/emom_camera.png'),
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {},
+                          child: LabelLargeText(
+                            text: '비디오 촬영',
+                            color: colorScheme.background,
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        MainScreenPopupTextFormField(
-                          width: 240,
-                          height: 142,
-                          color: Colors.transparent,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              controller.forField(true);
-                            } else {
-                              controller.forField(false);
-                            }
-                          },
-                          onTap: () {
-                            controller.ForFind();
-                          },
-                          controller: controller.forController,
-                          style: textThemeEn.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
-                          hintText: '00',
-                          hintStyle: textThemeEn.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Container(
-                          width: 180,
-                          height: 2,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
-                            ),
+                        const SizedBox(width: 11),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.check_circle_outline,
+                            size: 45,
+                            color: colorScheme.background,
                           ),
                         ),
                       ],
                     ),
-                    LabelLargeText(
-                      text: 'M',
-                      fontWeight: FontWeight.w300,
-                      color: colorScheme.background,
-                    ),
                   ],
                 ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: LabelLargeText(
-                        text: 'SET 추가',
-                        color: colorScheme.background,
-                      ),
-                    ),
-                    const SizedBox(width: 11),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.add_circle_outline,
-                        size: 45,
-                        color: colorScheme.background,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 231),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Image.asset('assets/icons/emom_camera.png'),
-                    ),
-                    const SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {},
-                      child: LabelLargeText(
-                        text: '비디오 촬영',
-                        color: colorScheme.background,
-                      ),
-                    ),
-                    const SizedBox(width: 11),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.check_circle_outline,
-                        size: 45,
-                        color: colorScheme.background,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+              ),
+            ],
+          );
+        }
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 44),

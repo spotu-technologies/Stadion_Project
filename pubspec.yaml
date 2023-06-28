@@ -23,7 +23,7 @@ dependencies:
   intl: ^0.18.1
   table_calendar: ^3.0.9
   card_swiper : ^2.0.1
-  circular_countdown_timer: ^0.2.3
+  neon_circular_timer: ^0.0.7
 
 dev_dependencies:
   flutter_test:

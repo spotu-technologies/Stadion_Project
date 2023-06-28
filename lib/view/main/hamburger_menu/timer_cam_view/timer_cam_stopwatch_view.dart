@@ -6,10 +6,12 @@ import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:neon_circular_timer/neon_circular_timer.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class TimerCamStopWatchViewController extends GetxController {
+  final CountDownController TimeController = CountDownController();
+
   Stopwatch _stopwatch = Stopwatch();
   Timer? _timer;
   String _elapsedTime = '00:00';
@@ -20,14 +22,16 @@ class TimerCamStopWatchViewController extends GetxController {
 
     if (_isRunning) {
       _startTimer();
+      TimeController.resume();
     } else {
       _stopTimer();
+      TimeController.pause();
     }
   }
 
   void _startTimer() {
     _stopwatch.start();
-    _timer = Timer.periodic(Duration(milliseconds: 10), (Timer timer) {
+    _timer = Timer.periodic(Duration(milliseconds: 0), (Timer timer) {
       _elapsedTime = _formatTime(_stopwatch.elapsedMilliseconds);
       update();
     });
@@ -107,22 +111,49 @@ class TimerCamStopWatchView extends GetView<TimerCamStopWatchViewController> {
               top: 200,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 94),
-                child: Row(
+                child: Column(
                   children: [
-                    ViewContainer(
-                      width: 80,
-                      height: 80,
-                      padding: EdgeInsets.symmetric(vertical: 15),
-                      color: colorScheme.onError,
-                      child: TitleSmallText(
-                        text: 'STOP\nWATCH',
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: colorScheme.background,
-                        letterSpacing: -2.4,
-                      ),
+                    Row(
+                      children: [
+                        ViewContainer(
+                          width: 80,
+                          height: 80,
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          color: colorScheme.onError,
+                          child: TitleSmallText(
+                            text: 'STOP\nWATCH',
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.background,
+                            letterSpacing: -2.4,
+                          ),
+                        ),
+                        SizedBox(width: 482),
+                      ],
                     ),
-                    SizedBox(width: 482),
+                    const SizedBox(height: 167),
+                    NeonCircularTimer(
+                      onComplete: () {
+                        controller.TimeController.restart();
+                      },
+                        width: 540,
+                        duration: 60,
+                        controller: controller.TimeController,
+                      strokeWidth: 23,
+                      isTimerTextShown: false,
+                      neumorphicEffect: false,
+                      outerStrokeColor: Colors.transparent,
+                      autoStart: false,
+                      innerFillGradient: LinearGradient(colors: [
+                        colorScheme.onError,
+                        colorScheme.onError,
+                      ]),
+                      neonGradient: LinearGradient(colors: [
+                        colorScheme.onError,
+                        colorScheme.onError,
+                      ]),
+                        strokeCap: StrokeCap.round,
+                    ),
                   ],
                 ),
               ),
@@ -137,6 +168,7 @@ class TimerCamStopWatchView extends GetView<TimerCamStopWatchViewController> {
                   GestureDetector(
                     onTap: () {
                       controller._clickButton();
+                      //controller._clickCircularButton();
                     },
                     child: Container(
                       width: 562,

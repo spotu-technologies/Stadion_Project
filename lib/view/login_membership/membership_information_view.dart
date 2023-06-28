@@ -28,16 +28,16 @@ class MembershipInformationViewController extends GetxController {
   var eventController = TextEditingController();
   var careerController = TextEditingController();
 
-  bool nameShow = false;
-  bool emailShow = false;
-  bool callShow = false;
-  bool addressShow = false;
-  bool addressDetailShow = false;
+  bool nameShow = true;
+  bool emailShow = true;
+  bool callShow = true;
+  bool addressShow = true;
+  bool addressDetailShow = true;
   bool addressSearchShow = true;
-  bool sexShow = false;
-  bool heightShow = false;
-  bool weightShow = false;
-  bool birthdayShow = false;
+  bool sexShow = true;
+  bool heightShow = true;
+  bool weightShow = true;
+  bool birthdayShow = true;
 
   bool isMale = true;
   String isHeight = '';
@@ -633,103 +633,97 @@ class MembershipInformationView
   Column buildSportsField() {
     return Column(
       children: [
-        GetBuilder<MembershipInformationViewController>(builder: (context) {
-          return Column(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '운동선호도(선택)',
-                    style: textThemeKo.headlineSmall!.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 21.5),
-                  Container(
-                    width: 562,
-                    height: 2,
-                    decoration: BoxDecoration(color: Colors.black),
-                  ),
-                  const SizedBox(height: 9.5),
-                ],
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '운동선호도(선택)',
+              style: textThemeKo.headlineSmall!.copyWith(
+                fontWeight: FontWeight.w600,
               ),
+            ),
+            const SizedBox(height: 21.5),
+            Container(
+              width: 562,
+              height: 2,
+              decoration: BoxDecoration(color: Colors.black),
+            ),
+            const SizedBox(height: 9.5),
+          ],
+        ),
 
-              ///종목 경력 입력창
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 94),
-                child: Container(
-                  width: 562,
-                  height: 100,
-                  child: AnimatedList(
-                      key: controller._key,
-                      initialItemCount: 1,
-                      itemBuilder: (context, index, animation) {
-                        return SizeTransition(
-                          sizeFactor: animation,
-                          child: Column(
-                            children: [
-                              SizedBox(width: 10),
-                              Row(
-                                children: [
-                                  MembershipTextFormSmallField(
-                                    controller: controller.eventController,
-                                    prefixIcon: Container(
-                                      width: 150,
-                                      height: 34,
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        '종목',
-                                        style: textThemeKo.labelLarge!.copyWith(
-                                          fontWeight: FontWeight.w300,
-                                          color: colorScheme.onSurface,
-                                        ),
-                                      ),
-                                    ),
-                                    suffixIcon: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.check,
-                                        color: Colors.black,
-                                        size: 28,
-                                      ),
-                                    ),
+        ///종목 경력 입력창
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 94),
+          child: Container(
+            width: 562,
+            height: 100,
+            child: AnimatedList(
+                key: controller._key,
+                initialItemCount: 1,
+                itemBuilder: (context, index, animation) {
+                  return SizeTransition(
+                    sizeFactor: animation,
+                    child: Column(
+                      children: [
+                        SizedBox(width: 10),
+                        Row(
+                          children: [
+                            MembershipTextFormSmallField(
+                              controller: controller.eventController,
+                              prefixIcon: Container(
+                                width: 150,
+                                height: 34,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '종목',
+                                  style: textThemeKo.labelLarge!.copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    color: colorScheme.onSurface,
                                   ),
-                                  const SizedBox(width: 18),
-                                  MembershipTextFormSmallField(
-                                    controller: controller.careerController,
-                                    prefixIcon: Container(
-                                      width: 150,
-                                      height: 34,
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        '경력',
-                                        style: textThemeKo.labelLarge!.copyWith(
-                                          fontWeight: FontWeight.w300,
-                                          color: colorScheme.onSurface,
-                                        ),
-                                      ),
-                                    ),
-                                    suffixIcon: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.check,
-                                        color: Colors.black,
-                                        size: 28,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ],
-                          ),
-                        );
-                      }),
-                ),
-              ),
-            ],
-          );
-        }),
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.check,
+                                  color: Colors.black,
+                                  size: 28,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 18),
+                            MembershipTextFormSmallField(
+                              controller: controller.careerController,
+                              prefixIcon: Container(
+                                width: 150,
+                                height: 34,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '경력',
+                                  style: textThemeKo.labelLarge!.copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    color: colorScheme.onSurface,
+                                  ),
+                                ),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.check,
+                                  color: Colors.black,
+                                  size: 28,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+          ),
+        ),
       ],
     );
   }
