@@ -9,15 +9,15 @@ import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_ca
 import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_for_time_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_stopwatch_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_album_vew.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_setting_first_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_setting_view.dart';
 import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_tabata_view.dart';
 import 'package:stadion_project/view/main/main_menubar_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class MainTimerCamViewController extends GetxController {
-  void SettingFirstFind() {
+  void SettingFind() {
     Get.dialog(
-      TimerCamSettingFirstView(),
+      TimerCamSettingView(),
       barrierColor: Colors.transparent,
     );
   }
@@ -265,7 +265,7 @@ class MainTimerCamView extends GetView<MainTimerCamViewController> {
                       ///배경설정 버튼
                       GestureDetector(
                         onTap: () {
-                          controller.SettingFirstFind();
+                          controller.SettingFind();
                         },
                         child: Container(
                           width: 90,

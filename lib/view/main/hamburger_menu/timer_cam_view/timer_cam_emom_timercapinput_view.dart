@@ -18,7 +18,7 @@ class TimerCamEmomTimewCapInputViewController extends GetxController {
       '1ROUNG OF EMOM\nTOTAL TIME : 05:00';
 
   final List<int> EmomSelectedList = List.generate(99, (index) => index + 1);
-  int _selectedEmom = 0;
+  int _selectedEmom = 1;
 }
 
 class TimerCamEmomTimewCapInputView extends GetView<TimerCamEmomTimewCapInputViewController> {

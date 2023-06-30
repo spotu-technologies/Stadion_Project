@@ -655,74 +655,71 @@ class MembershipInformationView
         ///종목 경력 입력창
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 94),
-          child: Container(
-            width: 562,
-            height: 100,
-            child: AnimatedList(
-                key: controller._key,
-                initialItemCount: 1,
-                itemBuilder: (context, index, animation) {
-                  return SizeTransition(
-                    sizeFactor: animation,
-                    child: Column(
-                      children: [
-                        SizedBox(width: 10),
-                        Row(
-                          children: [
-                            MembershipTextFormSmallField(
-                              controller: controller.eventController,
-                              prefixIcon: Container(
-                                width: 150,
-                                height: 34,
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  '종목',
-                                  style: textThemeKo.labelLarge!.copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    color: colorScheme.onSurface,
-                                  ),
-                                ),
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.check,
-                                  color: Colors.black,
-                                  size: 28,
+          child: AnimatedList(
+              key: controller._key,
+              initialItemCount: 1,
+              shrinkWrap: true,
+              itemBuilder: (context, index, animation) {
+                return SizeTransition(
+                  sizeFactor: animation,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          MembershipTextFormSmallField(
+                            controller: controller.eventController,
+                            prefixIcon: Container(
+                              width: 150,
+                              height: 34,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                '종목',
+                                style: textThemeKo.labelLarge!.copyWith(
+                                  fontWeight: FontWeight.w300,
+                                  color: colorScheme.onSurface,
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 18),
-                            MembershipTextFormSmallField(
-                              controller: controller.careerController,
-                              prefixIcon: Container(
-                                width: 150,
-                                height: 34,
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  '경력',
-                                  style: textThemeKo.labelLarge!.copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    color: colorScheme.onSurface,
-                                  ),
-                                ),
+                            suffixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.check,
+                                color: Colors.black,
+                                size: 28,
                               ),
-                              suffixIcon: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.check,
-                                  color: Colors.black,
-                                  size: 28,
+                            ),
+                          ),
+                          const SizedBox(width: 18),
+                          MembershipTextFormSmallField(
+                            controller: controller.careerController,
+                            prefixIcon: Container(
+                              width: 150,
+                              height: 34,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                '경력',
+                                style: textThemeKo.labelLarge!.copyWith(
+                                  fontWeight: FontWeight.w300,
+                                  color: colorScheme.onSurface,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  );
-                }),
-          ),
+                            suffixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.check,
+                                color: Colors.black,
+                                size: 28,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              }),
         ),
       ],
     );

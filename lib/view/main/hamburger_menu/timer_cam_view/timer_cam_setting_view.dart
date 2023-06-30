@@ -4,21 +4,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
-import 'package:stadion_project/style_config/text_theme.dart';
-import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
+import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover_camera.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
-import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class TimerCamSettingFirstViewController extends GetxController {}
+class TimerCamSettingViewController extends GetxController {}
 
-class TimerCamSettingFirstView
-    extends GetView<TimerCamSettingFirstViewController> {
-  const TimerCamSettingFirstView({Key? key}) : super(key: key);
+class TimerCamSettingView extends GetView<TimerCamSettingViewController> {
+  const TimerCamSettingView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TimerCamSettingFirstViewController());
+    Get.put(TimerCamSettingViewController());
     return AlertDialog(
       insetPadding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
@@ -83,10 +80,8 @@ class TimerCamSettingFirstView
                               color: colorScheme.shadow,
                             ),
                           ),
-                          child: Icon(
-                            Icons.add_circle_outline,
-                            size: 60,
-                          ),
+                          child: Image.asset(
+                              'assets/images/timer_cam_setting_camera_before.png'),
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
@@ -103,23 +98,10 @@ class TimerCamSettingFirstView
                     const SizedBox(width: 61),
                     Column(
                       children: [
-                        GestureDetector(
+                        ButtonWithRolloverCamera(
                           onTap: () {},
-                          child: Container(
-                            width: 210,
-                            height: 412,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                width: 2,
-                                color: colorScheme.shadow,
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.add_circle_outline,
-                              size: 60,
-                            ),
-                          ),
+                          child: Image.asset(
+                              'assets/images/timer_cam_setting_camera_before.png'),
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
@@ -135,22 +117,11 @@ class TimerCamSettingFirstView
                     ),
                   ],
                 ),
-                ButtonWithRollover(
-                  onTap: () {},
-                  child: Center(
-                    child: Text(
-                      '로그인하기',
-                      style: textThemeKo.headlineSmall!.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
 
-          ///저장버튼
+          ///닫기버튼
           Positioned(
             top: 20,
             left: 20,

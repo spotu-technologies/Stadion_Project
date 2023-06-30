@@ -45,7 +45,9 @@ class ButtonWithRollover extends StatelessWidget {
       width: width,
       clipBehavior: Clip.hardEdge,
       height: height,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: backgroundColor ?? colorScheme.primary),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          color: backgroundColor ?? colorScheme.primary),
       child: Material(
         color: backgroundColor ?? colorScheme.primary,
         child: InkWell(
@@ -119,13 +121,17 @@ class ButtonWithTextRollover extends StatelessWidget {
             width: width,
             clipBehavior: Clip.hardEdge,
             height: height,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: colorScheme.background),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: colorScheme.background),
             child: Center(
               child: Text(
                 title,
                 style: textThemeEn.headlineSmall!.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: controller.isTouching ? colorScheme.primary : colorScheme.shadow,
+                  color: controller.isTouching
+                      ? colorScheme.primary
+                      : colorScheme.shadow,
                 ),
               ),
             ),

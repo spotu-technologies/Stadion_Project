@@ -113,28 +113,6 @@ class HomeGymReservationPopupView
                     children: [
                       const SizedBox(height: 100),
                       ///운동항목선택
-                      /*Wrap(
-                        spacing: 28,
-                        //direction: Axis.horizontal,
-                        children: List.generate(controller._choicesList.length, (index) {
-                          return ChoiceChip(
-                            labelPadding: EdgeInsets.fromLTRB(15, 28, 15, 28),
-                            label: LabelLargeText(
-                              text: controller._choicesList[index],
-                              fontWeight: FontWeight.w300,
-                            ),
-                            selected: controller.defaultChoiceIndex == index,
-                            selectedColor: colorScheme.shadow,
-                            backgroundColor: colorScheme.background,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            onSelected: (value) {
-                              controller.selectIndex(index, value);
-                            },
-                          );
-                        }),
-                      ),*/
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
