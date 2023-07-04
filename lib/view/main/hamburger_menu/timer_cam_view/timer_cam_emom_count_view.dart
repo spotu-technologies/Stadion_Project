@@ -3,53 +3,33 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
+import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
 class TimerCamEmomCountViewController extends GetxController {
+  static const String MainTimerCamView_Emom_count = 'SET 1/2\nROUND 1';
+
   final CountDownController TimeController = CountDownController();
 
-  Stopwatch _stopwatch = Stopwatch();
-  Timer? _timer;
-  String _elapsedTime = '00:00';
-  var _isRunning = false;
+  bool _isRunning = false;
 
   void _clickButton() {
     _isRunning = !_isRunning; // 상태 반전
 
     if (_isRunning) {
-      _startTimer();
-      TimeController.resume();
-    } else {
-      _stopTimer();
-      TimeController.pause();
-    }
-  }
-
-  void _startTimer() {
-    _stopwatch.start();
-    _timer = Timer.periodic(Duration(milliseconds: 0), (Timer timer) {
-      _elapsedTime = _formatTime(_stopwatch.elapsedMilliseconds);
+      //_startTimer();
+      TimeController.restart();
       update();
-    });
-  }
-
-  void _stopTimer() {
-    _stopwatch.stop();
-    _timer?.cancel();
-  }
-
-  String _formatTime(int milliseconds) {
-    int seconds = (milliseconds / 1000).truncate();
-    int minutes = (seconds / 60).truncate();
-
-    String minutesStr = (minutes % 60).toString().padLeft(2, '0');
-    String secondsStr = (seconds % 60).toString().padLeft(2, '0');
-
-    return '$minutesStr:$secondsStr';
+    } else {
+      //_stopTimer();
+      TimeController.pause();
+      update();
+    }
   }
 }
 
@@ -106,7 +86,7 @@ class TimerCamEmomCountView extends GetView<TimerCamEmomCountViewController> {
               ),
             ),
 
-            ///stop watch 마크
+            ///stop watch 마크 및 서클 타이머
             Positioned(
               top: 200,
               child: Padding(
@@ -118,9 +98,9 @@ class TimerCamEmomCountView extends GetView<TimerCamEmomCountViewController> {
                         ViewContainer(
                           width: 80,
                           height: 80,
-                          alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(vertical: 15),
                           color: colorScheme.tertiary,
+                          alignment: Alignment.center,
                           child: TitleSmallText(
                             text: 'EMOM',
                             textAlign: TextAlign.center,
@@ -134,7 +114,8 @@ class TimerCamEmomCountView extends GetView<TimerCamEmomCountViewController> {
                           width: 402,
                           height: 80,
                           child: HeadlineSmallText(
-                            text: 'SET 1/2\nROUND 1',
+                            text: TimerCamEmomCountViewController
+                                .MainTimerCamView_Emom_count,
                             textAlign: TextAlign.end,
                             fontWeight: FontWeight.w600,
                             color: colorScheme.background,
@@ -142,84 +123,81 @@ class TimerCamEmomCountView extends GetView<TimerCamEmomCountViewController> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 167),
-                    NeonCircularTimer(
-                      onComplete: () {
-                        controller.TimeController.restart();
+                    const SizedBox(height: 155),
+                    GestureDetector(
+                      onTap: () {
+                        controller._clickButton();
                       },
-                      width: 540,
-                      duration: 60,
-                      controller: controller.TimeController,
-                      strokeWidth: 23,
-                      isTimerTextShown: false,
-                      neumorphicEffect: false,
-                      outerStrokeColor: Colors.transparent,
-                      autoStart: false,
-                      innerFillGradient: LinearGradient(colors: [
-                        colorScheme.onError,
-                        colorScheme.onError,
-                      ]),
-                      neonGradient: LinearGradient(colors: [
-                        colorScheme.onError,
-                        colorScheme.onError,
-                      ]),
-                      strokeCap: StrokeCap.round,
+                      child: Container(
+                        width: 562,
+                        height: 562,
+                        child: Stack(
+                          children: [
+                            NeonCircularTimer(
+                              onComplete: () {
+                                controller.TimeController.restart();
+                              },
+                              width: 540,
+                              duration: 60,
+                              strokeWidth: 23,
+                              controller: controller.TimeController,
+                              isReverse: true,
+                              isTimerTextShown: true,
+                              textStyle: textThemeEn.displayMedium!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.tertiary,
+                              ),
+                              neumorphicEffect: false,
+                              autoStart: false,
+                              outerStrokeColor: Colors.transparent,
+                              innerFillGradient: LinearGradient(colors: [
+                                colorScheme.tertiary,
+                                colorScheme.tertiary,
+                              ]),
+                              neonGradient: LinearGradient(colors: [
+                                colorScheme.tertiary,
+                                colorScheme.tertiary,
+                              ]),
+                              strokeCap: StrokeCap.round,
+                            ),
+                            Positioned(
+                              top: 401,
+                              child: Container(
+                                width: 562,
+                                height: 36,
+                                alignment: Alignment.center,
+                                child: HeadlineSmallText(
+                                  text: controller._isRunning
+                                      ? '탭하면 정지합니다!'
+                                      : '탭하면 시작합니다!',
+                                  fontWeight: FontWeight.w600,
+                                  color: colorScheme.background,
+                                  letterSpacing: -1.5,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 80),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Image.asset(
+                        'assets/icons/timer_cam_recording_circular.png',
+                        width: 100,
+                        height: 100,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    HeadlineSmallText(
+                      text: '비디오 녹화 중',
+                      fontWeight: FontWeight.w600,
+                      color: colorScheme.background,
+                      letterSpacing: -1.5,
                     ),
                   ],
                 ),
-              ),
-            ),
-
-            ///stop watch 및 비디오 녹화 버튼
-            Positioned(
-              top: 450,
-              left: 94,
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      controller._clickButton();
-                      //controller._clickCircularButton();
-                    },
-                    child: Container(
-                      width: 562,
-                      height: 562,
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 220),
-                          DisplayMediumText(
-                            text: controller._elapsedTime,
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.tertiary,
-                          ),
-                          const SizedBox(height: 59),
-                          HeadlineSmallText(
-                            text: controller._isRunning ? '탭하면 정지합니다!' : '탭하면 시작합니다!',
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.background,
-                            letterSpacing: -1.5,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 80),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      'assets/icons/timer_cam_recording.png',
-                      width: 100,
-                      height: 100,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  HeadlineSmallText(
-                    text: '비디오 녹화 중',
-                    fontWeight: FontWeight.w600,
-                    color: colorScheme.background,
-                    letterSpacing: -1.5,
-                  ),
-                ],
               ),
             ),
           ],

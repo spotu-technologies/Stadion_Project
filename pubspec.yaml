@@ -24,6 +24,7 @@ dependencies:
   table_calendar: ^3.0.9
   card_swiper : ^2.0.1
   neon_circular_timer: ^0.0.7
+  stop_watch_timer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

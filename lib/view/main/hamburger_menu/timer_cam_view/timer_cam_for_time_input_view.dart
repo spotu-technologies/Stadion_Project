@@ -14,7 +14,7 @@ class TimerCamForTimeInputViewController extends GetxController {
       '3 X ROUND FOR TIME\nTOTAL TIME : 05:00';
 
   final List<int> ForTimeSelectedList = List.generate(99, (index) => index + 1);
-  int _selectedForTime = 0;
+  int _selectedForTime = 1;
 }
 
 class TimerCamForTimeInputView extends GetView<TimerCamForTimeInputViewController> {
