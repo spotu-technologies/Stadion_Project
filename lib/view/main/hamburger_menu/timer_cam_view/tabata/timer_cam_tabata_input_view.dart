@@ -4,42 +4,53 @@ import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
 import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
-import 'package:stadion_project/view/custom_widget/buttons/text_toggle_button.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
-import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
-import 'package:stadion_project/view/main/main_menubar_view.dart';
-import 'package:stadion_project/view/main/wod_view/popup/wod_box_popup_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class TimerCamEmomForInputViewController extends GetxController {
-  static const String MainTimerCamView_Emom_TotalTime =
-      '1ROUNG OF EMOM\nTOTAL TIME : 05:00';
+class TimerCamTabataInputViewController extends GetxController {
+  static const String MainTimerCamView_Tabata_TotalTime =
+      '3 X ROUNG TABATA\nTOTAL TIME : 03:30';
 
-  final List<int> EmomSelectedList = List.generate(99, (index) => index + 1);
+  final List<int> EmomSelectedList = List.generate(60, (index) => index + 1);
   int _selectedEmom = 1;
 }
 
-class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewController> {
-  const TimerCamEmomForInputView(
-      {Key? key, required this.applyForAtSub})
+class TimerCamTabataInputView extends GetView<TimerCamTabataInputViewController> {
+  const TimerCamTabataInputView(
+      {Key? key,
+        required this.applyRoundsAtSub,
+        required this.applyWorkoutMinAtSub,
+        required this.applyWorkoutSecAtSub,
+        required this.applyRestMinAtSub,
+        required this.applyRestSecAtSub,
+        required this.applySetsAtSub,
+        required this.applyMinuteAtSub,
+        required this.applySecondAtSub})
       : super(key: key);
 
-  final Function(String) applyForAtSub;
+  final Function(String) applyRoundsAtSub;
+  final Function(String) applyWorkoutMinAtSub;
+  final Function(String) applyWorkoutSecAtSub;
+  final Function(String) applyRestMinAtSub;
+  final Function(String) applyRestSecAtSub;
+  final Function(String) applySetsAtSub;
+  final Function(String) applyMinuteAtSub;
+  final Function(String) applySecondAtSub;
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(TimerCamEmomForInputViewController());
+    Get.put(TimerCamTabataInputViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: Stack(
         children: [
           ///배경화면
           Image.asset(
-            'assets/images/timer_cam_emom.png',
+            'assets/images/timer_cam_tabata.png',
             width: 750,
             height: 1462,
             fit: BoxFit.cover,
@@ -107,9 +118,9 @@ class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewControlle
                       width: 80,
                       height: 80,
                       alignment: Alignment.center,
-                      color: colorScheme.tertiary,
+                      color: colorScheme.secondary,
                       child: TitleSmallText(
-                        text: 'EMOM',
+                        text: 'TABATA',
                         fontWeight: FontWeight.w600,
                         color: colorScheme.background,
                         letterSpacing: -2.4,
@@ -121,7 +132,8 @@ class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewControlle
                       alignment: Alignment.center,
                       color: Colors.transparent,
                       child: HeadlineSmallText(
-                        text: TimerCamEmomForInputViewController.MainTimerCamView_Emom_TotalTime,
+                        text: TimerCamTabataInputViewController
+                            .MainTimerCamView_Tabata_TotalTime,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.background,
@@ -136,13 +148,12 @@ class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewControlle
                   color: Colors.transparent,
                   alignment: Alignment.center,
                   child: HeadlineSmallText(
-                    text: 'EVERY MINUTE ON A MINUTE',
+                    text: 'TABATA',
                     //textAlign: TextAlign.center,
                     fontWeight: FontWeight.w600,
                     color: colorScheme.background,
                   ),
                 ),
-                const SizedBox(height: 60),
                 const SizedBox(height: 230),
                 Row(
                   children: [
@@ -198,7 +209,7 @@ class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewControlle
             left: 285,
             child: Container(
               width: 200,
-              height: 800,
+              height: 680,
               child: CupertinoPicker(
                 magnification: 2.5,
                 squeeze: 0.5,
@@ -215,7 +226,7 @@ class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewControlle
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.w600,
-                        color: colorScheme.tertiary,
+                        color: colorScheme.secondary,
                       ),
                     ),
                   );
@@ -231,9 +242,23 @@ class TimerCamEmomForInputView extends GetView<TimerCamEmomForInputViewControlle
             child: ButtonWithRollover(
               onTap: () {
                 if (controller._selectedEmom == 0) {
-                  applyForAtSub(controller._selectedEmom.toString());
+                  applyRoundsAtSub(controller._selectedEmom.toString());
+                  applyWorkoutMinAtSub(controller._selectedEmom.toString());
+                  applyWorkoutSecAtSub(controller._selectedEmom.toString());
+                  applyRestMinAtSub(controller._selectedEmom.toString());
+                  applyRestSecAtSub(controller._selectedEmom.toString());
+                  applySetsAtSub(controller._selectedEmom.toString());
+                  applyMinuteAtSub(controller._selectedEmom.toString());
+                  applySecondAtSub(controller._selectedEmom.toString());
                 } else {
-                  applyForAtSub(controller._selectedEmom.toString());
+                  applyRoundsAtSub(controller._selectedEmom.toString());
+                  applyWorkoutMinAtSub(controller._selectedEmom.toString());
+                  applyWorkoutSecAtSub(controller._selectedEmom.toString());
+                  applyRestMinAtSub(controller._selectedEmom.toString());
+                  applyRestSecAtSub(controller._selectedEmom.toString());
+                  applySetsAtSub(controller._selectedEmom.toString());
+                  applyMinuteAtSub(controller._selectedEmom.toString());
+                  applySecondAtSub(controller._selectedEmom.toString());
                 }
                 Get.back();
               },

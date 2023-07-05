@@ -365,7 +365,7 @@ class MainHomeView extends GetView<MainHomeViewController> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Get.to(const NoticeEventView(
-                                      isNotice: true,
+                                      isEvent: true,
                                     ));
                                   },
                                   child: const Image(

@@ -189,13 +189,13 @@ class MainMenuBarView extends GetView<MainMenuBarViewController> {
                   ),
                   buildGestureDetectorThick(
                     onTap: () {
-                      Get.to(const NoticeEventView(isNotice: true));
+                      Get.to(const NoticeEventView(isEvent: true));
                     },
                     text: 'NOTICE',
                   ),
                   buildGestureDetectorthin(
                     onTap: () {
-                      Get.to(const NoticeEventView(isNotice: false));
+                      Get.to(const NoticeEventView(isEvent: false));
                     },
                     text: 'EVENT',
                   ),

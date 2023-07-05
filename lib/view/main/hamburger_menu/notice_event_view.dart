@@ -28,14 +28,14 @@ class NoticeEventViewController extends GetxController {
 }
 
 class NoticeEventView extends GetView<NoticeEventViewController> {
-  const NoticeEventView({Key? key, required this.isNotice}) : super(key: key);
+  const NoticeEventView({Key? key, required this.isEvent}) : super(key: key);
 
-  final bool isNotice;
+  final bool isEvent;
 
   @override
   Widget build(BuildContext context) {
     Get.put(NoticeEventViewController());
-    controller.isNotice = isNotice;
+    controller.isNotice = isEvent;
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: GetBuilder<NoticeEventViewController>(

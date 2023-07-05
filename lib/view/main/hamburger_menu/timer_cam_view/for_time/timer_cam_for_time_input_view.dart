@@ -1,52 +1,42 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/style_config/text_theme.dart';
+import 'package:stadion_project/view/custom_widget/buttons/button_with_rollover.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
-import 'package:stadion_project/view/custom_widget/text_form_field/login_text_field.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_for_time_input_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
-class TimerCamForTimeViewController extends GetxController {
+class TimerCamForTimeInputViewController extends GetxController {
+  static const String MainTimerCamView_ForTime_TotalTime =
+      '3 X ROUND FOR TIME\nTOTAL TIME : 05:00';
 
-  static const String MainTimerCamView_ForTime_TotalTime = '3 X ROUNG FOR TIME\nTOTAL TIME : 05:00';
-
-  var forTimeController = TextEditingController();
-
-  bool forTimeShow = false;
-
-  String isForTime = '';
-
-  void applyForTime(String value) {
-    isForTime = value;
-    forTimeController.text = '${isForTime}';
-    update();
-  }
-
-  void forTimeField(bool forTimeShow) {
-    this.forTimeShow = forTimeShow;
-    update();
-  }
-
-  void ForTimeFind() {
-    Get.dialog(
-      TimerCamForTimeInputView(
-          applyForTimeAtSub: applyForTime),
-      barrierColor: Colors.transparent,
-    );
-  }
+  final List<int> ForTimeSelectedList = List.generate(99, (index) => index + 1);
+  int _selectedForTime = 1;
 }
 
-class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
-  const TimerCamForTimeView({Key? key}) : super(key: key);
+class TimerCamForTimeInputView
+    extends GetView<TimerCamForTimeInputViewController> {
+  const TimerCamForTimeInputView(
+      {Key? key,
+      required this.applyForTimeAtSub,
+      required this.applySetsAtSub,
+      required this.applyMinuteAtSub,
+      required this.applySecondAtSub})
+      : super(key: key);
+
+  final Function(String) applyForTimeAtSub;
+  final Function(String) applySetsAtSub;
+  final Function(String) applyMinuteAtSub;
+  final Function(String) applySecondAtSub;
 
   @override
   Widget build(BuildContext context) {
     //뷰에 종속될 Get X controller는 build부에 put을 통해 생성하여 뷰가 dispose될 때 같이 dispose될 수 있도록 함.
     //뷰에 상관없이 유지되어야할 controller는 해당방식처럼 하면 안됨
-    Get.put(TimerCamForTimeViewController());
+    Get.put(TimerCamForTimeInputViewController());
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: Stack(
@@ -63,8 +53,9 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
             width: 750,
             height: 1462,
             fit: BoxFit.cover,
-            opacity: AlwaysStoppedAnimation(0.8),
+            opacity: AlwaysStoppedAnimation(0.9),
           ),
+
           ///엡바
           PreferredSize(
             preferredSize: Size.fromHeight(60),
@@ -73,7 +64,8 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
               child: AppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                  title: Text('TIMER CAM',
+                  title: Text(
+                    'TIMER CAM',
                     style: TextStyle(
                       color: colorScheme.background,
                       fontWeight: FontWeight.w600,
@@ -87,24 +79,26 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
                   ),
                   actions: [
                     IconButton(
-                      onPressed: (){},
-                      icon: Icon(Icons.search,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.search,
                         size: 50,
                       ),
                       color: colorScheme.background,
                     ),
                     //SizedBox(width: 18),
                     IconButton(
-                      onPressed: (){},
-                      icon: Icon(Icons.image_outlined,
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.image_outlined,
                         size: 50,
                       ),
                       color: colorScheme.background,
                     ),
-                  ]
-              ),
+                  ]),
             ),
           ),
+
           ///페이지 내용
           Positioned(
             child: Column(
@@ -120,7 +114,6 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
                       color: Color(0xff96da45),
                       child: TitleSmallText(
                         text: 'FOR\nTIME',
-                        textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.background,
                         letterSpacing: -2.4,
@@ -132,7 +125,8 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
                       alignment: Alignment.center,
                       color: Colors.transparent,
                       child: HeadlineSmallText(
-                        text: TimerCamForTimeViewController.MainTimerCamView_ForTime_TotalTime,
+                        text: TimerCamForTimeInputViewController
+                            .MainTimerCamView_ForTime_TotalTime,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
                         color: colorScheme.background,
@@ -153,23 +147,10 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
                     color: colorScheme.background,
                   ),
                 ),
-                const SizedBox(height: 60),
-                ViewContainer(
-                  width: 662,
-                  height: 37,
-                  color: Colors.transparent,
-                  alignment: Alignment.center,
-                  child: HeadlineSmallText(
-                    text: 'TIME CAP',
-                    //textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff96da45),
-                  ),
-                ),
-                const SizedBox(height: 27),
+                const SizedBox(height: 230),
                 Row(
                   children: [
-                    const SizedBox(width: 260),
+                    const SizedBox(width: 285),
                     Column(
                       children: [
                         Container(
@@ -178,37 +159,26 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                              colors: [
+                                const Color(0x00ffffff),
+                                const Color(0xff848484),
+                                const Color(0x00ffffff)
+                              ],
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        MainScreenPopupTextFormField(
-                          width: 240,
-                          height: 142,
-                          color: Colors.transparent,
-                          controller: controller.forTimeController,
-                          onTap: () {
-                            controller.ForTimeFind();
-                          },
-                          style: textThemeEn.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
-                          hintText: '00',
-                          hintStyle: textThemeEn.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: colorScheme.onSurface,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 142),
                         Container(
                           width: 180,
                           height: 2,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [const Color(0x00ffffff), const Color(0xff848484), const Color(0x00ffffff)],
+                              colors: [
+                                const Color(0x00ffffff),
+                                const Color(0xff848484),
+                                const Color(0x00ffffff)
+                              ],
                             ),
                           ),
                         ),
@@ -221,56 +191,72 @@ class TimerCamForTimeView extends GetView<TimerCamForTimeViewController> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: LabelLargeText(
-                        text: 'SET 추가',
-                        color: colorScheme.background,
-                      ),
-                    ),
-                    const SizedBox(width: 11),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.add_circle_outline,
-                        size: 45,
-                        color: colorScheme.background,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 491),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Image.asset('assets/icons/emom_camera.png'),
-                    ),
-                    const SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {},
-                      child: LabelLargeText(
-                        text: '비디오 촬영',
-                        color: colorScheme.background,
-                      ),
-                    ),
-                    const SizedBox(width: 11),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.check_circle_outline,
-                        size: 45,
-                        color: colorScheme.background,
-                      ),
-                    ),
-                  ],
-                ),
+                const SizedBox(height: 260),
               ],
+            ),
+          ),
+
+          ///CupertinoPicker 스타일
+          Positioned(
+            top: 340,
+            left: 285,
+            child: Container(
+              width: 200,
+              height: 680,
+              child: CupertinoPicker(
+                magnification: 2.5,
+                squeeze: 0.5,
+                itemExtent: 50,
+                selectionOverlay: null,
+                onSelectedItemChanged: (int selectedItem) {
+                  controller._selectedForTime = selectedItem + 1;
+                },
+                children: List<Widget>.generate(
+                    controller.ForTimeSelectedList.length, (int index) {
+                  return Center(
+                    child: Text(
+                      controller.ForTimeSelectedList[index].toString(),
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff96da45),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ),
+
+          ///저장버튼
+          Positioned(
+            top: 1013,
+            left: 111,
+            child: ButtonWithRollover(
+              onTap: () {
+                if (controller._selectedForTime == 0) {
+                  applyForTimeAtSub(controller._selectedForTime.toString());
+                  applySetsAtSub(controller._selectedForTime.toString());
+                  applyMinuteAtSub(controller._selectedForTime.toString());
+                  applySecondAtSub(controller._selectedForTime.toString());
+                } else {
+                  applyForTimeAtSub(controller._selectedForTime.toString());
+                  applySetsAtSub(controller._selectedForTime.toString());
+                  applyMinuteAtSub(controller._selectedForTime.toString());
+                  applySecondAtSub(controller._selectedForTime.toString());
+                }
+                Get.back();
+              },
+              backgroundColor: colorScheme.background,
+              child: Center(
+                child: Text(
+                  '선택하기',
+                  style: textThemeKo.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: colorScheme.surfaceVariant,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

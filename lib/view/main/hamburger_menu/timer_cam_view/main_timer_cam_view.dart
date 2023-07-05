@@ -4,13 +4,13 @@ import 'package:stadion_project/style_config/color_scheme.dart';
 import 'package:stadion_project/view/custom_widget/custom_text.dart';
 import 'package:stadion_project/view/custom_widget/view_container/view_container.dart';
 import 'package:stadion_project/view/main/custom_bottomNavigationBar.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_amrap_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_emom_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_for_time_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_stopwatch_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_album_vew.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_setting_view.dart';
-import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/timer_cam_tabata_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/amrap/timer_cam_amrap_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/emom/timer_cam_emom_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/for_time/timer_cam_for_time_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/stopwatch/timer_cam_stopwatch_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/album/timer_cam_album_vew.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/setting/timer_cam_setting_view.dart';
+import 'package:stadion_project/view/main/hamburger_menu/timer_cam_view/tabata/timer_cam_tabata_view.dart';
 import 'package:stadion_project/view/main/main_menubar_view.dart';
 
 //로그인 뷰에서 사용될 Get X controller.
